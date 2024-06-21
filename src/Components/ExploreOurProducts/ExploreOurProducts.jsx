@@ -30,6 +30,9 @@ const ExploreOurProducts = () => {
                     products.map(product => <OurProduct key={product.id} product={product}></OurProduct>)
                 }
             </div>
+            <div className="flex justify-center pt-16">
+                <button className="text-white bg-[#DB4444] rounded py-3 px-12">View All Products</button>
+            </div>
 
         </div>
     );

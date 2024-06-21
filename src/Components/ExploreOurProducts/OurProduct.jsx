@@ -18,7 +18,7 @@ const OurProduct = ({product}) => {
                 <p className="bg-[#000000] absolute bottom-0 w-[300px] text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
                 </div>
                 <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product_title}</h4>
-                <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{main_price}</h5></div>
+                <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{main_price}</h5> </div>
                 <div className="flex gap-2 items-center"><Rating style={{ maxWidth: 130 }} value={ratings} onChange={setRatings}  isRequired/> <span className="text-gray-500 font-semibold text-[18px]">({user_rating_count})</span></div>
         </div>
     );
