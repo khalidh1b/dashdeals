@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "product_image": "https://i.postimg.cc/CMtPdxWC/dry-dog-food.png",
+        "product_title": "Breed Dry Dog Food",
+        "main_price": "$100",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "35"
+    },
+    {
+        "id": 2,
+        "product_image": "https://i.postimg.cc/FsNZYkTL/dslr-camera.png",
+        "product_title": "CANON EOS DSLR Camera",
+        "main_price": "$360",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "95"
+    },
+    {
+        "id": 3,
+        "product_image": "https://i.postimg.cc/9Fg7cDKV/gaming-laptop.png",
+        "product_title": "ASUS FHD Gaming Laptop",
+        "main_price": "$700",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "325"
+    },
+    {
+        "id": 4,
+        "product_image": "https://i.postimg.cc/7Yh5tx6R/curology-product-set.png",
+        "product_title": "Curology Product Set",
+        "main_price": "$500",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "145"
+    },
+    {
+        "id": 5,
+        "product_image": "https://i.postimg.cc/wjJTn3dw/kids-car.png",
+        "product_title": "Kids Electric Car",
+        "main_price": "$960",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "65"
+    },
+    {
+        "id": 6,
+        "product_image": "https://i.postimg.cc/MHvz5pDb/zoon-soccer-boots.png",
+        "product_title": "Jr. Zoom Soccer Cleats",
+        "main_price": "$1160",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "35"
+    },
+    {
+        "id": 7,
+        "product_image": "https://i.postimg.cc/6QWJzQ62/usb-gamepad.png",
+        "product_title": "GP11 Shooter USB Gamepad",
+        "main_price": "$660",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "55"
+    },
+    {
+        "id": 8,
+        "product_image": "https://i.postimg.cc/66nK9gPQ/stain-jacket.png",
+        "product_title": "Quilted Satin Jacket",
+        "main_price": "$660",
+        "discount_price": "$0",
+        "rating": 5,
+        "user_rating_count": "55"
+    }
+]
