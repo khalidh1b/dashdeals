@@ -1,5 +1,7 @@
 import { IoMdSend } from "react-icons/io";
-import { FaRegCopyright } from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn, FaRegCopyright } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { CiTwitter } from "react-icons/ci";
 
 
 const Footer = () => {
@@ -43,6 +45,12 @@ const Footer = () => {
                     <img src="https://i.postimg.cc/s28GLR22/google-play-store.png" alt="play-store" />
                     <img src="https://i.postimg.cc/WbjFC8s0/app-store.png" alt="app-store" />
                 </div>
+                </div>
+                <div className="text-white flex pt-5 gap-4 items-center">
+                    <FaFacebookF className="text-xl"/>
+                    <CiTwitter className="text-xl"/>
+                    <FaInstagram className="text-xl"/>
+                    <FaLinkedinIn className="text-xl"/>
                 </div>
             </div>
         </div>
