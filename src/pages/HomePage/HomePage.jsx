@@ -4,6 +4,7 @@ import BannerProduct from "../../Components/BannerProduct/BannerProduct";
 import BestSellingProducts from "../../Components/BestSellingProducts/BestSellingProducts";
 import BrowserCategory from "../../Components/BrowseByCategory/BrowserCategory";
 import ExploreOurProducts from "../../Components/ExploreOurProducts/ExploreOurProducts";
+import NewArrival from "../../Components/NewArrival/NewArrival";
 
 const HomePage = () => {
     return (
@@ -14,6 +15,7 @@ const HomePage = () => {
             <BestSellingProducts></BestSellingProducts>
             <BannerProduct></BannerProduct>
             <ExploreOurProducts></ExploreOurProducts>
+            <NewArrival></NewArrival>
         </div>
     );
 };
