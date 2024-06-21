@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "discount_percent": "-40%",
+        "product_image": "https://i.postimg.cc/x8hr0VH9/G92-Gamepad.png",
+        "product_title": "HAVIT HV-G92 Gamepad",
+        "main_price": "$160",
+        "discount_price": "$120",
+        "rating": 5,
+        "user_rating_count": "88"
+    },
+    {
+        "id": 2,
+        "discount_percent": "-35%",
+        "product_image": "https://i.postimg.cc/B6z7Fcvg/ak-900-wired-gaming-keyboard.png",
+        "product_title": "AK-900 Wired Keyboard",
+        "main_price": "$1160",
+        "discount_price": "$960",
+        "rating": 4,
+        "user_rating_count": "75"
+    },
+    {
+        "id": 3,
+        "discount_percent": "-30%",
+        "product_image": "https://i.postimg.cc/Gmc0dKT8/ips-lcd-gaming-minitor.png",
+        "product_title": "IPS LCD Gaming Monitor",
+        "main_price": "$400",
+        "discount_price": "$370",
+        "rating": 5,
+        "user_rating_count": "99"
+    },
+    {
+        "id": 4,
+        "discount_percent": "-25%",
+        "product_image": "https://i.postimg.cc/hPB61sry/s-series-comfort-chair.png",
+        "product_title": "S-Series Comfort Chair",
+        "main_price": "$400",
+        "discount_price": "$375",
+        "rating": 4,
+        "user_rating_count": "99"
+    }
+]
