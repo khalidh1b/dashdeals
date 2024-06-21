@@ -11,7 +11,7 @@ import { VscGame } from "react-icons/vsc";
 const BrowserCategory = () => {
     return (
         <div className="mb-16">
-            <hr className="mx-36 mt-16 mb-20"/>
+            <hr className="mx-36 mt-16 mb-20 border-t-2"/>
             <div className="flex text-[#DB4444] items-center gap-3 ml-36 font-semibold"><div className="bg-[#DB4444] rounded py-5 px-2"></div>Categories</div>
             <div className="flex items-center justify-between mx-36">
                 <div>
