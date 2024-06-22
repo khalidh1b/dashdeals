@@ -9,6 +9,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 const About = () => {
     return (
         <div>
+            <p className='text-gray-300 pt-10 pl-20'>Home / <span className='text-[14px] text-[#000] poppins font-normal'>About</span></p>
             <div className="flex items-center gap-10 py-24 px-20">
                 <div>
                     <h1 className="text-[#000] text-[50px] font-semibold pb-6">Our Story</h1>
