@@ -35,6 +35,10 @@ const AllProducts = () => {
                     <Product key={product.id} product={product}></Product>
                 ))}
             </div>
+
+            {/* Wishlist */}
+            {/* Wishlist */}
+            
             <div className="flex justify-center pt-16">
                 <button className="text-[#FAFAFA] text-base font-medium bg-[#DB4444] py-3 px-9 rounded">
                     View All Products
