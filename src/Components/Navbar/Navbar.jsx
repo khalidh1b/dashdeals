@@ -1,12 +1,13 @@
 import { CiSearch } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <div>
             <nav className="flex items-center justify-around pt-10 border-b pb-5"> 
-                <h1 className="text-[#000] text-2xl font-semibold">DashDeals</h1>
+                <Link to="/"><h1 className="text-[#000] text-2xl font-semibold">DashDeals</h1></Link>
                 <ul className="flex gap-12 items-center">
                     <li className="text-[#000] text-base font-medium"><a href="#">Home</a></li>
                     <li className="text-[#000] text-base font-medium"><a href="#">Contact</a></li>
