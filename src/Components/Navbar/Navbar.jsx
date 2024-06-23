@@ -8,8 +8,8 @@ import { GiCancel } from "react-icons/gi";
 import { FaRegStar } from "react-icons/fa";
 import { SlLogout } from "react-icons/sl";
 
-
 const Navbar = () => {
+    
     const user = true;
     return (
         <div>
@@ -49,6 +49,9 @@ const Navbar = () => {
                     {!user && <FiUser className="bg-[#DB4444] text-4xl p-2 rounded-full text-white"/>}
                 </div>
             </nav>
+
+
+
         </div>
     );
 };
