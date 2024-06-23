@@ -4,8 +4,15 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  daisyui: {
+    themes: ["light"], // setting the default theme to light
+  },
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'custom-white': '#ffffff',
+      },
+    },
   },
   plugins: [
     function({ addBase }) {
@@ -18,7 +25,9 @@ export default {
           '-moz-appearance': 'textfield',
         },
       });
-    }
+    },
+    require('daisyui'),
+    require('tailwindcss-filters')
   ],
 }
 
