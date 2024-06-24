@@ -7,10 +7,21 @@ import { TfiPackage } from "react-icons/tfi";
 import { GiCancel } from "react-icons/gi";
 import { FaRegStar } from "react-icons/fa";
 import { SlLogout } from "react-icons/sl";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext); 
     
-    const user = true;
+    const handleLogout = () => {
+        logOut()
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
     return (
         <div>
             <nav className="flex items-center justify-around pt-10 border-b pb-5"> 
@@ -27,30 +38,29 @@ const Navbar = () => {
                     <FaRegHeart className="text-2xl"/>
                     <BsCart3 className="text-2xl"/>
 
-                    <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                        <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
+                    {user &&
+                        <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                            <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
+                            </div>
                         </div>
-                    </div>
-                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-black bg-opacity-35 backdrop-blur-sm rounded-box w-52">
-                        <li className="pb-1">
-                        <a className="justify-between">
-                            <FiUser className="text-white text-xl"/>
-                            <p className="text-white">Manage My Account</p>
-                        </a>
-                        </li>
-                        <li className="pb-1"><a><TfiPackage className="text-white text-xl"/><span className="text-white">My Order</span></a></li>
-                        <li className="pb-1"><a><GiCancel className="text-xl text-white"/><span className="text-white">My Cancellations</span></a></li>
-                        <li className="pb-1"><a><FaRegStar className="text-xl text-white"/><span className="text-white">My Reviews</span></a></li>
-                        <li className="pb-1"><a><SlLogout className="text-xl text-white"/><span className="text-white">Logout</span></a></li>
-                    </ul>
-                    </div>
-                    {!user && <FiUser className="bg-[#DB4444] text-4xl p-2 rounded-full text-white"/>}
+                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-black bg-opacity-35 backdrop-blur-sm rounded-box w-52">
+                            <li className="pb-1">
+                            <a className="justify-between">
+                                <FiUser className="text-white text-xl"/>
+                                <p className="text-white">Manage My Account</p>
+                            </a>
+                            </li>
+                            <li className="pb-1"><a><TfiPackage className="text-white text-xl"/><span className="text-white">My Order</span></a></li>
+                            <li className="pb-1"><a><GiCancel className="text-xl text-white"/><span className="text-white">My Cancellations</span></a></li>
+                            <li className="pb-1"><a><FaRegStar className="text-xl text-white"/><span className="text-white">My Reviews</span></a></li>
+                            <li onClick={handleLogout} className="pb-1"><a><SlLogout className="text-xl text-white"/><span className="text-white">Logout</span></a></li>
+                        </ul>
+                        </div>
+                    }
                 </div>
             </nav>
-
-
 
         </div>
     );

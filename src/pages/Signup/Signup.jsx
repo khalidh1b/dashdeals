@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import {AuthContext} from '../../providers/AuthProvider';
+import { Link } from "react-router-dom";
 
 const Signup = () => {
     const {createUser, googleSignIn} = useContext(AuthContext);
@@ -49,7 +50,7 @@ const Signup = () => {
                     <button className="text-white bg-[#DB4444] rounded py-3 w-full" type="submit">Create Account</button>
                 </form>
                 <div onClick={handleGoogleSignup} className="flex items-center gap-2 justify-center py-3 w-full mt-4 rounded text-[#000] poppins text-base font-normal cursor-pointer border-2"><FcGoogle className="text-2xl"/><span>Sign Up with Google</span></div>
-                <div className="flex justify-center gap-2 pt-8"><p className="poppins text-base font-normal text-[#000]">Already have an account</p><span className="text-[#000] text-base font-medium poppins">Login</span></div>
+                <div className="flex justify-center gap-2 pt-8"><p className="poppins text-base font-normal text-[#000]">Already have an account</p><Link to="/login" className="text-[#000] text-base font-medium poppins">Login</Link></div>
             </div>
         </div>
     );
