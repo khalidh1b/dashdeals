@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import {AuthContext} from '../../providers/AuthProvider';
 
 const Signup = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, googleSignIn} = useContext(AuthContext);
 
     const handleSignup = (e) => {
         e.preventDefault();
@@ -16,6 +16,16 @@ const Signup = () => {
 
         //creating user via email and password
         createUser(data.email, data.password)
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+    const handleGoogleSignup = () => {
+        googleSignIn()
         .then((result) => {
             console.log(result);
         })
@@ -38,7 +48,7 @@ const Signup = () => {
                     <input className="border-b-2 focus:outline-none w-full  mb-8 pb-1 border-x-0 border-t-0" type="password" name="password" id="" placeholder="Password" required/> <br />
                     <button className="text-white bg-[#DB4444] rounded py-3 w-full" type="submit">Create Account</button>
                 </form>
-                <div className="flex items-center gap-2 justify-center py-3 w-full mt-4 rounded text-[#000] poppins text-base font-normal cursor-pointer border-2"><FcGoogle className="text-2xl"/><span>Sign Up with Google</span></div>
+                <div onClick={handleGoogleSignup} className="flex items-center gap-2 justify-center py-3 w-full mt-4 rounded text-[#000] poppins text-base font-normal cursor-pointer border-2"><FcGoogle className="text-2xl"/><span>Sign Up with Google</span></div>
                 <div className="flex justify-center gap-2 pt-8"><p className="poppins text-base font-normal text-[#000]">Already have an account</p><span className="text-[#000] text-base font-medium poppins">Login</span></div>
             </div>
         </div>
