@@ -32,6 +32,8 @@ async function run() {
         const bestSellingProductCollections = client.db('Dashdeals').collection('bestSellingProducts');
         const exploreOurProductCollections = client.db('Dashdeals').collection('exploreOurProducts');
         const userProductWishlistCollections = client.db('Dashdeals').collection('userProductWishlist');
+        const userProductCartCollections = client.db('Dashdeals').collection('userProductCarts');
+        const userFeedbackMessageCollections = client.db('Dashdeals').collection('userFeedbackMessage');
 
         //jwt related apis
         app.post('/jwt', async(req, res) => {
@@ -65,9 +67,51 @@ async function run() {
             const existingWishlistItem = await userProductWishlistCollections.findOne(query);
             console.log(existingWishlistItem);
             if(existingWishlistItem) {
-                return res.send({message: 'wishlist item exist', insertedId: null});
+                return res.send({message: 'wishlist item exist', insertedId: null, product_title: data.product_title});
             }
             const result = await userProductWishlistCollections.insertOne(data);
+            res.send(result);
+        })
+
+        app.get('/userProductWishlist/:email', async(req, res) => {
+            const email = req.params.email;
+            const query = {email: email};
+            const result = await userProductWishlistCollections.find(query).toArray();
+            res.send(result);
+        })
+
+        app.delete('/userProductWishlist/:email/:id', async(req, res) => {
+            const {email, id} = req.params;
+            const query = {email: email,_id: (id)};
+            const result = await userProductWishlistCollections.deleteOne(query);
+            res.send(result);
+        })
+
+        app.post('/userProductCarts', async(req, res) => {
+            const data = req.body;
+            console.log(data)
+            const result = await userProductCartCollections.insertOne(data);
+            res.send(result);
+        })
+
+        app.get('/userProductCarts/:email', async(req, res) => {
+            const email = req.params.email;
+            const query = {email: email};
+            const result = await userProductCartCollections.find(query).toArray();
+            res.send(result);
+        })
+
+        app.delete('/userProductCarts/:email/:id', async(req, res) => {
+            const {email, id} = req.params;
+            const query = {email: email, _id: (id)};
+            console.log(query);
+            const result = await userProductCartCollections.deleteOne(query);
+            res.send(result);
+        })
+
+        app.post('/userFeedback', async(req, res) => {
+            const data = req.body;
+            const result = await userFeedbackMessageCollections.insertOne(data);
             res.send(result);
         })
 
