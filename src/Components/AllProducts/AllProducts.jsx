@@ -3,15 +3,22 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Product from "./Product";
 import Countdown from 'react-countdown';
 import renderer from '../SaleCountDown/SaleCountDown';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        fetch('products.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    }, []);
+        axiosPublic.get('/flashSalesProducts')
+        .then((res) => {
+            console.log(res.data);
+            setProducts(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [axiosPublic])
 
     const endTime = Date.now() + 343196000;
 

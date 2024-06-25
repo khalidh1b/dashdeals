@@ -2,15 +2,22 @@ import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import OurProduct from "./OurProduct";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const ExploreOurProducts = () => {
     const [products, setProducts] = useState([]);
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        fetch('exploreOurProducts.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    }, [])
+        axiosPublic.get('/exploreOurProducts')
+        .then((res) => {
+            console.log(res.data);
+            setProducts(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [axiosPublic])
 
     return (
         <div>

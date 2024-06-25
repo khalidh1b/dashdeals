@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import BestSellingProduct from "./BestSellingProduct";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const BestSellingProducts = () => {
     const [products, setProducts] = useState([]);
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        fetch('bestSellingProducts.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    }, [])
+        axiosPublic.get('/bestSellingProducts')
+        .then((res) => {
+            console.log(res.data);
+            setProducts(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [axiosPublic]);
 
     return (
         <div className="pb-20">
