@@ -37,7 +37,7 @@ const Wishlist = () => {
             confirmButtonText: "Remove"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axiosSecure.delete(`/userProductWishlist/${product_id}`)
+                    axiosSecure.delete(`/userProductWishlist/${user.email}/${product_id}`)
                     .then((res) => {
                         console.log(res);
                         refetch();

@@ -50,13 +50,21 @@ const Product = ({product}) => {
         })
     }
 
-    const handleCart = (_id) => {
+    const handleCart = (_id, product_title) => {
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
 
         console.log('clicking...', _id);
         axiosSecure.post('/userProductCarts', info)
         .then((res) => {
             console.log(res);
+            if(res.data.insertedId) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${product_title} successfully saved on cart`,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -71,7 +79,7 @@ const Product = ({product}) => {
                 <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">{discount_percent}</span>
                 <IoEyeOutline className="bg-[#FFFFFF] absolute top-20 left-60 text-[45px] p-2.5 rounded-full"/>
                 <FaRegHeart onClick={() => handleWishlist(product_title)} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
-                <p onClick={() => handleCart(_id)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b cursor-pointer">Add To Cart</p>
+                <p onClick={() => handleCart(_id, product_title)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b cursor-pointer">Add To Cart</p>
                 </div>
                 <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product_title}</h4>
                 <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{discount_price}</h5><span className="text-gray-500 font-medium line-through text-xl">{main_price}</span></div>

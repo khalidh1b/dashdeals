@@ -5,6 +5,8 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import {useQuery} from '@tanstack/react-query';
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from 'sweetalert2';
+
 
 const Carts = () => {
     const axiosSecure = useAxiosSecure();
@@ -22,10 +24,37 @@ const Carts = () => {
             return res.data;
         }
     })
+    console.log(products)
 
-    // const handleDelete = (product_id) => {
-    //     console.log('handle delete', product_id)
-    //     axiosSecure.delete('/')
+    const handleDelete = (product_id, product_title) => {
+        console.log('handle delete', product_id);
+
+        Swal.fire({
+            title: `${product_title} will removed from cart`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Remove"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.delete(`/userProductCarts/${user.email}/${product_id}`)
+                    .then((res) => {
+                        console.log(res);
+                        if(res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Removed!",
+                                text: `${product_title} has removed from cart`,
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                }
+            });
     }
     return (
         <div className="pt-24 pb-32">
@@ -34,7 +63,7 @@ const Carts = () => {
                 {
                     products.map(product => <div key={product._id} className="flex items-center justify-center border mx-32 mt-9 py-7 rounded shadow-md text-base poppins font-normal px-5">
                     <div className="flex items-center gap-4 w-4/12 relative">
-                        <LuDelete onClick={() => handleDelete(product._id)} className="absolute text-xl text-red-500 bottom-7 left-9 top- cursor-pointer"/>
+                        <LuDelete onClick={() => handleDelete(product._id, product.product_title)} className="absolute text-xl text-red-500 bottom-7 left-9 top- cursor-pointer"/>
                         <img className="w-12 h-10" src={product.product_image} alt="#" />
                         <span>{product.product_title}</span>
                     </div>

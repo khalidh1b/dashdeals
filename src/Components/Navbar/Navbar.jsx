@@ -28,7 +28,7 @@ const Navbar = () => {
                 <Link to="/"><h1 className="text-[#000] text-2xl font-semibold">DashDeals</h1></Link>
                 <ul className="flex gap-12 items-center">
                     <Link to="/" className="text-[#000] text-base font-medium"><li href="#">Home</li></Link>
-                    <li className="text-[#000] text-base font-medium"><a href="#">Contact</a></li>
+                    <Link to="/contact" className="text-[#000] text-base font-medium"><li href="#">Contact</li></Link>
                     <Link to="/about" className="text-[#000] text-base font-medium"><li href="#">About</li></Link>
                     <Link to="/signup" className="text-[#000] text-base font-medium"><li href="#">Signup</li></Link>
                 </ul>

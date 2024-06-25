@@ -1,8 +1,39 @@
 import { IoCallOutline } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
-
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
+    const axiosSecure = useAxiosSecure();
+
+    const handleUserFeedback = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
+        const message = form.message.value;
+        const data = {name, email, phone, message};
+        console.log('clicking', data);
+
+        axiosSecure.post('/userFeedback', data)
+        .then((res) => {
+            console.log(res);
+            if(res.data.insertedId) {
+                form.reset();
+                Swal.fire({
+                    icon: "success",
+                    title: "Thanks for sharing your thoughts",
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
     return (
         <div>
         <p className='text-gray-300 pt-10 pl-20'>Home / <span className='text-[14px] text-[#000] poppins font-normal'>Contact</span></p>
@@ -18,11 +49,11 @@ const Contact = () => {
                 <p className="poppins font-normal text-[#000] text-[14px]">Emails: support@exclusive.com</p>
             </div>
             <div className="border px-7 py-9">
-                <form>
-                    <input className="py-2 pl-3 rounded mr-4 focus:outline-none bg-[#F5F5F5]" type="text" name="" id="" placeholder="Your Name" required/>
-                    <input className="py-2 pl-3 rounded mr-4 focus:outline-none bg-[#F5F5F5]" type="email" name="" id="" placeholder="Your Email" required/>
-                    <input className="py-2 pl-3 rounded focus:outline-none bg-[#F5F5F5]" type="number" name="" id="" placeholder="Your Phone" required/> <br />
-                    <textarea className="bg-[#F5F5F5] pl-5 pt-5 mt-8 w-full h-[230px] focus:outline-none rounded" name="" id="" placeholder="Your Message"></textarea> <br />
+                <form onSubmit={handleUserFeedback}>
+                    <input className="py-2 pl-3 rounded mr-4 focus:outline-none bg-[#F5F5F5]" type="text" name="name" id="" placeholder="Your Name" required/>
+                    <input className="py-2 pl-3 rounded mr-4 focus:outline-none bg-[#F5F5F5]" type="email" name="email" id="" placeholder="Your Email" required/>
+                    <input className="py-2 pl-3 rounded focus:outline-none bg-[#F5F5F5]" type="number" name="" id="phone" placeholder="Your Phone" required/> <br />
+                    <textarea className="bg-[#F5F5F5] pl-5 pt-5 mt-8 w-full h-[230px] focus:outline-none rounded" name="message" id="" placeholder="Your Message"></textarea> <br />
                     <input className="py-3 px-10 bg-[#DB4444] mt-5 text-white rounded absolute right-40" type="submit" value="Send Message" />
                 </form>
             </div>
