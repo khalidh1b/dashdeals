@@ -1,27 +1,60 @@
 import { Rating } from "@smastrom/react-rating";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { RiDeleteBinLine } from "react-icons/ri";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from 'sweetalert2';
+import {useQuery} from '@tanstack/react-query';
+
 
 const Wishlist = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useContext(AuthContext);
-    const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        if(user) {
-            axiosSecure.get(`/userProductWishlist/${user.email}`)
-            .then((res) => {
-                console.log(res);
-                setProducts(res.data);
+
+    const {data: products = [], refetch} = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/userProductWishlist/${user.email}`, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('access-token')}`
+                }
             })
-            .catch((error) => {
-                console.log(error);
-            })
+            return res.data;
         }
-    }, [axiosSecure, user])
+    })
+
+    const handleDelete = (product_id, product_title) => {
+        console.log('handle delete', product_id);
+
+        Swal.fire({
+            title: `Remove ${product_title} from wishlist`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Remove"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.delete(`/userProductWishlist/${product_id}`)
+                    .then((res) => {
+                        console.log(res);
+                        refetch();
+                        if(res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Removed!",
+                                text: `${product_title} has been removed.`,
+                                icon: "success"
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                }
+            });
+    }
     const [ratings, setRatings] = useState(20);
     return (
         <div className="pt-20 pb-28">
@@ -30,14 +63,14 @@ const Wishlist = () => {
                 <button className="text-[#000] poppins text-base font-medium py-3 px-10 border border-[#000] rounded">Move All To Bag</button>
             </div>
 
-            <div className="flex justify-start gap-8 pt-10 mx-32">
+            <div className="grid justify-start grid-cols-3  gap-8 pt-10 mx-32">
             {
                 products.map(product => <div key={product._id}>
                     <div className="relative">
                     <img className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" src={product.product_image} />
                     <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">{product.discount_percent}</span>
-                    <RiDeleteBinLine className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full"/>
-                    <p className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
+                    <RiDeleteBinLine onClick={() => handleDelete(product._id, product.product_title)} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
+                    <p className="bg-[#000000] absolute bottom-0 w-[300px] text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
                     </div>
                     <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product.product_title}</h4>
                     <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{product.discount_price}</h5><span className="text-gray-500 font-medium line-through text-xl">{product.main_price}</span></div>

@@ -6,6 +6,8 @@ import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import {AuthContext} from '../../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2'
+
 
 const Product = ({product}) => {
     const {user} = useContext(AuthContext);
@@ -16,7 +18,7 @@ const Product = ({product}) => {
 
     const [ratings, setRatings] = useState(rating);
     
-    const handleWishlist = () => {
+    const handleWishlist = (product_title) => {
         console.log('wishlist clicked')
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
         console.log(info)
@@ -24,6 +26,22 @@ const Product = ({product}) => {
         axiosSecure.post('/userProductWishlist', info)
         .then((res) => {
             console.log(res);
+            if(!res.data.insertedId) {
+                Swal.fire({
+                    icon: "info",
+                    title: `${res.data.product_title} already available in wishlist`,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+            if(res.data.insertedId) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${product_title} added in your wishlist`,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -36,7 +54,7 @@ const Product = ({product}) => {
                 <img className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" src={product_image} alt="G92 Gamepad" />
                 <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">{discount_percent}</span>
                 <IoEyeOutline className="bg-[#FFFFFF] absolute top-20 left-60 text-[45px] p-2.5 rounded-full"/>
-                <FaRegHeart onClick={handleWishlist} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
+                <FaRegHeart onClick={() => handleWishlist(product_title)} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
                 <p className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
                 </div>
                 <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product_title}</h4>

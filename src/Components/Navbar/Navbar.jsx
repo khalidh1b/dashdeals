@@ -27,10 +27,10 @@ const Navbar = () => {
             <nav className="flex items-center justify-around pt-10 border-b pb-5"> 
                 <Link to="/"><h1 className="text-[#000] text-2xl font-semibold">DashDeals</h1></Link>
                 <ul className="flex gap-12 items-center">
-                    <li className="text-[#000] text-base font-medium"><a href="#">Home</a></li>
+                    <Link to="/" className="text-[#000] text-base font-medium"><li href="#">Home</li></Link>
                     <li className="text-[#000] text-base font-medium"><a href="#">Contact</a></li>
-                    <li className="text-[#000] text-base font-medium"><a href="#">About</a></li>
-                    <li className="text-[#000] text-base font-medium"><a href="#">Signup</a></li>
+                    <Link to="/about" className="text-[#000] text-base font-medium"><li href="#">About</li></Link>
+                    <Link to="/signup" className="text-[#000] text-base font-medium"><li href="#">Signup</li></Link>
                 </ul>
                 <div className="flex items-center gap-6">
                     <div className="flex relative"><input className="bg-[#F5F5F5] py-2.5 pl-4 pr-10 rounded focus:outline-none" type="text" name="" id="" placeholder="What are you looking for?"/>
