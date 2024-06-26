@@ -12,7 +12,6 @@ const Wishlist = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useContext(AuthContext);
 
-
     const {data: products = [], refetch} = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
@@ -56,6 +55,38 @@ const Wishlist = () => {
             });
     }
     const [ratings, setRatings] = useState(20);
+
+    const handleCart = (_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count) => {
+        
+        const email = user?.email;
+
+        const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
+
+        console.log('clicking...', _id);
+        axiosSecure.post(`/userProductCarts/${_id}/${user.email}`, info)
+        .then((res) => {
+            console.log(res);
+            if(res.data.insertedId) {
+                Swal.fire({
+                    icon: "success",
+                    title: `${product_title} successfully saved on cart`,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+            if(!res.data.insertedId) {
+                Swal.fire({
+                    icon: "info",
+                    title: `${product_title} Already saved on cart`,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
     return (
         <div className="pt-20 pb-28">
             <div className="flex justify-between items-center mx-32">
@@ -68,12 +99,12 @@ const Wishlist = () => {
                 products.map(product => <div key={product._id}>
                     <div className="relative">
                     <img className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" src={product.product_image} />
-                    <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">{product.discount_percent}</span>
+                    <span className={`bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins ${!product.discount_percent && 'hidden'}`}>{product.discount_percent}</span>
                     <RiDeleteBinLine onClick={() => handleDelete(product._id, product.product_title)} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
-                    <p className="bg-[#000000] absolute bottom-0 w-[300px] text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
+                    <p onClick={() => handleCart(product._id, product.discount_percent, product.product_image, product.product_title, product.main_price, product.discount_price, product.rating, product.user_rating_count)} className="bg-[#000000] absolute bottom-0 w-[300px] text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b cursor-pointer">Add To Cart</p>
                     </div>
                     <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product.product_title}</h4>
-                    <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{product.discount_price}</h5><span className="text-gray-500 font-medium line-through text-xl">{product.main_price}</span></div>
+                    <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{product.discount_price === '$0' ? product.main_price : product.discount_price}</h5><span className="text-gray-500 font-medium line-through text-xl">{!product.discount_price === '$0' && product.main_price}</span></div>
                 </div>)
             }
             </div>

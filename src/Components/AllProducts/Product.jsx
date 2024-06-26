@@ -54,13 +54,21 @@ const Product = ({product}) => {
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
 
         console.log('clicking...', _id);
-        axiosSecure.post('/userProductCarts', info)
+        axiosSecure.post(`/userProductCarts/${_id}/${user.email}`, info)
         .then((res) => {
             console.log(res);
             if(res.data.insertedId) {
                 Swal.fire({
                     icon: "success",
                     title: `${product_title} successfully saved on cart`,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+            if(!res.data.insertedId) {
+                Swal.fire({
+                    icon: "info",
+                    title: `${product_title} Already saved on cart`,
                     showConfirmButton: false,
                     timer: 2500
                 });
