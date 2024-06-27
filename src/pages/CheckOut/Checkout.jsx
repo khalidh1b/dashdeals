@@ -1,5 +1,30 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Checkout = () => {
+    const location = useLocation();
+    const { pandey, cartSubtotal, cartData } = location.state || {};
+    const [productDetails, setProductDetails] = useState([]);
+
+    useEffect(() => {
+        console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
+    }, [location.state, pandey, cartSubtotal, cartData]);
+
+    useEffect(() => {
+            if (cartData && pandey) {
+            const details = Object.entries(pandey).map(([productId, subtotal]) => {
+                const product = cartData.find(p => p._id === productId);
+                return {
+                id: productId, 
+                product_title: product?.product_title || 'Unknown Product',
+                product_image: product?.product_image || '',
+                price: subtotal
+                };
+            });
+            setProductDetails(details);
+            }
+        }, [cartData, pandey]);
+        // console.log(productDetails)
     return (
         <div className="flex items-center justify-center gap-28 py-40">
             <div className="w-[480px]">
@@ -27,21 +52,20 @@ const Checkout = () => {
                 {/* checkbox */}
             </div>
             <div className="pr-24 w-5/12 text-[#000] text-base font-normal poppins">
-                <div className="flex justify-between items-center pb-7">
-                    <div className="flex gap-6 items-center"><img className="w-14 h-14" src="https://i.postimg.cc/Gmc0dKT8/ips-lcd-gaming-minitor.png" alt="LCD-Monitor" />
-                    <p>LCD Monitor</p></div>
-                    <p>$1100</p>
-                </div>
-                <div className="flex justify-between items-center pb-7">
-                    <div className="flex gap-6 items-center"><img className="w-14 h-14" src="https://i.postimg.cc/x8hr0VH9/G92-Gamepad.png" alt="LCD-Monitor" />
-                    <p>H1 Gamepad</p></div>
-                    <p>$650</p>
-                </div>
-                <div className="flex justify-between pb-3"><p>Subtotal:</p><span>$1750</span></div>
+                {
+                    productDetails.map(productDetail => <div key={productDetail.id}>
+                    <div className="flex justify-between items-center pb-7">
+                    <div className="flex gap-6 items-center"><img className="w-14 h-14" src={productDetail.product_image} alt="LCD-Monitor" />
+                    <p>{productDetail.product_title}</p></div>
+                    <p>${productDetail.price}</p>
+                    </div>
+                </div>)
+                }
+                <div className="flex justify-between pb-3"><p>Subtotal:</p><span>${cartSubtotal}</span></div>
                 <hr className="border-gray-300"/>
                 <div className="flex justify-between py-3"><p>Shipping:</p><span>Free</span></div>
                 <hr className="border-t-2"/>
-                <div className="flex justify-between pt-3"><p>Total:</p><span>$1750</span></div>
+                <div className="flex justify-between pt-3"><p>Total:</p><span>${cartSubtotal}</span></div>
                 {/* radio */}
                 <div className="flex justify-between items-center pt-8">
                     <div>
