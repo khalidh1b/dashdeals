@@ -1,14 +1,27 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Checkout = () => {
     const location = useLocation();
     const { pandey, cartSubtotal, cartData } = location.state || {};
     const [productDetails, setProductDetails] = useState([]);
+    const [payment_method, setPaymentMethod] = useState();
+    const navigate = useNavigate();
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
+    // }, [location.state, pandey, cartSubtotal, cartData]);
+    const isFirstRender = useRef(true);
+
+useEffect(() => {
+    if (isFirstRender.current) {
+        isFirstRender.current = false;
         console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
-    }, [location.state, pandey, cartSubtotal, cartData]);
+        // Your request logic here
+    } else {
+        console.log('Skipping additional effect run');
+    }
+}, [location.state, pandey, cartSubtotal, cartData]);
 
     useEffect(() => {
             if (cartData && pandey) {
@@ -25,6 +38,29 @@ const Checkout = () => {
             }
         }, [cartData, pandey]);
         // console.log(productDetails)
+
+        let path = '/bankormfs';
+        if(payment_method === 'cashondelivery') {
+            path = '/cashondelivery';
+        }
+        else if(payment_method === 'bankormfs') {
+            path = '/bankormfs';
+        }
+        const bankOrMFS = () => {
+            setPaymentMethod('bankormfs');
+            console.log(payment_method)
+        }
+        
+        const cashOnDelivery = () => {
+            setPaymentMethod('cashondelivery')
+            console.log(payment_method)
+        }
+
+        const placeOrder = () => {
+            const data = { cartSubtotal };
+            console.log(`Navigating to ${path} with state:`, data);
+            navigate(`${path}`, { state: data })
+        }
     return (
         <div className="flex items-center justify-center gap-28 py-40">
             <div className="w-[480px]">
@@ -69,8 +105,8 @@ const Checkout = () => {
                 {/* radio */}
                 <div className="flex justify-between items-center pt-8">
                     <div>
-                        <label className="flex items-center cursor-pointer text-lg">
-                        <input type="radio" name="payment_method" id="payment_method" className="peer hidden" />
+                        <label onClick={bankOrMFS} className="flex items-center cursor-pointer text-lg">
+                        <input defaultChecked type="radio" name="payment_method" id="payment_method" className="peer hidden" />
                         <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center">
                         </div>
                         <span className="ml-2">Bank/MFS</span>
@@ -85,7 +121,7 @@ const Checkout = () => {
                 </div>
                 {/* radio */}
                 {/* radio */}
-                <label className="flex items-center cursor-pointer text-lg pt-3">
+                <label onClick={cashOnDelivery} className="flex items-center cursor-pointer text-lg pt-3">
                 <input type="radio" name="payment_method" id="payment_method" className="peer hidden" />
                 <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center">
                 </div>
@@ -96,7 +132,7 @@ const Checkout = () => {
                     <input className="py-3 pl-4 pr-16 border rounded border-[#000000] focus:outline-none" type="text" name="" id="" placeholder="Coupon Code"/>
                     <button className="bg-[#DB4444] py-3 px-9 rounded text-white" type="submit">Apply Coupon</button>
                 </div>
-                <button className="bg-[#DB4444] py-3 px-8 rounded mt-7 text-white" type="submit">Place Order</button>
+                <button onClick={placeOrder} className="bg-[#DB4444] py-3 px-8 rounded mt-7 text-white" type="submit">Place Order</button>
             </div>
         </div>
     );

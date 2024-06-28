@@ -11,6 +11,12 @@ import Account from "../pages/Account/Account";
 import Wishlist from '../pages/Wishlist/Wishlist';
 import Carts from "../pages/Carts/Carts";
 import ProductDetailsPage from "../pages/ProductDetailsPage/ProductDetailsPage";
+import CashOnDelivery from "../pages/CashOnDelivery/CashOnDelivery";
+import BankOrMFS from '../pages/BankOrMFS/BankOrMFS';
+import PaymentSuccess from '../Components/PaymentSuccess/PaymentSuccess';
+import PaymentCancel from '../Components/PaymentCanceled/PaymentCanceled';
+import PaymentFailed from '../Components/PaymentFailed/PaymentFailed';
+
 
 const router = createBrowserRouter([
     {
@@ -57,6 +63,26 @@ const router = createBrowserRouter([
             {
                 path: '/productDetailsPage',
                 element: <ProductDetailsPage></ProductDetailsPage>
+            },
+            {
+                path: '/cashondelivery',
+                element: <CashOnDelivery></CashOnDelivery>
+            },
+            {
+                path: '/bankormfs',
+                element: <BankOrMFS></BankOrMFS>
+            },
+            {
+                path: '/paymentsuccess',
+                element: <PaymentSuccess></PaymentSuccess>
+            },
+            {
+                path: '/paymentcancel',
+                element: <PaymentCancel></PaymentCancel>
+            },
+            {
+                path: '/paymentfailed',
+                element: <PaymentFailed></PaymentFailed>
             }
         ]
     }
