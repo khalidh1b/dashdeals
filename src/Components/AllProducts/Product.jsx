@@ -8,8 +8,7 @@ import {AuthContext} from '../../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2'
 
-
-const Product = ({product}) => {
+const Product = ({product,}) => {
     const {user} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
 

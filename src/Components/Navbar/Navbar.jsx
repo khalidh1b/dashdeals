@@ -9,10 +9,26 @@ import { FaRegStar } from "react-icons/fa";
 import { SlLogout } from "react-icons/sl";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import PropTypes from 'prop-types';
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext); 
-    
+    const {user, logOut} = useContext(AuthContext);     
+    const axiosSecure = useAxiosSecure();
+
+    const { data: carts = [], refetch } = useQuery({
+        queryKey: ["carts"],
+        queryFn: async () => {
+        const res = await axiosSecure.get(`/userProductCarts/${user.email}`, {
+            headers: {
+            authorization: `Bearer ${localStorage.getItem("access-token")}`,
+            },
+        });
+        return res.data;
+        },
+    });
+
     const handleLogout = () => {
         logOut()
         .then((result) => {
@@ -22,6 +38,15 @@ const Navbar = () => {
             console.log(error);
         })
     }
+
+    // useEffect(() => {
+    //     const callRefetch = () => {
+    //         refetch();
+    
+    //         setTimeout(callRefetch, 1000)
+    //     }
+    //     callRefetch()
+    // }, [refetch])
     return (
         <div>
             <nav className="flex items-center justify-around pt-10 border-b pb-5"> 
@@ -35,14 +60,17 @@ const Navbar = () => {
                 <div className="flex items-center gap-6">
                     <div className="flex relative"><input className="bg-[#F5F5F5] py-2.5 pl-4 pr-10 rounded focus:outline-none" type="text" name="" id="" placeholder="What are you looking for?"/>
                     <CiSearch className="absolute right-4 top-2.5 text-2xl font-medium placeholder:text-[10px] placeholder:font-normal"/></div>
-                    <FaRegHeart className="text-2xl"/>
-                    <BsCart3 className="text-2xl"/>
+                    <Link to="/wishlist"><FaRegHeart className="text-2xl"/></Link>
+                    <div className="relative">
+                        <Link to="/carts"><BsCart3 className="text-2xl"/></Link>
+                        {carts.length > 0 && <span className="absolute bottom-3 left-4 bg-red-100 px-[7px] rounded-full">{carts.length}</span>}
+                    </div>
 
                     {user &&
                         <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
+                            <img alt="Tailwind CSS Navbar component" src={user.photoURL}/>
                             </div>
                         </div>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-black bg-opacity-35 backdrop-blur-sm rounded-box w-52">
@@ -65,5 +93,9 @@ const Navbar = () => {
         </div>
     );
 };
+
+// Navbar.propTypes = {
+//     products: PropTypes.array.isRequired
+// };
 
 export default Navbar;
