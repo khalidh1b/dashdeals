@@ -15,7 +15,7 @@ const BankOrMFS = () => {
 
             const handleCreatePayment = () => {
                 axiosSecure.post('/create-payment', {
-                    amount: 1000,
+                    amount: cartSubtotal,
                     currency: 'BDT'
                 })
                 .then((res) => {
