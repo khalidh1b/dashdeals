@@ -67,10 +67,10 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-black bg-opacity-35 backdrop-blur-sm rounded-box w-52">
                             <li className="pb-1">
-                            <a className="justify-between">
+                            <Link to="/account" className="justify-between">
                                 <FiUser className="text-white text-xl"/>
                                 <p className="text-white">Manage My Account</p>
-                            </a>
+                            </Link>
                             </li>
                             <li className="pb-1"><a><TfiPackage className="text-white text-xl"/><span className="text-white">My Order</span></a></li>
                             <li className="pb-1"><a><GiCancel className="text-xl text-white"/><span className="text-white">My Cancellations</span></a></li>

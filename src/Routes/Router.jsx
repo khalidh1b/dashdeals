@@ -61,8 +61,9 @@ const router = createBrowserRouter([
                 element: <Carts></Carts>
             },
             {
-                path: '/productDetailsPage',
-                element: <ProductDetailsPage></ProductDetailsPage>
+                path: '/productDetailsPage/:id',
+                element: <ProductDetailsPage></ProductDetailsPage>,
+                loader: ({params}) => fetch(`http://localhost:5000/flashSalesProducts/${params.id}`)
             },
             {
                 path: '/cashondelivery',
@@ -83,7 +84,7 @@ const router = createBrowserRouter([
             {
                 path: '/paymentfailed',
                 element: <PaymentFailed></PaymentFailed>
-            }
+            },
         ]
     }
 ])

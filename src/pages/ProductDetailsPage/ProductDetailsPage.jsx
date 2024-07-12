@@ -5,12 +5,14 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { TbTruckDelivery } from "react-icons/tb";
 import { GrPowerCycle } from "react-icons/gr";
-
+import { useLoaderData } from "react-router-dom";
 
 
 const ProductDetailsPage = () => {
     const [ratings, setRatings] = useState(20);
-
+    const data = useLoaderData();
+    const {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count} = data;
+    
     return (
         <div>
 
@@ -25,13 +27,13 @@ const ProductDetailsPage = () => {
                 </div>
                 {/* review */}
 
-                <div><img className="bg-[#F5F5F5] py-24 px-7 rounded" src="https://i.postimg.cc/nrNfhcbr/game-controller.png" alt="game-controller" /></div>
+                <div><img src={product_image} alt={product_title} className="w-[300px]"/></div>
                 </div>
 
                 <div>
-                    <h2 className="text-[#000] font-semibold text-2xl">Havic HV G-92 Gamepad</h2>
-                    <div className="flex gap-2 items-center py-3"><Rating style={{ maxWidth: 130 }} value={ratings} onChange={setRatings}  isRequired/> <span className="text-gray-500 font-semibold text-[18px]">(150 Reviews) | <span className="text-[#0F6] poppins text-[14px] font-normal">In Stock</span></span></div>
-                    <p className="text-[#000] text-xl font-normal">$192.00</p>
+                    <h2 className="text-[#000] font-semibold text-2xl">{product_title}</h2>
+                    <div className="flex gap-2 items-center py-3"><Rating style={{ maxWidth: 130 }} value={rating} onChange={setRatings}  isRequired/> <span className="text-gray-500 font-semibold text-[18px]">({user_rating_count} Reviews) | <span className="text-[#0F6] poppins text-[14px] font-normal">In Stock</span></span></div>
+                    <p className="text-[#000] text-xl font-normal">{discount_price}</p>
                     <p className="text-[14px] poppins text-[#000] font-normal py-4">PlayStation 5 Controller Skin High quality vinyl with air <br /> channel adhesive for easy bubble free install & mess <br /> free removal Pressure sensitive.</p>
                     <hr className="border-[#000]"/>
                     <p className="text-xl font-normal text-[#000] py-3">Colours:</p>
