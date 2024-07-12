@@ -29,7 +29,7 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        // await client.connect();
 
         const flashSalesProductCollections = client.db('Dashdeals').collection('flashSalesProducts');
         const bestSellingProductCollections = client.db('Dashdeals').collection('bestSellingProducts');
@@ -52,6 +52,13 @@ async function run() {
         //products related apis
         app.get('/flashSalesProducts', async(req, res) => {
             const result = await flashSalesProductCollections.find().toArray();
+            res.send(result);
+        })
+
+        app.get('/flashSalesProducts/:id', async(req, res) => {
+            const id = req.params.id;
+            const query = {_id: new ObjectId(id)};
+            const result = await flashSalesProductCollections.findOne(query);
             res.send(result);
         })
 
@@ -133,6 +140,7 @@ async function run() {
         })
 
         //payment gateway integration
+        const backendUrl = "http://localhost:5000";
         app.post('/create-payment', async(req, res) => {
             const paymentInfo = req.body;
             const initiateData = {
@@ -141,9 +149,9 @@ async function run() {
                 total_amount: paymentInfo.amount,
                 currency: paymentInfo.currency,
                 tran_id: uuidv4(),
-                success_url: 'http://localhost:5000/success-payment',
-                fail_url: 'http://localhost:5000/payment-failed',
-                cancel_url: 'http://localhost:5000/payment-cancel',
+                success_url: `${backendUrl}/success-payment`,
+                fail_url: `${backendUrl}/payment-failed`,
+                cancel_url: `${backendUrl}/payment-cancel`,
                 cus_name: 'Customer Name',
                 cus_email: 'cust@yahoo.com',
                 cus_add1: 'Dhaka',
@@ -197,29 +205,37 @@ async function run() {
             }
         })
 
-        app.post('/success-payment', async(req, res) => {
+        const clientUrl = "http://localhost:5173";
+        app.post('/success-payment', async (req, res) => {
             const successData = req.body;
-            if(successData.status !== 'VALID') {
-                throw new Error('unauthorized payment');
+        
+            if (successData.status !== 'VALID') {
+                throw new Error('Unauthorized payment');
             }
-
-            const query = { paymentId: successData.tran_id }
+        
+            const query = { paymentId: successData.tran_id };
             const update = {
                 $set: {
                     status: "Success"
                 }
-            }
+            };
+        
             const updateData = await userPaymentsInfoCollections.updateOne(query, update);
-
+        
             console.log('successData', successData);
             console.log('updatedData', updateData);
-            res.redirect('http://localhost:5173/paymentsuccess')
-        })
+        
+            // Construct the redirect URL with successData as query parameters
+            const redirectUrl = `${clientUrl}/paymentsuccess?tran_id=${successData.tran_id}&card_issuer=${successData.card_issuer}&tran_date=${successData.tran_date}&currency_type=${successData.currency_type}&amount=${successData.amount}&status=Success`;
+            res.redirect(redirectUrl);
+        });
+        
+
         app.post('/payment-failed', async(req, res) => {
-            res.redirect('http://localhost:5173/paymentfailed');
+            res.redirect(`${clientUrl}/paymentfailed`);
         })
         app.post('/payment-cancel', async(req, res) => {
-            res.redirect('http://localhost:5173/paymentcancel');
+            res.redirect(`${clientUrl}/paymentcancel`);
         })
 
         // Send a ping to confirm a successful connection
