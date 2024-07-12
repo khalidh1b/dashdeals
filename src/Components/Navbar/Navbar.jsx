@@ -39,14 +39,6 @@ const Navbar = () => {
         })
     }
 
-    // useEffect(() => {
-    //     const callRefetch = () => {
-    //         refetch();
-    
-    //         setTimeout(callRefetch, 1000)
-    //     }
-    //     callRefetch()
-    // }, [refetch])
     return (
         <div>
             <nav className="flex items-center justify-around pt-10 border-b pb-5"> 
