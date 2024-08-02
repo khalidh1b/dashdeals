@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {AuthContext} from '../../providers/AuthProvider';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2'
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Product = ({product,}) => {
     const {user} = useContext(AuthContext);
@@ -52,10 +52,15 @@ const Product = ({product,}) => {
     }
 
     const handleCart = (_id, product_title) => {
+        if(!user) {
+            navigate('/login');
+            return;
+        }
+
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
 
         console.log('clicking...', _id);
-        axiosSecure.post(`/userProductCarts/${_id}/${user.email}`, info)
+        axiosSecure.post(`/userProductCarts/${_id}/${user?.email}`, info)
         .then((res) => {
             console.log(res);
             if(res.data.insertedId) {
@@ -82,19 +87,19 @@ const Product = ({product,}) => {
 
 
     return (
-        <div>
-            <Link to={`/productdetailspage/${_id}`}>
+        <div className='border'>
                 <div className="relative">
+                <Link to={`/productdetailspage/${_id}`}>
                 <img className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" src={product_image} alt="G92 Gamepad" />
                 <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">{discount_percent}</span>
                 <IoEyeOutline className="bg-[#FFFFFF] absolute top-20 left-60 text-[45px] p-2.5 rounded-full"/>
                 <FaRegHeart onClick={() => handleWishlist(product_title)} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
-                <p onClick={() => handleCart(_id, product_title)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b cursor-pointer">Add To Cart</p>
+                </Link>
+                <p onClick={() => handleCart(_id, product_title)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
                 </div>
                 <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product_title}</h4>
                 <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{discount_price}</h5><span className="text-gray-500 font-medium line-through text-xl">{main_price}</span></div>
                 <div className="flex gap-2 items-center"><Rating style={{ maxWidth: 130 }} value={ratings} onChange={setRatings}  isRequired/> <span className="text-gray-500 font-semibold text-[18px]">({user_rating_count})</span></div>
-            </Link>
         </div>
     );
 };

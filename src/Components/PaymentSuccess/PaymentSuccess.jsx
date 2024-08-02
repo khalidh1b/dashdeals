@@ -1,4 +1,7 @@
 import { IoMdCheckmark } from "react-icons/io";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import { useContext, useState } from "react";
+// import { AuthContext } from "../../providers/AuthProvider";
 
 const PaymentSuccess = () => {
     // Function to get URL parameters
@@ -8,6 +11,8 @@ function getUrlParameter(name) {
     var results = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
+// const [orderInfo, setOrderInfo] = useState(null);
+
 
 // Usage
 const tran_id = getUrlParameter('tran_id');
@@ -15,6 +20,22 @@ const card_issuer = getUrlParameter('card_issuer');
 const tran_date = getUrlParameter('tran_date');
 const currency_type = getUrlParameter('currency_type');
 const amount = getUrlParameter('amount');
+
+
+// const {user} = useContext(AuthContext);
+// const axiosSecure = useAxiosSecure();
+// const userOrderInfo = () => {
+//     console.log('trying to save order info');
+//     axiosSecure.get(`/userProductCarts/${user?.email}`)
+//     .then(res => setOrderInfo(res.data))
+//     .catch(error => console.log(error))
+//     if(orderInfo) {
+//         axiosSecure.post('/userOrderInfo', orderInfo)
+//         .then(res => console.log(res))
+//         .catch(error => console.log(error))
+//     }
+// }
+// userOrderInfo();
 
     return (
         <div className="py-20 border">

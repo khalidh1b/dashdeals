@@ -57,7 +57,7 @@ useEffect(() => {
         }
 
         const placeOrder = () => {
-            const data = { cartSubtotal };
+            const data = { cartSubtotal, cartData };
             console.log(`Navigating to ${path} with state:`, data);
             navigate(`${path}`, { state: data })
         }

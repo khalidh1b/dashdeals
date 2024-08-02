@@ -16,7 +16,15 @@ import BankOrMFS from '../pages/BankOrMFS/BankOrMFS';
 import PaymentSuccess from '../Components/PaymentSuccess/PaymentSuccess';
 import PaymentCancel from '../Components/PaymentCanceled/PaymentCanceled';
 import PaymentFailed from '../Components/PaymentFailed/PaymentFailed';
-
+import MyOrders from '../pages/MyOrders/MyOrders';
+import ManageMyAccount from '../pages/Account/ManageMyAccount';
+import MyProfile from '../pages/Account/MyProfile';
+import AddressBook from '../pages/Account/AddressBook';
+import MyPaymentOptions from '../pages/Account/MyPaymentOption';
+import MyOrder from '../pages/Account/MyOrders';
+import MyReturns from '../pages/Account/MyReturns';
+import MyCancellations from '../pages/Account/MyCancellations';
+import MyWishlist from '../pages/Account/MyWishlist';
 
 const router = createBrowserRouter([
     {
@@ -85,6 +93,48 @@ const router = createBrowserRouter([
                 path: '/paymentfailed',
                 element: <PaymentFailed></PaymentFailed>
             },
+            {
+                path: '/myorders',
+                element: <MyOrders></MyOrders>
+            }
+        ]
+    },
+    {
+        path: '/account',
+        element: <Account></Account>,
+        children: [
+            {
+                path: 'manageMyAccount',
+                element: <ManageMyAccount></ManageMyAccount>
+            },
+            {
+                path: 'myProfile',
+                element: <MyProfile></MyProfile>
+            },
+            {
+                path: 'addressBook',
+                element: <AddressBook></AddressBook>
+            },
+            {
+                path: 'myPaymentOptions',
+                element: <MyPaymentOptions></MyPaymentOptions>
+            },
+            {
+                path: 'myOrder',
+                element: <MyOrder></MyOrder>
+            },
+            {
+                path: 'myReturns',
+                element: <MyReturns></MyReturns>
+            },
+            {
+                path: 'myCancellations',
+                element: <MyCancellations></MyCancellations>
+            },
+            {
+                path: 'myWishlist',
+                element: <MyWishlist></MyWishlist>
+            }
         ]
     }
 ])

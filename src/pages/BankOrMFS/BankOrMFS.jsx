@@ -4,18 +4,19 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const BankOrMFS = () => {
     const location = useLocation();
-    const { cartSubtotal } = location.state || {};
+    const { cartSubtotal, cartData } = location.state || {};
     const axiosSecure = useAxiosSecure();
     const isInitialMount = useRef(true);
 
     useEffect(() => {
         if (isInitialMount.current) {
             isInitialMount.current = false;
-            console.log('Received state in bankormfs:', { cartSubtotal });
+            console.log('Received state in bankormfs:', { cartSubtotal, cartData });
 
             const handleCreatePayment = () => {
                 axiosSecure.post('/create-payment', {
                     amount: cartSubtotal,
+                    productId: cartData,
                     currency: 'BDT'
                 })
                 .then((res) => {

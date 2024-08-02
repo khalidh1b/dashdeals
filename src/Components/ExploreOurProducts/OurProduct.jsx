@@ -6,12 +6,13 @@ import PropTypes from 'prop-types';
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 
 const OurProduct = ({product}) => {
     const {_id, discount_percent, discount_price, product_image, product_title, main_price, rating, user_rating_count} = product;
     const {user} = useContext(AuthContext);
-
+    const navigate = useNavigate();
     const [ratings, setRatings] = useState(rating);
     const axiosSecure = useAxiosSecure();
     const email = user?.email;
@@ -50,6 +51,11 @@ const OurProduct = ({product}) => {
 
     
     const handleCart = (_id, product_title) => {
+        if(!user) {
+            navigate('/login');
+            return;
+        }
+
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
 
         console.log('clicking...', _id);
@@ -83,7 +89,7 @@ const OurProduct = ({product}) => {
                 <img className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" src={product_image} alt="G92 Gamepad" />
                 <IoEyeOutline className="bg-[#FFFFFF] absolute top-20 left-60 text-[45px] p-2.5 rounded-full"/>
                 <FaRegHeart onClick={() => handleWishlist(product_title)} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
-                <p onClick={() => handleCart(_id, product_title)} className="bg-[#000000] absolute bottom-0 w-[300px] text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b cursor-pointer">Add To Cart</p>
+                <p onClick={() => handleCart(_id, product_title)} className="bg-[#000000] absolute bottom-0 w-[300px] text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b cursor-default">Add To Cart</p>
                 </div>
                 <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product_title}</h4>
                 <div className="flex gap-4 py-2"><h5 className="text-[#DB4444] text-xl font-medium">{main_price}</h5> </div>
