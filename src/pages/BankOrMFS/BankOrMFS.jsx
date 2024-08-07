@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { AuthContext } from "../../providers/AuthProvider";
 
 const BankOrMFS = () => {
     const location = useLocation();
     const { cartSubtotal, cartData } = location.state || {};
     const axiosSecure = useAxiosSecure();
     const isInitialMount = useRef(true);
+    const {user} = useContext(AuthContext);
 
     useEffect(() => {
         if (isInitialMount.current) {
@@ -17,6 +19,7 @@ const BankOrMFS = () => {
                 axiosSecure.post('/create-payment', {
                     amount: cartSubtotal,
                     productId: cartData,
+                    cus_email: user?.email,
                     currency: 'BDT'
                 })
                 .then((res) => {

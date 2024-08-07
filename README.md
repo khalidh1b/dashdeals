@@ -48,6 +48,10 @@ To get a local copy up and running follow these simple steps:
 - Add products to the cart and proceed to checkout.
 - Register or login to manage your account and view order history.
 
+## Backend Repository
+
+The backend server code for this project can be found at: [https://github.com/Khalid09dev/E-Commerce-Server]
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.

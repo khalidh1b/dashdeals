@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 
 const Login = () => {
     const {signIn, googleSignIn, forgetPassword} = useContext(AuthContext);
     const email = "mdkhalidhossen10@gmail.com";
+    const navigate = useNavigate();
 
     const handleSignIn = (e) => {
         e.preventDefault()
@@ -28,7 +29,10 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
         .then((result) => {
-            console.log(result);
+            console.log(result.user);
+            if(result.user) {
+                navigate('/');
+            }
         })
         .catch((error) => {
             console.log(error);
