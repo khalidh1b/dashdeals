@@ -9,7 +9,7 @@ const ExploreOurProducts = () => {
     const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        axiosPublic.get('/exploreOurProducts')
+        axiosPublic.get('products/exploreOurProducts')
         .then((res) => {
             console.log(res.data);
             setProducts(res.data);

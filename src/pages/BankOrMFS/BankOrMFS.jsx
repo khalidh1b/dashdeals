@@ -16,7 +16,7 @@ const BankOrMFS = () => {
             console.log('Received state in bankormfs:', { cartSubtotal, cartData });
 
             const handleCreatePayment = () => {
-                axiosSecure.post('/create-payment', {
+                axiosSecure.post('payments/create-payment', {
                     amount: cartSubtotal,
                     productId: cartData,
                     cus_email: user?.email,

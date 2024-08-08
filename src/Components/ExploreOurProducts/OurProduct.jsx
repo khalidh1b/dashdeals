@@ -59,7 +59,7 @@ const OurProduct = ({product}) => {
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
 
         console.log('clicking...', _id);
-        axiosSecure.post(`/userProductCarts/${_id}/${user.email}`, info)
+        axiosSecure.post(`users/userProductCarts/${_id}/${user.email}`, info)
         .then((res) => {
             console.log(res);
             if(res.data.insertedId) {

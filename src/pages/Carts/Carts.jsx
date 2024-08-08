@@ -18,7 +18,7 @@
     const { data: products = [], refetch } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
-        const res = await axiosSecure.get(`/userProductCarts/${user.email}`, {
+        const res = await axiosSecure.get(`users/userProductCarts/${user.email}`, {
             headers: {
             authorization: `Bearer ${localStorage.getItem("access-token")}`,
             },
@@ -59,7 +59,7 @@
         }).then((result) => {
         if (result.isConfirmed) {
             axiosSecure
-            .delete(`/userProductCarts/${user.email}/${product_id}`)
+            .delete(`users/userProductCarts/${user.email}/${product_id}`)
             .then((res) => {
                 if (res.data.deletedCount > 0) {
                 refetch();

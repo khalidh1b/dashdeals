@@ -20,7 +20,7 @@ const Navbar = () => {
     const { data: carts = [], refetch } = useQuery({
         queryKey: ["carts"],
         queryFn: async () => {
-        const res = await axiosSecure.get(`/userProductCarts/${user.email}`, {
+        const res = await axiosSecure.get(`users/userProductCarts/${user.email}`, {
             headers: {
             authorization: `Bearer ${localStorage.getItem("access-token")}`,
             },

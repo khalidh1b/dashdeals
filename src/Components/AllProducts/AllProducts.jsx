@@ -10,7 +10,7 @@ const AllProducts = () => {
     const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        axiosPublic.get('/flashSalesProducts')
+        axiosPublic.get('products/flashSalesProducts')
         .then((res) => {
             console.log(res.data);
             setProducts(res.data);

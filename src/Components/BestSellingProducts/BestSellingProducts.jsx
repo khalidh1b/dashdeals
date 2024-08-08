@@ -7,7 +7,7 @@ const BestSellingProducts = () => {
     const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        axiosPublic.get('/bestSellingProducts')
+        axiosPublic.get('products/bestSellingProducts')
         .then((res) => {
             console.log(res.data);
             setProducts(res.data);

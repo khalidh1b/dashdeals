@@ -60,7 +60,7 @@ const Product = ({product,}) => {
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
 
         console.log('clicking...', _id);
-        axiosSecure.post(`/userProductCarts/${_id}/${user?.email}`, info)
+        axiosSecure.post(`users/userProductCarts/${_id}/${user?.email}`, info)
         .then((res) => {
             console.log(res);
             if(res.data.insertedId) {
@@ -87,7 +87,7 @@ const Product = ({product,}) => {
 
 
     return (
-        <div className='border'>
+        <div>
                 <div className="relative">
                 <Link to={`/productdetailspage/${_id}`}>
                 <img className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" src={product_image} alt="G92 Gamepad" />
