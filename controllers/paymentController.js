@@ -48,25 +48,37 @@ exports.createPayment = async (req, res) => {
         const response = await axios.post('https://sandbox.sslcommerz.com/gwprocess/v4/api.php', initiateData, {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
-        
+    
         const saveData = {
             cus_name: 'dummy',
             paymentId: initiateData.tran_id,
             amount: paymentInfo.amount,
             cus_email: paymentInfo.cus_email,
             status: 'pending',
-            delivery_status: 'pending'
+            delivery_status: 'pending',
+            orderDate: new Date(), // Optionally add an order date
+            products: paymentInfo?.cartInfo // Store all products in an array
         };
-
-        const orderProductsData = paymentInfo?.productId;
-        await getCollection('userOrderedProducts').insertMany(orderProductsData);
-        await getCollection('userPaymentsInfo').insertOne(saveData);
-
+    
+        // Insert the order as a single document with an array of products
+        await getCollection('userOrderedProducts').insertOne(saveData);
+    
+        await getCollection('userPaymentsInfo').insertOne({
+            cus_name: 'dummy',
+            paymentId: initiateData.tran_id,
+            amount: paymentInfo.amount,
+            cus_email: paymentInfo.cus_email,
+            status: 'pending',
+            delivery_status: 'pending'
+        });
+    
         res.send({ paymentUrl: response.data.GatewayPageURL });
     } catch (error) {
         console.error('Error creating payment:', error);
         res.status(500).send('Payment creation failed');
     }
+    
+    
 };
 
 exports.handleSuccessPayment = async (req, res) => {
