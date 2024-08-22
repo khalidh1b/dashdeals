@@ -26,7 +26,7 @@ const Product = ({product,}) => {
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email, wishlisted};
         console.log(info)
 
-        axiosSecure.post('/userProductWishlist', info)
+        axiosSecure.post('users/userProductWishlist', info)
         .then((res) => {
             console.log(res);
             if(!res.data.insertedId) {
@@ -92,9 +92,9 @@ const Product = ({product,}) => {
                 <Link to={`/productdetailspage/${_id}`}>
                 <img className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" src={product_image} alt="G92 Gamepad" />
                 <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">{discount_percent}</span>
+                </Link>
                 <IoEyeOutline className="bg-[#FFFFFF] absolute top-20 left-60 text-[45px] p-2.5 rounded-full"/>
                 <FaRegHeart onClick={() => handleWishlist(product_title)} className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
-                </Link>
                 <p onClick={() => handleCart(_id, product_title)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
                 </div>
                 <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">{product_title}</h4>
