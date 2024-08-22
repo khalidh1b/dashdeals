@@ -25,7 +25,7 @@ const BestSellingProduct = ({product}) => {
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email, wishlisted};
         console.log(info)
 
-        axiosSecure.post('/userProductWishlist', info)
+        axiosSecure.post('users/userProductWishlist', info)
         .then((res) => {
             console.log(res);
             if(!res.data.insertedId) {
