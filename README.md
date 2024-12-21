@@ -50,7 +50,7 @@ To get a local copy up and running follow these simple steps:
 
 ## Backend Repository
 
-The backend server code for this project can be found at: [https://github.com/Khalid09dev/E-Commerce-Server]
+The backend server code for this project can be found at: [https://github.com/iamkhalidhussein/E-Commerce-Server]
 
 ## Contributing
 
