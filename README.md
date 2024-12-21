@@ -36,11 +36,11 @@ This project is the frontend of an e-commerce website designed to provide users 
 
 To get a local copy up and running follow these simple steps:
 
-1. Clone the repository: `git clone https://github.com/Khalid09dev/E-Commerce.git`
+1. Clone the repository: `git clone https://github.com/iamkhalidhussein/E-Commerce.git`
 2. Navigate into the directory: `cd your-repository`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm start`
-5. Open your browser and go to: `http://localhost:3000`
+5. Open your browser and go to: `http://localhost:4000`
 
 ## Usage
 
