@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { addUserProductWishlist, getUserProductCarts, addUserProductCarts, deleteUserProductCarts, getUserOrderedProducts, deleteOrderedProduct, deleteUserProductWishlist, getUserProductWishlist} = require('../controllers/userController');
+const { addUserProductWishlist, getUserProductCarts, addUserProductCarts, deleteUserProductCarts, getUserOrderedProducts, deleteOrderedProduct, deleteUserProductWishlist, getUserProductWishlist} = require('../controllers/userController.js');
 
 router.post('/userProductWishlist', addUserProductWishlist);
 router.get('/getUserProductWishlist/:email', getUserProductWishlist);

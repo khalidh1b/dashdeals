@@ -107,7 +107,7 @@ exports.handleSuccessPayment = async (req, res) => {
         console.log('Update Result:', updateResult);
 
         // Construct the redirect URL with successData as query parameters
-        const redirectUrl = `${clientUrl}/paymentsuccess?tran_id=${successData.tran_id}&card_issuer=${successData.card_issuer}&tran_date=${successData.tran_date}&currency_type=${successData.currency_type}&amount=${successData.amount}&status=Success`;
+        const redirectUrl = `${clientUrl}/paymentsuccess?tran_id=${successData.tran_id}&card_issuer=${successData.card_issuer}&tran_date=${successData.tran_date}&currency_type=${successData.currency_type}&amount=${successData.amount}&status=Success`;  
 
         // Redirect the client
         res.redirect(redirectUrl);
