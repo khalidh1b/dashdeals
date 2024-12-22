@@ -27,16 +27,17 @@ const ExploreOurProducts = () => {
                     <h2 className="text-[32px] font-semibold">Explore Our Products</h2>
                 </div>
                 <div className="flex gap-2">
-                    <FaArrowRightLong className="bg-[#F5F5F5] text-4xl p-2.5 rounded-full"/>
-                    <FaArrowLeftLong className="bg-[#F5F5F5] text-4xl p-2.5 rounded-full"/>
+                    <FaArrowRightLong className="bg-[#F5F5F5] dark:bg-slate-400 text-4xl p-2.5 rounded-full"/>
+                    <FaArrowLeftLong className="bg-[#F5F5F5] dark:bg-slate-400 text-4xl p-2.5 rounded-full"/>
                 </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-7 mx-10">
+            <div className="grid grid-cols-4 gap-5 mx-6">
                 {
                     products.map(product => <OurProduct key={product.id} product={product}></OurProduct>)
                 }
             </div>
+
             <div className="flex justify-center pt-16">
                 <button className="text-white bg-[#DB4444] rounded py-3 px-12">View All Products</button>
             </div>

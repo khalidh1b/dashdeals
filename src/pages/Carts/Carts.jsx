@@ -14,10 +14,12 @@
     const [subtotals, setSubtotals] = useState({});
     const [cartSubtotal, setCartSubtotal] = useState(0);
     const navigate = useNavigate();
-
+    const [loading, setLoading] = useState(false);
+    
     const { data: products = [], refetch } = useQuery({
         queryKey: ["products"],
         queryFn: async () => {
+        setLoading(true);
         const res = await axiosSecure.get(`users/userProductCarts/${user.email}`, {
             headers: {
             authorization: `Bearer ${localStorage.getItem("access-token")}`,
@@ -38,8 +40,10 @@
         }, {});
         setQuantities(initialQuantities);
         setSubtotals(initialSubtotals);
+
+        setLoading(false);
         return res.data;
-        },
+    },
     });
 
     useEffect(() => {
@@ -125,13 +129,13 @@
 
     return (
         <div className="pt-24 pb-32">
-        <div className="flex justify-center gap-72 border mx-32 py-5 px-5 rounded shadow-md text-base poppins font-normal">
+        <div className="flex justify-center gap-60 border mx-32 py-5 px-5 rounded shadow-md text-base poppins font-normal">
             <p className="w-1/2">Product</p>
             <p>Price</p>
             <p>Quantity</p>
             <p>Subtotal</p>
         </div>
-        {products.map((product) => (
+        { loading ? <div className="flex justify-center pt-10"><span className="loading loading-spinner text-info"></span></div> : products.map((product) => (
             <div
             key={product._id}
             className="flex items-center justify-center border mx-32 mt-9 py-7 rounded shadow-md text-base poppins font-normal px-5"
@@ -174,10 +178,10 @@
             </div>
         ))}
         <div className="flex justify-between mx-32 pt-8">
-            <button className="text-[#000] poppins text-base font-medium py-3 px-9 border-2 rounded">
-            Return To Shop
+            <button className="text-[#000] dark:text-white poppins text-base font-medium py-3 px-9 border-2 rounded">
+            Return To Shop  
             </button>
-            <button className="text-[#000] poppins text-base font-medium py-3 px-9 border-2 rounded">
+            <button className="text-[#000] dark:text-white poppins text-base font-medium py-3 px-9 border-2 rounded">
             Update Cart
             </button>
         </div>
@@ -192,18 +196,18 @@
                 Apply Coupon
             </button>
             </div>
-            <div className="border-2 rounded border-[#000] py-7 px-7 w-4/12 poppins text-base font-normal text-[#000]">
-            <h3 className="text-xl font-medium pb-5">Cart Total</h3>
+            <div className="border-2 rounded border-[#000] dark:border-white py-7 px-7 w-4/12 poppins text-base font-normal text-[#000]">
+            <h3 className="text-xl font-medium pb-5 dark:text-white">Cart Total</h3>
             <div className="flex pb-3 justify-between">
-                <p>Subtotal:</p><span>${cartSubtotal.toFixed(2)}</span>
+                <p className="dark:text-white">Subtotal:</p><span className="dark:text-white">${cartSubtotal.toFixed(2)}</span>
             </div>
-            <hr className="border-b" />
+            <hr className="border-b"/>
             <div className="flex justify-between py-4">
-                <p>Shipping:</p><span>Free</span>
+                <p className="dark:text-white">Shipping:</p><span className="dark:text-white">Free</span>
             </div>
             <hr className="border-[#000]" />
             <div className="flex justify-between py-3">
-                <p>Total:</p><span>${cartSubtotal.toFixed(2)}</span>
+                <p className="dark:text-white">Total:</p><span className="dark:text-white">${cartSubtotal.toFixed(2)}</span>
             </div>
                 <button onClick={proceedToCheckout} className="py-3 px-9 bg-[#DB4444] text-white rounded">
                 Proceed to checkout

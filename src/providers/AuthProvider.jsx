@@ -4,8 +4,6 @@ import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 
-
-
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
@@ -42,13 +40,7 @@ const AuthProvider = ({children}) => {
 
     //forget password
     const forgetPassword = (email) => {
-        sendPasswordResetEmail(auth, email)
-        .then((result) => {
-            console.log(result);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+        return sendPasswordResetEmail(auth, email)
     }
 
     //observe current user

@@ -64,7 +64,7 @@ useEffect(() => {
     return (
         <div className="flex items-center justify-center gap-28 py-40">
             <div className="w-[480px]">
-                <h1 className="text-[#000] text-[32px] font-medium pb-8">Billing Details</h1>
+                <h1 className="text-[#000] dark:text-white text-[32px] font-medium pb-8">Billing Details</h1>
                 <label className="text-base font-normal poppins text-gray-400">First Name<span className="text-red-400">*</span></label> <br />
                 <input type="text" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
                 <label>Company Name</label> <br />
@@ -89,7 +89,7 @@ useEffect(() => {
             </div>
             <div className="pr-24 w-5/12 text-[#000] text-base font-normal poppins">
                 {
-                    productDetails.map(productDetail => <div key={productDetail.id}>
+                    productDetails.map(productDetail => <div className="dark:text-white" key={productDetail.id}>
                     <div className="flex justify-between items-center pb-7">
                     <div className="flex gap-6 items-center"><img className="w-14 h-14" src={productDetail.product_image} alt="LCD-Monitor" />
                     <p>{productDetail.product_title}</p></div>
@@ -97,11 +97,11 @@ useEffect(() => {
                     </div>
                 </div>)
                 }
-                <div className="flex justify-between pb-3"><p>Subtotal:</p><span>${cartSubtotal}</span></div>
+                <div className="flex justify-between pb-3 dark:text-white"><p>Subtotal:</p><span>${cartSubtotal}</span></div>
                 <hr className="border-gray-300"/>
-                <div className="flex justify-between py-3"><p>Shipping:</p><span>Free</span></div>
+                <div className="flex justify-between py-3 dark:text-white"><p>Shipping:</p><span>Free</span></div>
                 <hr className="border-t-2"/>
-                <div className="flex justify-between pt-3"><p>Total:</p><span>${cartSubtotal}</span></div>
+                <div className="flex justify-between pt-3 dark:text-white"><p>Total:</p><span>${cartSubtotal}</span></div>
                 {/* radio */}
                 <div className="flex justify-between items-center pt-8">
                     <div>
@@ -109,7 +109,7 @@ useEffect(() => {
                         <input defaultChecked type="radio" name="payment_method" id="payment_method" className="peer hidden" />
                         <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center">
                         </div>
-                        <span className="ml-2">Bank/MFS</span>
+                        <span className="ml-2 dark:text-white">Bank/MFS</span>
                         </label>
                     </div>
                     <div className="flex gap-2 items-center">
@@ -120,12 +120,11 @@ useEffect(() => {
                     </div>
                 </div>
                 {/* radio */}
-                {/* radio */}
                 <label onClick={cashOnDelivery} className="flex items-center cursor-pointer text-lg pt-3">
                 <input type="radio" name="payment_method" id="payment_method" className="peer hidden" />
                 <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center">
                 </div>
-                <span className="ml-2">Cash on delivery</span>
+                <span className="ml-2 dark:text-white">Cash on delivery</span>
                 </label>
                 {/* radio */}
                 <div className="flex gap-4 pt-6">

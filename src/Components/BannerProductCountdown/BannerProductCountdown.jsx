@@ -4,19 +4,19 @@ const BannerProductCountdown = ({days, hours, minutes, seconds}) => {
     return (
         <div>
             <div className="flex gap-10">
-                    <div className="bg-[#F5F8F9] rounded-full p-1 w-[65px] h-[65px]">
+                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full p-1 w-[65px] h-[65px]">
                         <span className="pl-4 text-base font-semibold">{hours < 10 ? `0${hours}` : hours}</span>
                         <p className="text-[14px] text-center">Hours</p>
                     </div>
-                    <div className="bg-[#F5F8F9] rounded-full p-1 w-[65px] h-[65px]">
+                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full p-1 w-[65px] h-[65px]">
                         <span className="pl-4 text-base font-semibold">{days < 10 ? `0${days}` : days}</span>
                         <p className="text-[14px] text-center">Days</p>
                     </div>
-                    <div className="bg-[#F5F8F9] rounded-full p-1 w-[65px] h-[65px]">
+                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full p-1 w-[65px] h-[65px]">
                         <span className="pl-4 text-base font-semibold">{minutes < 10 ? `0${minutes}` : minutes}</span>
                         <p className="text-[14px]">Munites</p>
                     </div>
-                    <div className="bg-[#F5F8F9] rounded-full w-[65px] h-[65px]">
+                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full w-[65px] h-[65px]">
                         <span className="pl-4 text-base font-semibold">{seconds < 10 ? `0${seconds}` : seconds}</span>
                         <p className="text-[14px]">Seconds</p>
                     </div>

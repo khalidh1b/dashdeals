@@ -25,6 +25,7 @@ import MyOrder from '../pages/Account/MyOrders';
 import MyReturns from '../pages/Account/MyReturns';
 import MyCancellations from '../pages/Account/MyCancellations';
 import MyWishlist from '../pages/Account/MyWishlist';
+import AllOrders from '../pages/MyOrders/AllOrders';
 
 const router = createBrowserRouter([
     {
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
             {
                 path: '/productDetailsPage/:id',
                 element: <ProductDetailsPage></ProductDetailsPage>,
-                loader: ({params}) => fetch(`http://localhost:5000/flashSalesProducts/${params.id}`)
+                loader: ({params}) => fetch(`https://e-commerce-server-inky-alpha.vercel.app/products/flashSalesProducts/${params.id}`)
             },
             {
                 path: '/cashondelivery',
@@ -95,7 +96,13 @@ const router = createBrowserRouter([
             },
             {
                 path: '/myorders',
-                element: <MyOrders></MyOrders>
+                element: <MyOrders></MyOrders>,
+                children: [
+                    {
+                        path: 'allOrders',
+                        element: <AllOrders></AllOrders>
+                    }
+                ]
             }
         ]
     },

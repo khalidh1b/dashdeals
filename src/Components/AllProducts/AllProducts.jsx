@@ -29,10 +29,10 @@ const AllProducts = () => {
                 Todays
             </div>
             <div className="flex items-center justify-between mx-36">
-                <Countdown date={endTime} renderer={renderer} />
+                <Countdown date={endTime} renderer={renderer}/>
                 <div className="flex gap-2">
-                    <FaArrowRightLong className="bg-[#F5F5F5] text-4xl p-2.5 rounded-full" />
-                    <FaArrowLeftLong className="bg-[#F5F5F5] text-4xl p-2.5 rounded-full" />
+                    <FaArrowRightLong className="bg-[#F5F5F5] dark:bg-slate-500 text-4xl p-2.5 rounded-full" />
+                    <FaArrowLeftLong className="bg-[#F5F5F5] dark:bg-slate-500 text-4xl p-2.5 rounded-full" />
                 </div>
             </div>
 

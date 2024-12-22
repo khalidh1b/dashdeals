@@ -15,7 +15,7 @@ const Wishlist = () => {
     const {data: products = [], refetch} = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/userProductWishlist/${user.email}`, {
+            const res = await axiosSecure.get(`users/getUserProductWishlist/${user.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('access-token')}`
                 }
@@ -36,7 +36,7 @@ const Wishlist = () => {
             confirmButtonText: "Remove"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axiosSecure.delete(`/userProductWishlist/${user.email}/${product_id}`)
+                    axiosSecure.delete(`users/deleteUserProductWishlist/${user.email}/${product_id}`)
                     .then((res) => {
                         console.log(res);
                         refetch();
@@ -63,7 +63,7 @@ const Wishlist = () => {
         const info = {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count, email};
 
         console.log('clicking...', _id);
-        axiosSecure.post(`/userProductCarts/${_id}/${user.email}`, info)
+        axiosSecure.post(`users/userProductCarts/${_id}/${user.email}`, info)
         .then((res) => {
             console.log(res);
             if(res.data.insertedId) {

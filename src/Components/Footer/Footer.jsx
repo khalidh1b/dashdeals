@@ -12,7 +12,7 @@ const Footer = () => {
                 <h4 className="text-2xl font-semibold text-[#FAFAFA]">Exclusive</h4>
                 <h5 className="text-[#FAFAFA] text-xl pt-3 font-normal poppins">Subscribe</h5>
                 <p className="text-base text-[#FAFAFA] pt-5 pb-2 font-normal poppins">Get 10% off your first order</p>
-                <div className="flex relative"><input className="py-2 pl-3 bg-[#000] border rounded" type="text" name="" id="" placeholder="Enter your email"/>
+                <div className="flex relative"><input className="py-2 pl-3 bg-[#000] dark:bg-[#27272A] border rounded" type="text" name="" id="" placeholder="Enter your email"/>
                 <IoMdSend className="absolute text-white text-2xl right-3 top-2"/></div>
             </div>
             <ul className="text-[#FAFAFA] text-base poppins font-normal">
@@ -40,10 +40,10 @@ const Footer = () => {
                 <h4 className="text-xl font-medium text-[#FAFAFA] pb-4">Download App</h4>
                 <p className="text-[12px] poppins font-medium text-[#FAFAFA] pb-1">Save $3 with App New User Only</p>
                 <div className="flex gap-3">
-                <img src="https://i.postimg.cc/R03NKbTx/qr-code.png" alt="qr-code" />
+                <img src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411583/Qrcode_1_frzc4d.png" alt="qr-code" />
                 <div className="grid gap-2">
-                    <img src="https://i.postimg.cc/s28GLR22/google-play-store.png" alt="play-store" />
-                    <img src="https://i.postimg.cc/WbjFC8s0/app-store.png" alt="app-store" />
+                    <img src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411582/google-play-store_xz5mmg.png" alt="play-store" />
+                    <img src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411581/appstore_lkwdcq.png" alt="app-store" />
                 </div>
                 </div>
                 <div className="text-white flex pt-5 gap-4 items-center">

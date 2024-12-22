@@ -1,73 +1,40 @@
-import { useContext } from "react";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { AuthContext } from "../../providers/AuthProvider";
-import {Link, useNavigate} from 'react-router-dom';
-
+import { Skeleton } from '@/Components/ui/skeleton';
+import useSignIn from "../../hooks/useSignIn";
+import { Link } from "react-router-dom";
+import useForgetPass from "../../hooks/useForgetPass";
+import PassResetForm from "../../Components/PassResetForm/PassResetForm";
 
 const Login = () => {
-    const {signIn, googleSignIn, forgetPassword} = useContext(AuthContext);
-    const email = "mdkhalidhossen10@gmail.com";
-    const navigate = useNavigate();
-
-    const handleSignIn = (e) => {
-        e.preventDefault()
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        const data = {email, password};
-        console.log(data);
-
-        signIn(data.email, data.password)
-        .then((result) => {
-            console.log(result);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }
-
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-        .then((result) => {
-            console.log(result.user);
-            if(result.user) {
-                navigate('/');
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }
-
-    // TODO: forget password
-    const handleForgetPass = () => {
-        console.log(email)
-        forgetPassword(email)
-        .then((result) => {
-            console.log(result)
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    const [isLoading, setIsLoading] = useState(true);
+    const { handleSignIn, handleGoogleSignIn, loading } = useSignIn();
+    const { handleForgetPass } = useForgetPass();
+    
+    const handleImageLoad = () => {
+        setIsLoading(false);
     }
 
     return (
         <div className="flex items-center pb-32 pt-20 gap-24">
-            <div className="bg-[#CBE4E8] pt-10">
-                <img src="https://i.postimg.cc/XvTRkQ6B/dl-beatsnoop-1.png" alt="signup-banner" />
+            {
+                isLoading && <><Skeleton className="w-1/2 h-screen" /></>
+            } 
+            <div className={`bg-[#CBE4E8] pt-10 w-1/2 ${isLoading ? 'hidden' : ''}`}>
+                <img src="https://res.cloudinary.com/dksiicemx/image/upload/v1729422686/authentication-banner_i6gqed.png" alt="login-banner" onLoad={handleImageLoad}/>
             </div>
             <div>
-                <h3 className="text-[#000] text-[36px] font-medium">Log in to Exclusive</h3>
-                <h5 className="text-[#000] poppins text-base font-normal pb-10">Enter your details below</h5>
+                <h3 className="text-[#000] dark:text-white text-[36px] font-medium">Log in to Exclusive</h3>
+                <h5 className="text-[#000] dark:text-white poppins text-base font-normal pb-10">Enter your details below</h5>
                 <form onSubmit={handleSignIn}>
-                    <input className="focus:outline-none border-b-2 w-full pb-1 mb-7 border-x-0 border-t-0" type="email" name="email" id="" placeholder="Email or Phone Number"/> <br />
-                    <input className="border-b-2 focus:outline-none w-full  pb-1 border-x-0 border-t-0" type="password" name="password" id="" placeholder="Password"/>
-                    <p onClick={handleForgetPass} className="mb-8 pt-1 text-[#DB4444] text-[14px] cursor-pointer">forget password </p>
+                    <input className="focus:outline-none border-b-2 w-full pb-1 mb-7 border-x-0 border-t-0 dark:bg-[#09090B]" type="email" name="email" id="" placeholder="Email or Phone Number"/> <br />
+                    <input className="border-b-2 focus:outline-none w-full  pb-1 border-x-0 border-t-0 dark:bg-[#09090B]" type="password" name="password" id="" placeholder="Password"/>
+                    <PassResetForm handleForgetPass={handleForgetPass}/>
                     <br />
-                    <button className="text-white bg-[#DB4444] rounded py-3 w-full" type="submit">Login</button>
+                    <button disabled={loading ? true : false} className="text-white bg-[#DB4444] rounded py-3 w-full flex justify-center gap-2" type="submit">Login{loading && <span className="loading loading-spinner loading-md"></span>}</button>
                 </form>
-                <div onClick={handleGoogleSignIn} className="flex items-center gap-2 justify-center py-3 w-full mt-4 rounded text-[#000] poppins text-base font-normal cursor-pointer border-2"><FcGoogle className="text-2xl"/><span>Sign In with Google</span></div>
-                <div className="flex justify-center gap-2 pt-8"><p className="poppins text-base font-normal text-[#000]">New to here go?</p><Link to="/signup" className="text-[#000] text-base font-medium poppins">Signup</Link></div>
+                <div onClick={handleGoogleSignIn} className="flex items-center gap-2 justify-center py-3 w-full mt-4 rounded text-[#000] dark:text-white poppins text-base font-normal cursor-pointer border-2"><FcGoogle className="text-2xl"/><span>Sign In with Google</span></div>
+                <div className="flex justify-center gap-2 pt-8"><p className="poppins text-base font-normal text-[#000] dark:text-white">New to here go?</p><Link to="/signup" className="text-[#000] dark:text-white text-base font-medium poppins">Signup</Link></div>
             </div>
         </div>
     );
