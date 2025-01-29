@@ -2,27 +2,26 @@ import PropTypes from 'prop-types';
 
 const BannerProductCountdown = ({days, hours, minutes, seconds}) => {
     return (
-        <div>
-            <div className="flex gap-10">
-                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full p-1 w-[65px] h-[65px]">
-                        <span className="pl-4 text-base font-semibold">{hours < 10 ? `0${hours}` : hours}</span>
-                        <p className="text-[14px] text-center">Hours</p>
-                    </div>
-                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full p-1 w-[65px] h-[65px]">
-                        <span className="pl-4 text-base font-semibold">{days < 10 ? `0${days}` : days}</span>
-                        <p className="text-[14px] text-center">Days</p>
-                    </div>
-                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full p-1 w-[65px] h-[65px]">
-                        <span className="pl-4 text-base font-semibold">{minutes < 10 ? `0${minutes}` : minutes}</span>
-                        <p className="text-[14px]">Munites</p>
-                    </div>
-                    <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full w-[65px] h-[65px]">
-                        <span className="pl-4 text-base font-semibold">{seconds < 10 ? `0${seconds}` : seconds}</span>
-                        <p className="text-[14px]">Seconds</p>
-                    </div>
-                </div>
-        </div>
+            <div className="md:flex flex gap-10">
+                <TimerUnit value={hours} label="Hours"/>
+                <TimerUnit value={days} label="Days"/>
+                <TimerUnit value={minutes} label="Minutes"/>
+                <TimerUnit value={seconds} label="Seconds"/>
+            </div>
     );
+};
+
+export default BannerProductCountdown;
+
+const TimerUnit = ({ value, label }) => {
+    const formattedValue = value < 10 ? `0${value}` : value;
+
+    return (
+        <div className="bg-[#F5F8F9] dark:bg-slate-500 rounded-full p-1 w-[65px] h-[65px]">
+            <span className="pl-4 text-base font-semibold">{formattedValue}</span>
+            <p className="text-[14px] text-center">{label}</p>
+        </div>
+    )
 };
 
 BannerProductCountdown.propTypes = {
@@ -32,4 +31,7 @@ BannerProductCountdown.propTypes = {
     seconds: PropTypes.number.isRequired,
 };
 
-export default BannerProductCountdown;
+TimerUnit.propTypes = {
+    value: PropTypes.number,
+    label: PropTypes.string
+};
