@@ -5,8 +5,9 @@ const getCollection = (collectionName) => client.db('Dashdeals').collection(coll
 
 exports.addUserProductWishlist = async (req, res) => {
     const data = req.body;
+    const query = {productId: data?.productId, email: data?.email}
     const collection = getCollection('userProductWishlist');
-    const existingWishlistItem = await collection.findOne({ _id: data._id });
+    const existingWishlistItem = await collection.findOne(query);
     if (existingWishlistItem) {
         return res.send({ message: 'Wishlist item exists', insertedId: null, product_title: data.product_title });
     }
@@ -21,9 +22,9 @@ exports.getUserProductCarts = async (req, res) => {
         const query = {email: email};
         const result = await collection.find(query).toArray();
 
-        if(result.length === 0) {
-            return res.status(404).send({message: 'No carts found for this email'})
-        }
+        if (result.length === 0) {
+            return res.status(200).send([]); // Return an empty array
+        }        
         res.send(result);
     } catch (error) {
         console.error('Error fetching user product carts', error);
@@ -36,7 +37,7 @@ exports.addUserProductCarts = async (req, res) => {
         const data = req.body;
         const {id, email} = req.params;
         const collection = getCollection('userProductCarts');
-        const query = {email: email, _id: id};
+        const query = {productId: id, email: email};
 
         //Check if cart exists for this user
         const existingCartItem = await collection.findOne(query);
@@ -57,12 +58,8 @@ exports.deleteUserProductCarts = async (req, res) => {
     try {
         const {email, id} = req.params;
         const collection = getCollection('userProductCarts');
-        const query = {email: email, _id: id};
+        const query = {email: email, _id: new ObjectId(id)};
 
-        //Debug: Log the query to see what is being sent
-        // console.log('Deleting item with query:', query);
-
-        //Perform the delete operation
         const result = await collection.deleteOne(query);
 
         if(result.deletedCount === 0) {
@@ -124,7 +121,7 @@ exports.deleteOrderedProduct = async (req, res) => {
 
 exports.deleteUserProductWishlist = async (req, res) => {
     const {email, productId} = req.params;
-    const query = {email: email, _id: (productId)};
+    const query = {email: email, _id: new ObjectId(productId)};
 
     const result = await getCollection('userProductWishlist').deleteOne(query);
 
