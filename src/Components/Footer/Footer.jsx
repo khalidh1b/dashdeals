@@ -44,21 +44,21 @@ const socialIcons = [
 const Footer = () => {
     return (
         <div>
-        <div className="bg-[#000] flex justify-center gap-20 pt-20 pb-16">
+        <div className="bg-[#000] md:flex justify-center gap-20 pt-20 pb-16">
           
-          <div>
+          <div className="pl-5 md:pl-0">
             <h4 className="text-2xl font-semibold text-[#FAFAFA]">Exclusive</h4>
             <h5 className="text-[#FAFAFA] text-xl pt-3 font-normal poppins">Subscribe</h5>
             <p className="text-base text-[#FAFAFA] pt-5 pb-2 font-normal poppins">
               Get 10% off your first order
             </p>
-            <div className="flex relative">
+            <div className="md:flex relative">
               <input
                 className="py-2 pl-3 bg-[#000] dark:bg-[#27272A] border rounded"
                 type="text"
                 placeholder="Enter your email"
               />
-              <IoMdSend className="absolute text-white text-2xl right-3 top-2" />
+              <IoMdSend className="absolute text-white text-2xl md:right-3 right-36 top-2" />
             </div>
           </div>
   
@@ -66,7 +66,7 @@ const Footer = () => {
             <FooterLinkList key={index} title={section.title} links={section.links} />
           ))}
   
-          <div>
+          <div className="md:pl-0 md:mt-0 mt-5 pl-5">
             <h4 className="text-xl font-medium text-[#FAFAFA] pb-4">Download App</h4>
             <p className="text-[12px] poppins font-medium text-[#FAFAFA] pb-1">
               Save $3 with App New User Only
@@ -101,7 +101,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterLinkList = ({ title, links }) => (
-    <ul className="text-[#FAFAFA] text-base poppins font-normal">
+    <ul className="text-[#FAFAFA] text-base pl-5 md:pl-0 md:mt-0 mt-4 poppins font-normal">
       <li className="text-xl font-medium text-[#FAFAFA] pb-4">{title}</li>
       {links.map((link, index) => (
         <li key={index} className="pb-3">

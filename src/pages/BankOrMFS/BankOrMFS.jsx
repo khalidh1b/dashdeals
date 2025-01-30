@@ -15,6 +15,7 @@ const BankOrMFS = () => {
             isInitialMount.current = false;
             console.log('Received state in bankormfs:', { cartSubtotal, cartData });
 
+            //handle payment creation
             const handleCreatePayment = () => {
                 axiosSecure.post('payments/create-payment', {
                     amount: cartSubtotal,

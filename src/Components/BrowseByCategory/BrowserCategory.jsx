@@ -9,6 +9,7 @@ import { VscGame } from "react-icons/vsc";
 import PropTypes from 'prop-types';
 
 const BrowserCategory = () => {
+    
     const categories = [
         { icon: <CiMobile4 className="text-4xl mx-auto"/>, name: 'Phones' },
         { icon: <FaComputer className="text-4xl mx-auto"/>, name: 'Computers' },
@@ -49,7 +50,7 @@ const SectionHeader = () => {
 
 const CategoriesList = ({ categories }) => {
     return (
-        <div className="flex justify-center gap-8 pt-10">
+        <div className="md:flex justify-center md:gap-8 pt-10">
             {categories.map((category, index) => (
             <CategoryItem key={index} {...category} />
             ))}
@@ -60,12 +61,12 @@ const CategoriesList = ({ categories }) => {
 const CategoryItem = ({ icon, name, isActive }) => {
     return (
         <div
-            className={`border px-10 py-6 rounded ${
+            className={`border md:mt-0 mt-5 md:mx-0 mx-20 px-10 py-6 rounded ${
             isActive ? 'text-white bg-[#DB4444]' : ''
             }`}
         >
         {icon}
-        <p className="text-[14px] pt-1">{name}</p>
+        <p className="text-[14px] text-center pt-1">{name}</p>
     </div>
     )
 };

@@ -30,13 +30,14 @@ const ProfileMenu = () => {
     useEffect(() => {
         document.documentElement.classList.toggle("dark", theme);
     }, [theme]);
+    
     return (
         <>
-            { user && <DropdownMenu>
+            <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src={ user.photoURL || 'https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif'}/>
+                            <img alt="Tailwind CSS Navbar component" src={ user?.photoURL || 'https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif'}/>
                             </div>
                         </div>
                     </DropdownMenuTrigger>
@@ -44,27 +45,23 @@ const ProfileMenu = () => {
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                            <Link to="/account/manageMyAccount">
-                                Manage My Account
-                            </Link>
-                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            Settings
-                            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <Link to="/myorders">
-                                My Order
-                            </Link>
-                            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                        </DropdownMenuItem>
+                        <Link to="/settings">
+                            <DropdownMenuItem>
+                                    Settings
+                                <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                        </Link>
+                        <Link to="/myorders">
+                            <DropdownMenuItem>
+                                    My Order
+                                <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                        </Link>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
                         <DropdownMenuItem>
-                            <Link to="/myCancellations">My Cancellations</Link>
+                            <Link>My Cancellations</Link>
                         </DropdownMenuItem>
                         <DropdownMenuSub>
                             <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
@@ -78,7 +75,7 @@ const ProfileMenu = () => {
                             </DropdownMenuPortal>
                         </DropdownMenuSub>
                         <DropdownMenuItem>
-                            <Link to="/myReviews">
+                            <Link>
                                 My Reviews
                             </Link>
                             <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
@@ -97,7 +94,7 @@ const ProfileMenu = () => {
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
-                    </DropdownMenu>}
+                    </DropdownMenu>
         </>
     );
 };

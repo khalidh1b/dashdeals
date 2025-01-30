@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 const SaleCountDown = ({ days, hours, minutes, seconds }) => {
     return (
-        <div className="flex items-center gap-20">
-            <h2 className="text-[36px] font-semibold">Flash Sales</h2>
-            <div className="flex gap-6">
+        <div className="flex items-center gap-4 md:gap-20">
+            <h2 className="md:text-[36px] text-3xl font-semibold">Flash Sales</h2>
+            <div className="flex md:gap-6 gap-1">
                 <div>
                     <p className="text-[12px] font-medium text-[#000] dark:text-white">Days</p>
                     <span className="text-[32px] font-bold text-[#000] dark:text-white">{days < 10 ? `0${days}` : days}</span>

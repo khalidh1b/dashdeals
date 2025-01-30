@@ -5,7 +5,7 @@ import useHandleCart from '../../hooks/useHandleCart.js';
 import useHandleWishlist from '../../hooks/useHandleWishlist.js';
 import { ProductCard } from '../ProductCard/ProductCard.jsx';
 
-const Product = ({product}) => {
+const Product = ({ product }) => {
     const {_id, discount_percent, product_image, product_title, main_price, discount_price, rating, user_rating_count} = product;
     const [ratings, setRatings] = useState(rating);
     const handleCart = useHandleCart();
@@ -25,6 +25,7 @@ const Product = ({product}) => {
                 ratings={ratings}
                 user_rating_count={user_rating_count}
                 setRatings={setRatings}
+                product={product}
             />
         </>
     );

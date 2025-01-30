@@ -27,6 +27,7 @@ const About = () => {
                 } 
                 <img className={`rounded w-full ${isLoading && 'hidden'}`} onLoad={handleImageLoad} src="https://res.cloudinary.com/dksiicemx/image/upload/v1729423553/our-story_suhrrk.png" alt="our-story-banner" />
             </div>
+            
             <OurStoryStats></OurStoryStats>
 
             <div className='flex gap-7 pt-20 justify-center'>

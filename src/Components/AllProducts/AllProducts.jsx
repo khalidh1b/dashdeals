@@ -5,21 +5,33 @@ import Countdown from 'react-countdown';
 import renderer from '../SaleCountDown/SaleCountDown';
 import useAxiosPublic from '../../hooks/useAxiosPublic.js';
 import PropTypes from 'prop-types';
+import { ProductCardSkeleton } from '../Skeletons/ProductCardSkeleton.jsx';
 
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
     const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        axiosPublic.get('products/flashSalesProducts')
-        .then((res) => {
-            console.log(res.data);
-            setProducts(res.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }, [axiosPublic])
+        setLoading(true);
+        const fetchProducts = async () => {
+            try {
+                axiosPublic.get('products/flashSalesProducts')
+                .then((res) => {
+                    console.log(res.data);
+                    setProducts(res.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            } catch (error) {
+                console.error('error while fetching products', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProducts();
+    }, [axiosPublic]);
 
     const endTime = Date.now() + 343196000;
 
@@ -27,7 +39,7 @@ const AllProducts = () => {
         <div className="pt-28">
             <FlashSalesHeader/>
             <CountdownSection endTime={endTime}/>
-            <ProductsSection products={products}/>
+            <ProductsSection products={products} loading={loading}/>
             <ViewAllProductsButton/>
         </div>
     );
@@ -62,11 +74,13 @@ const ArrowButtons = () => {
     )
 };
 
-const ProductsSection = ({ products }) => {
+const ProductsSection = ({ products, loading }) => {
     return (
         <div className="md:flex grid grid-cols-1 justify-center gap-6 md:gap-4 items-center pt-8">
-            {products.map(product => (
+            {!loading ? products.map(product => (
                 <Product key={product.id} product={product} />
+            )) : Array.from({ length: 4 }).map((_, idx) => (
+                <ProductCardSkeleton key={idx}/>
             ))}
         </div>
     )
@@ -88,4 +102,5 @@ CountdownSection.propTypes = {
 
 ProductsSection.propTypes = {
     products: PropTypes.array,
+    loading: PropTypes.bool
 };

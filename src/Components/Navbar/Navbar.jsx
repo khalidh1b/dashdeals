@@ -7,7 +7,7 @@ import useCart from '../../hooks/useCart.js';
 import PropTypes from 'prop-types';
 
 const Navbar = () => {
-    const [ carts ] = useCart();
+    const [carts,  ] = useCart();
 
     const navLinks = [
         { to: "/", label: "Home" },
@@ -37,6 +37,8 @@ const Navbar = () => {
     </nav>
     );
 };
+
+export default Navbar;
 
 const NavLink = ({ to, label }) => {
     return (
@@ -82,4 +84,3 @@ NavLink.propTypes = {
     to: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired
 };
-export default Navbar;

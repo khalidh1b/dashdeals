@@ -1,31 +1,34 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import PrivateRoute from './PrivateRoute';
+
 import Root from '../pages/Root/Root';
 import HomePage from '../pages/HomePage/HomePage';
 import Signup from "../pages/Signup/Signup";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import About from "../pages/About/About";
-import Contact from '../pages/Contact/Contact';
-import Checkout from "../pages/CheckOut/Checkout";
-import Account from "../pages/Account/Account";
-import Wishlist from '../pages/Wishlist/Wishlist';
-import Carts from "../pages/Carts/Carts";
-import ProductDetailsPage from "../pages/ProductDetailsPage/ProductDetailsPage";
-import CashOnDelivery from "../pages/CashOnDelivery/CashOnDelivery";
-import BankOrMFS from '../pages/BankOrMFS/BankOrMFS';
-import PaymentSuccess from '../Components/PaymentSuccess/PaymentSuccess';
-import PaymentCancel from '../Components/PaymentCanceled/PaymentCanceled';
-import PaymentFailed from '../Components/PaymentFailed/PaymentFailed';
-import MyOrders from '../pages/MyOrders/MyOrders';
-import ManageMyAccount from '../pages/Account/ManageMyAccount';
-import MyProfile from '../pages/Account/MyProfile';
-import AddressBook from '../pages/Account/AddressBook';
-import MyPaymentOptions from '../pages/Account/MyPaymentOption';
-import MyOrder from '../pages/Account/MyOrders';
-import MyReturns from '../pages/Account/MyReturns';
-import MyCancellations from '../pages/Account/MyCancellations';
-import MyWishlist from '../pages/Account/MyWishlist';
-import AllOrders from '../pages/MyOrders/AllOrders';
+import MyOrderSkeleton from "../Components/LoadingSkeletons/MyOrderSkeleton";
+import { SettingSkeleton } from "../Components/Skeletons/SettingSkeleton";
+
+const About = lazy(() => import('../pages/About/About'));
+const Contact = lazy(() => import('../pages/Contact/Contact'));
+const Checkout = lazy(() => import("../pages/CheckOut/Checkout"));
+const Carts = lazy(() => import("../pages/Carts/Carts"));
+const ProductDetailsPage = lazy(() => import("../pages/ProductDetailsPage/ProductDetailsPage"));
+const CashOnDelivery = lazy(() => import("../pages/CashOnDelivery/CashOnDelivery"));
+const BankOrMFS = lazy(() => import('../pages/BankOrMFS/BankOrMFS'));
+const PaymentSuccess = lazy(() => import('../Components/PaymentSuccess/PaymentSuccess'));
+const PaymentCancel = lazy(() => import('../Components/PaymentCanceled/PaymentCanceled'));
+const PaymentFailed = lazy(() => import('../Components/PaymentFailed/PaymentFailed'));
+const MyOrders = lazy(() => import('../pages/MyOrders/MyOrders'));
+const Wishlists = lazy(() => import("../pages/Wishlist/Wishlists"));
+const Settings = lazy(() => import('../pages/Settings/Settings'));
+const Profile = lazy(() => import('../Components/Settings/Profile/Profile'));
+const Account = lazy(() => import('../Components/Settings/Account/Account'));
+const Appearance = lazy(() => import('../Components/Settings/Appearance/Appearance'));
+const Notifications = lazy(() => import('../Components/Settings/Notifications/Notifications'));
+const Display = lazy(() => import('../Components/Settings/Display/Display'));
+
 
 const router = createBrowserRouter([
     {
@@ -47,100 +50,82 @@ const router = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About></About>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><About/></Suspense>
             },
             {
                 path: '/contact',
-                element: <Contact></Contact>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><Contact/></Suspense>
             },
             {
                 path: '/checkout',
-                element: <Checkout></Checkout>
-            },
-            {
-                path: '/account',
-                element: <Account></Account>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><Checkout/></Suspense>
             },
             {
                 path: '/wishlist',
-                element: <Wishlist></Wishlist>
+                element: <PrivateRoute><Suspense fallback={<MyOrderSkeleton/>}><Wishlists/></Suspense></PrivateRoute>
             },
             {
                 path: '/carts',
-                element: <Carts></Carts>
+                element: <PrivateRoute><Suspense fallback={<MyOrderSkeleton/>}><Carts/></Suspense></PrivateRoute>
             },
             {
                 path: '/productDetailsPage/:id',
-                element: <ProductDetailsPage></ProductDetailsPage>,
+                element: <Suspense fallback={<MyOrderSkeleton/>}><ProductDetailsPage/></Suspense>,
                 loader: ({params}) => fetch(`https://e-commerce-server-inky-alpha.vercel.app/products/flashSalesProducts/${params.id}`)
             },
             {
                 path: '/cashondelivery',
-                element: <CashOnDelivery></CashOnDelivery>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><CashOnDelivery/></Suspense>
             },
             {
                 path: '/bankormfs',
-                element: <BankOrMFS></BankOrMFS>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><BankOrMFS/></Suspense>
             },
             {
                 path: '/paymentsuccess',
-                element: <PaymentSuccess></PaymentSuccess>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><PaymentSuccess/></Suspense>
             },
             {
                 path: '/paymentcancel',
-                element: <PaymentCancel></PaymentCancel>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><PaymentCancel/></Suspense>
             },
             {
                 path: '/paymentfailed',
-                element: <PaymentFailed></PaymentFailed>
+                element: <Suspense fallback={<MyOrderSkeleton/>}><PaymentFailed/></Suspense>
             },
             {
                 path: '/myorders',
-                element: <MyOrders></MyOrders>,
-                children: [
-                    {
-                        path: 'allOrders',
-                        element: <AllOrders></AllOrders>
-                    }
-                ]
+                element: <PrivateRoute><Suspense fallback={<MyOrderSkeleton/>}><MyOrders/></Suspense></PrivateRoute>
             }
         ]
     },
     {
-        path: '/account',
-        element: <Account></Account>,
+        path: '/settings',
+        element: <PrivateRoute><Suspense fallback={<SettingSkeleton/>}><Settings/></Suspense></PrivateRoute>,
         children: [
             {
-                path: 'manageMyAccount',
-                element: <ManageMyAccount></ManageMyAccount>
+                index: true,
+                element: <Navigate to="profile" replace/> 
+            },            
+            {
+                path: 'profile',
+                element: <Profile/>
             },
             {
-                path: 'myProfile',
-                element: <MyProfile></MyProfile>
+                path: 'account',
+                element: <Account/>
             },
             {
-                path: 'addressBook',
-                element: <AddressBook></AddressBook>
+                path: 'appearance',
+                element: <Appearance/>
             },
             {
-                path: 'myPaymentOptions',
-                element: <MyPaymentOptions></MyPaymentOptions>
+                path: 'notifications',
+                element: <Notifications/>
             },
             {
-                path: 'myOrder',
-                element: <MyOrder></MyOrder>
-            },
-            {
-                path: 'myReturns',
-                element: <MyReturns></MyReturns>
-            },
-            {
-                path: 'myCancellations',
-                element: <MyCancellations></MyCancellations>
-            },
-            {
-                path: 'myWishlist',
-                element: <MyWishlist></MyWishlist>
+                path: 'display',
+                element: <Display/>
             }
         ]
     }

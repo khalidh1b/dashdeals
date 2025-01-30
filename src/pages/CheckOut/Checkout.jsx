@@ -8,9 +8,6 @@ const Checkout = () => {
     const [payment_method, setPaymentMethod] = useState();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
-    // }, [location.state, pandey, cartSubtotal, cartData]);
     const isFirstRender = useRef(true);
 
 useEffect(() => {
@@ -87,6 +84,7 @@ useEffect(() => {
                 </label>
                 {/* checkbox */}
             </div>
+
             <div className="pr-24 w-5/12 text-[#000] text-base font-normal poppins">
                 {
                     productDetails.map(productDetail => <div className="dark:text-white" key={productDetail.id}>
@@ -103,6 +101,7 @@ useEffect(() => {
                 <hr className="border-t-2"/>
                 <div className="flex justify-between pt-3 dark:text-white"><p>Total:</p><span>${cartSubtotal}</span></div>
                 {/* radio */}
+
                 <div className="flex justify-between items-center pt-8">
                     <div>
                         <label onClick={bankOrMFS} className="flex items-center cursor-pointer text-lg">
@@ -119,6 +118,7 @@ useEffect(() => {
                         <img src="https://i.postimg.cc/Kz71chXP/nagad.png" alt="nagad" />
                     </div>
                 </div>
+
                 {/* radio */}
                 <label onClick={cashOnDelivery} className="flex items-center cursor-pointer text-lg pt-3">
                 <input type="radio" name="payment_method" id="payment_method" className="peer hidden" />
@@ -133,6 +133,7 @@ useEffect(() => {
                 </div>
                 <button onClick={placeOrder} className="bg-[#DB4444] py-3 px-8 rounded mt-7 text-white" type="submit">Place Order</button>
             </div>
+
         </div>
     );
 };

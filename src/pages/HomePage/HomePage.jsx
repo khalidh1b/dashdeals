@@ -10,14 +10,14 @@ import NewArrival from "../../Components/NewArrival/NewArrival";
 const HomePage = () => {
     return (
         <div>
-            <Banner></Banner>
-            <AllProducts></AllProducts>
-            <BrowserCategory></BrowserCategory>
-            <BestSellingProducts></BestSellingProducts>
-            <BannerProduct></BannerProduct>
-            <ExploreOurProducts></ExploreOurProducts>
-            <NewArrival></NewArrival>
-            <DashDealsPros></DashDealsPros>
+            <Banner/>
+            <AllProducts/>
+            <BrowserCategory/>
+            <BestSellingProducts/>
+            <BannerProduct/>
+            <ExploreOurProducts/>
+            <NewArrival/>
+            <DashDealsPros/>
         </div>
     );
 };

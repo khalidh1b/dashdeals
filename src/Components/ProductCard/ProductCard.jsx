@@ -3,6 +3,7 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 export const ProductCard = ({ 
     _id,
@@ -14,8 +15,11 @@ export const ProductCard = ({
     ratings,
     user_rating_count,
     handleWishlist,
-    handleCart, 
-    setRatings
+    handleCart,
+    handleDelete, 
+    setRatings, 
+    isWishlist,
+    product
  }) => {
     return (
         <div className="mx-auto">
@@ -25,6 +29,10 @@ export const ProductCard = ({
                 discount_percent={discount_percent}
                 handleWishlist={handleWishlist}
                 handleCart={handleCart}
+                handleDelete={handleDelete}
+                isWishlist={isWishlist}
+                product_title={product_title}
+                product={product}
             />
             <ProductTitle title={product_title}/>
             <ProductPrice 
@@ -45,7 +53,11 @@ const ProductImage = ({
     product_image, 
     discount_percent, 
     handleWishlist, 
-    handleCart 
+    handleCart,
+    isWishlist,
+    handleDelete,
+    product_title,
+    product
 }) => {
     return (
         <div className="relative">
@@ -56,15 +68,18 @@ const ProductImage = ({
                 alt="G92 Gamepad"
             />
             <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">
-                {discount_percent}
+                {discount_percent || '0%'}
             </span>
         </Link>
         <IoEyeOutline className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-20 left-60 text-[45px] p-2.5 rounded-full" />
-        <FaRegHeart
-            onClick={handleWishlist}
-            className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"
-        />
-        <p onClick={handleCart} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">
+        {isWishlist 
+        ? <RiDeleteBinLine onClick={() => handleDelete(_id, product_title)} className="bg-red-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/> 
+        : <FaRegHeart
+        onClick={() => handleWishlist(product_title)}
+        className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
+        }
+        
+        <p onClick={() => handleCart(product)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">
             Add To Cart
         </p>
     </div>
@@ -112,7 +127,11 @@ ProductCard.propTypes = {
     user_rating_count: PropTypes.string,
     handleWishlist: PropTypes.func,
     handleCart: PropTypes.func,
-    setRatings: PropTypes.func
+    setRatings: PropTypes.func,
+    isWishlist: PropTypes.bool,
+    handleDelete: PropTypes.func,
+    product: PropTypes.object
+
 };
 
 ProductImage.propTypes = {
@@ -120,7 +139,11 @@ ProductImage.propTypes = {
     product_image: PropTypes.string,
     discount_percent: PropTypes.string,
     handleWishlist: PropTypes.func,
-    handleCart: PropTypes.func
+    handleCart: PropTypes.func,
+    isWishlist: PropTypes.bool,
+    handleDelete: PropTypes.func,
+    product_title: PropTypes.string,
+    product: PropTypes.object
 };
   
 ProductTitle.propTypes = {

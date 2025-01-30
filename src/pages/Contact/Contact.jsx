@@ -38,6 +38,7 @@ const Contact = () => {
         <div>
         <p className='text-gray-300 pt-10 pl-20'>Home / <span className='text-[14px] text-[#000] dark:text-white poppins font-normal'>Contact</span></p>
         <div className="flex justify-center gap-8 pt-28 pb-36">
+            
             <div className="border dark:border-white px-10 py-14 rounded shadow-md">
                 <div className="flex gap-4 items-center pb-4"><IoCallOutline className="bg-[#DB4444] text-white p-[7px] text-4xl rounded-full"/><span className="poppins text-base font-medium dark:text-white text-[#000]">Call To Us</span></div>
                 <p className="poppins font-normal text-[#000] dark:text-white text-[14px] pb-4">We are available 24/7, 7 days a week.</p>
@@ -48,6 +49,7 @@ const Contact = () => {
                 <p className="poppins font-normal dark:text-white text-[#000] text-[14px] pb-4">Emails: customer@exclusive.com</p>
                 <p className="poppins font-normal text-[#000] dark:text-white text-[14px]">Emails: support@exclusive.com</p>
             </div>
+
             <div className="border dark:border-white px-7 py-9">
                 <form onSubmit={handleUserFeedback}>
                     <input className="py-2 pl-3 rounded mr-4 focus:outline-none bg-[#F5F5F5]" type="text" name="name" id="" placeholder="Your Name" required/>
@@ -57,6 +59,7 @@ const Contact = () => {
                     <input className="py-3 px-10 bg-[#DB4444] mt-5 text-white rounded absolute right-40" type="submit" value="Send Message" />
                 </form>
             </div>
+
         </div>
         </div>
     );
