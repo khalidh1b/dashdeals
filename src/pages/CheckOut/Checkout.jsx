@@ -10,15 +10,15 @@ const Checkout = () => {
 
     const isFirstRender = useRef(true);
 
-useEffect(() => {
-    if (isFirstRender.current) {
-        isFirstRender.current = false;
-        console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
-        // Your request logic here
-    } else {
-        console.log('Skipping additional effect run');
-    }
-}, [location.state, pandey, cartSubtotal, cartData]);
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
+            // Your request logic here
+        } else {
+            console.log('Skipping additional effect run');
+        }
+    }, [location.state, pandey, cartSubtotal, cartData]);
 
     useEffect(() => {
             if (cartData && pandey) {
@@ -59,8 +59,8 @@ useEffect(() => {
             navigate(`${path}`, { state: data })
         }
     return (
-        <div className="flex items-center justify-center gap-28 py-40">
-            <div className="w-[480px]">
+        <div className="md:flex items-center justify-center gap-28 py-40">
+            <div className="md:w-[480px] mx-5">
                 <h1 className="text-[#000] dark:text-white text-[32px] font-medium pb-8">Billing Details</h1>
                 <label className="text-base font-normal poppins text-gray-400">First Name<span className="text-red-400">*</span></label> <br />
                 <input type="text" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
@@ -76,16 +76,14 @@ useEffect(() => {
                 <input type="number" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
                 <label>Email Address<span className="text-red-400">*</span></label> <br />
                 <input type="email" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/>
-                {/* checkbox */}
                 <label className="relative flex select-none items-center cursor-pointer text-lg">
                 <input type="checkbox" className="sr-only peer"/>
                 <div className="w-5 h-5 bg-gray-200 rounded peer-checked:bg-orange-500 "></div>
                 <span className="ml-2 poppins text-base font-normal">Save this information for faster check-out next time</span>
                 </label>
-                {/* checkbox */}
             </div>
 
-            <div className="pr-24 w-5/12 text-[#000] text-base font-normal poppins">
+            <div className="md:pr-24 md:w-5/12 md:mx-0 mx-4 md:mt-0 mt-5 text-[#000] text-base font-normal poppins">
                 {
                     productDetails.map(productDetail => <div className="dark:text-white" key={productDetail.id}>
                     <div className="flex justify-between items-center pb-7">
@@ -128,10 +126,10 @@ useEffect(() => {
                 </label>
                 {/* radio */}
                 <div className="flex gap-4 pt-6">
-                    <input className="py-3 pl-4 pr-16 border rounded border-[#000000] focus:outline-none" type="text" name="" id="" placeholder="Coupon Code"/>
-                    <button className="bg-[#DB4444] py-3 px-9 rounded text-white" type="submit">Apply Coupon</button>
+                    <input className="md:py-3 pl-4 md:pr-16 border rounded border-[#000000] focus:outline-none" type="text" name="" id="" placeholder="Coupon Code"/>
+                    <button className="bg-[#DB4444] md:py-3 md:px-9 px-6 rounded text-white" type="submit">Apply Coupon</button>
                 </div>
-                <button onClick={placeOrder} className="bg-[#DB4444] py-3 px-8 rounded mt-7 text-white" type="submit">Place Order</button>
+                <button onClick={placeOrder} className="bg-[#DB4444] md:py-3 py-2 w-40 px-8 rounded mt-7 text-white" type="submit">Place Order</button>
             </div>
 
         </div>
