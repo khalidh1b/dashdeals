@@ -1,37 +1,13 @@
-import { useEffect, useState } from "react";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Product from "./Product";
 import Countdown from 'react-countdown';
 import renderer from '../SaleCountDown/SaleCountDown';
-import useAxiosPublic from '../../hooks/useAxiosPublic.js';
 import PropTypes from 'prop-types';
 import { ProductCardSkeleton } from '../Skeletons/ProductCardSkeleton.jsx';
+import useFetchFlashSalesItems from "../../hooks/useFetchFlashSalesItems.js";
 
 const AllProducts = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const axiosPublic = useAxiosPublic();
-
-    useEffect(() => {
-        setLoading(true);
-        const fetchProducts = async () => {
-            try {
-                axiosPublic.get('products/flashSalesProducts')
-                .then((res) => {
-                    console.log(res.data);
-                    setProducts(res.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            } catch (error) {
-                console.error('error while fetching products', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    }, [axiosPublic]);
+    const { products, isFetching, isLoading } = useFetchFlashSalesItems();
 
     const endTime = Date.now() + 343196000;
 
@@ -39,7 +15,7 @@ const AllProducts = () => {
         <div className="pt-28">
             <FlashSalesHeader/>
             <CountdownSection endTime={endTime}/>
-            <ProductsSection products={products} loading={loading}/>
+            <ProductsSection products={products} loading={isLoading || isFetching}/>
             <ViewAllProductsButton/>
         </div>
     );
