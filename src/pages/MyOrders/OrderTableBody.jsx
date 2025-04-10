@@ -2,21 +2,28 @@ import React from "react";
 import { MdDelete } from "react-icons/md";
 import PropTypes from 'prop-types';
 import OrderTableSleketon from '../../Components/LoadingSkeletons/OrderTableSkeleton';
+import { Loader2 } from "lucide-react";
 
-const OrderTableBody = ({ orders, loadingProducts, onDeleteProduct, ordersLoading }) => {
-    console.log(orders)
-    console.log(loadingProducts)
+const OrderTableBody = ({ 
+    orders, 
+    onDeleteProduct, 
+    ordersLoading, 
+    deletingProduct 
+}) => {
+    
     return (
         <>
         {
             ordersLoading && <OrderTableSleketon/>
         }
-            {
-                orders.map((order) => (
-                    <React.Fragment key={order.orderId}>
-                        {order.products.map((product) => (
-                            <tr key={product._id} className="border bg-blue-600 text-white">
-
+            <table>
+                <tbody>
+                {
+                    orders.map((order) => (
+                        <React.Fragment key={order.orderId}>
+                                    {order.products.map((product) => (
+                                <tr key={product._id} className="border bg-blue-600 text-white">
+                                {console.log(product)}
                                 <th>{product._id}</th>
                                 <td>
                                     <img className="w-[50px] bg-white p-2 rounded-lg" 
@@ -32,8 +39,8 @@ const OrderTableBody = ({ orders, loadingProducts, onDeleteProduct, ordersLoadin
                                     </td>
                                     <td>{order.status}</td>
                                 <td>
-                                {loadingProducts[product.id] ? (
-                                    <span className="loading loading-spinner text-info"></span>
+                                {deletingProduct?.productId == product?._id ? (
+                                    <Loader2 className="animate-spin"/>
                                 ) : (
                                     <MdDelete
                                         onClick={() => onDeleteProduct(order.orderId, product._id)}
@@ -42,10 +49,12 @@ const OrderTableBody = ({ orders, loadingProducts, onDeleteProduct, ordersLoadin
                                 )}
                                 </td>
                             </tr>
-                        ))}
-                    </React.Fragment>
-                ))
-            }
+                            ))}
+                        </React.Fragment>
+                    ))
+                }
+                </tbody>
+            </table>
         </>
     );
 };
@@ -54,7 +63,8 @@ OrderTableBody.propTypes = {
     orders: PropTypes.array,
     loadingProducts: PropTypes.object,
     onDeleteProduct: PropTypes.func,
-    ordersLoading: PropTypes.bool
+    ordersLoading: PropTypes.bool,
+    deletingProduct: PropTypes.any
 }
 
 export default OrderTableBody;
