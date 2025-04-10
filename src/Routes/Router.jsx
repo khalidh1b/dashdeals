@@ -24,7 +24,7 @@ const MyOrders = lazy(() => import('../pages/MyOrders/MyOrders'));
 const Wishlists = lazy(() => import("../pages/Wishlist/Wishlists"));
 const Settings = lazy(() => import('../pages/Settings/Settings'));
 const Profile = lazy(() => import('../Components/Settings/Profile/Profile'));
-const Account = lazy(() => import('../Components/Settings/Account/Account'));
+const PasswordSecurity = lazy(() => import('../Components/Settings/Password&Security/Password&Security'));
 const Appearance = lazy(() => import('../Components/Settings/Appearance/Appearance'));
 const Notifications = lazy(() => import('../Components/Settings/Notifications/Notifications'));
 const Display = lazy(() => import('../Components/Settings/Display/Display'));
@@ -112,8 +112,8 @@ const router = createBrowserRouter([
                 element: <Profile/>
             },
             {
-                path: 'account',
-                element: <Account/>
+                path: 'password&security',
+                element: <PasswordSecurity/>
             },
             {
                 path: 'appearance',
