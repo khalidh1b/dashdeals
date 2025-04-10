@@ -79,7 +79,7 @@ const ProductImage = ({
         className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
         }
         
-        <p onClick={() => handleCart(product)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">
+        <p onClick={() => handleCart(product)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins select-none font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">
             Add To Cart
         </p>
     </div>
@@ -88,7 +88,7 @@ const ProductImage = ({
 
 const ProductTitle = ({ title }) => {
     return (
-        <h4 className="text-[#000000] dark:text-white text-xl poppins font-semibold pt-3">
+        <h4 className="text-[#000000] dark:text-white text-xl select-none poppins font-semibold pt-3">
             {title}
         </h4>
     )
