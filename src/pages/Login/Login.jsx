@@ -9,7 +9,7 @@ import LoginFooter from "../../Components/Login/LoginFooter.jsx";
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { handleSignIn, handleGoogleSignIn, loading } = useSignIn();
+    const { handleSignIn, handleGoogleSignIn, loading, googleLoading } = useSignIn();
     const { handleForgetPass } = useForgetPass();
     
     const handleImageLoad = () => {
@@ -27,7 +27,10 @@ const Login = () => {
             <div>
                 <LoginHeader/>
                 <LoginForm handleSignIn={handleSignIn} handleForgetPass={handleForgetPass} loading={loading}/>
-                <GoogleLogin handleGoogleSignIn={handleGoogleSignIn}/>
+                <GoogleLogin 
+                    loading={googleLoading} 
+                    handleGoogleSignIn={handleGoogleSignIn}
+                />
                 <LoginFooter/>
             </div>
         </div>
