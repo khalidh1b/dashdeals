@@ -41,7 +41,7 @@ const BankOrMFS = () => {
 
     return (
         <div className="py-20">
-            <div className="border dark:border-white w-2/5 mx-auto pt-5 pb-5 rounded-2xl px-10">
+            <div className="border dark:border-white md:w-2/5 md:mx-auto mx-2 pt-5 pb-5 rounded-2xl px-10">
                 <img className="w-44 mx-auto" src="https://i.postimg.cc/PxYP4KWc/payment-failed.avif" alt="#" />
                 <h3 className="text-center text-[#121212] dark:text-white poppins font-medium text-[30px]">Your payment is processing</h3>
                 <h2 className="text-[17px] font-medium text-gray-500 dark:text-white text-center">Please wait for some time...</h2>
