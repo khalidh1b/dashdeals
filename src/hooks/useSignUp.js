@@ -2,13 +2,16 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const useSignUp = () => {
-    const { createUser, logOut, googleSignIn } = useContext(AuthContext);
+    const { createUser, logOut, googleSignIn, profileUpdate } = useContext(AuthContext);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [googleLoading, setGoogleLoading] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
@@ -17,50 +20,74 @@ const useSignUp = () => {
         const data = {name, email, password};
         console.log(data);
 
-        setLoading(true);
-        //creating user via email and password
-        createUser(data.email, data.password)
-        .then((result) => {
-            console.log(result.user);
-            console.log(result.user.email);
-            if(result.user.email) {
-                Swal.fire({
-                    icon: "success",
-                    title: "User successfully signed up!",
-                    showConfirmButton: false,
-                    timer: 2000
-                });
+        try {
+            setLoading(true);
+            await createUser(data.email, data.password)
+            .then((result) => {
+                console.log(result.user);
+                console.log(result.user.email);
+                if(result.user.email) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "User successfully signed up!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+    
+                    logOut()
+                    navigate('/login');
+                }
+            })
+            
+            //update profile
+            await profileUpdate(name);
 
-                logOut()
-                navigate('/login');
-            }
+            //save user to db
+            await axiosSecure.post('/users/saveuser', data)
+            .then((res) => {
+                console.log(res);
+            })
+        } catch (error) {
+            console.error('error in signup',error)
+        } finally {
             setLoading(false);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+        }
     };
 
-    const handleGoogleSignup = () => {
-        googleSignIn()
-        .then((result) => {
-            console.log(result);
-            if(result.user) {
-                navigate('/');
-                Swal.fire({
-                    icon: "success",
-                    title: "Login successful!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    const handleGoogleSignup = async () => {
+        let data;
+        try {
+            setGoogleLoading(true);
+            await googleSignIn()
+            .then((result) => {
+                console.log(result);
+                data = {
+                    name: result.user?.displayName, 
+                    email: result.user?.email,
+                    profilePic: result.user?.photoURL
+                }
+                if(result.user) {
+                    navigate('/');
+                    Swal.fire({
+                        icon: "success",
+                        title: "Login successful!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            await axiosSecure.post('/users/saveuser', data)
+            .catch((error) => {
+                console.log(error);
+            })
+        } catch (error) {
+            console.error('error in google auth')
+        } finally {
+            setGoogleLoading(false);
+        }
     };
 
-    return { handleSignup, handleGoogleSignup, loading };
+    return { handleSignup, handleGoogleSignup, loading, googleLoading };
 };
 
 export default useSignUp;
