@@ -2,17 +2,28 @@ import PropTypes from 'prop-types';
 import OrderTableHead from './OrderTableHead';
 import OrderTableBody from './OrderTableBody';
 
-const AllOrders = ({ orders, onDeleteProduct, loadingProducts, ordersLoading }) => {
-    // console.log(orders);
+const AllOrders = ({ 
+    orders, 
+    onDeleteProduct, 
+    loadingProducts, 
+    ordersLoading, 
+    deletingProduct 
+}) => {
 
     return (
         <div>
-            <div className="overflow-x-auto mx-20">
+            <div className="overflow-x-auto md:mx-20 mx-2">
                 <table className="table">
                     <OrderTableHead/>
-                    <OrderTableBody orders={orders} loadingProducts={loadingProducts} onDeleteProduct={onDeleteProduct} ordersLoading={ordersLoading}/>
+                    <OrderTableBody 
+                        orders={orders} 
+                        loadingProducts={loadingProducts} 
+                        onDeleteProduct={onDeleteProduct} 
+                        ordersLoading={ordersLoading}
+                        deletingProduct={deletingProduct}
+                    />
                 </table>
-                </div>
+            </div>
         </div>
     );
 };
@@ -37,8 +48,9 @@ AllOrders.propTypes = {
     ),
     onDeleteProduct: PropTypes.func,
     loadingProducts: PropTypes.object,
-    ordersLoading: PropTypes.bool, 
-    errorFetchingProducts: PropTypes.array, 
+    ordersLoading: PropTypes.bool,
+    errorFetchingProducts: PropTypes.array,
+    deletingProduct: PropTypes.any
 };
 
 export default AllOrders;
