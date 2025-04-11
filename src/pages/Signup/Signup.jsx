@@ -9,11 +9,11 @@ import SignupHeader from "../../Components/Signup/SignupHeader.jsx";
 const Signup = () => {
     const [isLoading, setIsLoading] = useState(true);
 
-    const { handleSignup, handleGoogleSignup, loading } = useSignUp();
+    const { handleSignup, handleGoogleSignup, loading, googleLoading } = useSignUp();
     
     const handleImageLoad = () => {
         setIsLoading(false);
-    }
+    };
 
     return (
         <div className="md:flex items-center pb-32 md:pt-20 pt-6 md:mx-0 mx-8 gap-24">
@@ -27,7 +27,7 @@ const Signup = () => {
             <div>
                 <SignupHeader/>
                 <SignupForm handleSignup={handleSignup} loading={loading}/>
-                <GoogleSignup handleGoogleSignup={handleGoogleSignup}/>
+                <GoogleSignup handleGoogleSignup={handleGoogleSignup} loading={googleLoading}/>
                 <SignupFooter/>
             </div>
         </div>
