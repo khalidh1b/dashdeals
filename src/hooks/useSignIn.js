@@ -7,6 +7,7 @@ const useSignIn = () => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [googleLoading, setGoogleLoading] = useState(false);
 
     // Email Sign In
     const handleSignIn = (e) => {
@@ -45,26 +46,30 @@ const useSignIn = () => {
     }
 
     // Google Sign In
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-        .then((result) => {
-            console.log(result.user);
-            if(result.user) {
-                navigate('/');
-                Swal.fire({
-                    icon: "success",
-                    title: "Login successful!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        })
-        .catch((error) => {
+    const handleGoogleSignIn = async () => {
+        try {
+            setGoogleLoading(true);
+            googleSignIn()
+            .then((result) => {
+                console.log(result.user);
+                if(result.user) {
+                    navigate('/');
+                    Swal.fire({
+                        icon: "success",
+                        title: "Login successful!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+        } catch (error) {
             console.log(error);
-        })
+        } finally {
+            setGoogleLoading(false);
+        }
     }
 
-    return { handleSignIn, handleGoogleSignIn, loading };
+    return { handleSignIn, handleGoogleSignIn, loading, googleLoading };
 };
 
 export default useSignIn;
