@@ -1,12 +1,15 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "./useAxiosSecure";
+import { useState } from "react";
 
 const useDeleteOrder = (setLoadingProducts, refetch) => {
     const axiosSecure = useAxiosSecure();
+    const [deletingProduct, setDeletingProduct] = useState(false);
 
     const handleDeleteProduct = async (orderId, productId) => {
         console.log(orderId, productId);
 
+        setDeletingProduct({productId: productId});
         try {
             setLoadingProducts((prevState) => ({
                 ...prevState,
@@ -38,9 +41,12 @@ const useDeleteOrder = (setLoadingProducts, refetch) => {
             }))
         } catch (error) {
             console.error('Error deleting product:', error);
+        } finally {
+            setDeletingProduct(false);
         }
     }
-    return handleDeleteProduct;
+
+    return { handleDeleteProduct, deletingProduct };
 };
 
 export default useDeleteOrder;
