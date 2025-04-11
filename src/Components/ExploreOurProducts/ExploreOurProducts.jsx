@@ -1,35 +1,11 @@
-import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import OurProduct from "./OurProduct";
-import useAxiosPublic from '../../hooks/useAxiosPublic.js';
 import { ProductCardSkeleton } from '../Skeletons/ProductCardSkeleton.jsx';
+import useFetchExploreOurProducts from "../../hooks/useFetchExploreOurProducts.js";
 
 const ExploreOurProducts = () => {
-    const [products, setProducts] = useState([]);
-    const axiosPublic = useAxiosPublic();
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true);
-        const fetchProducts = async () => {
-            try {
-                axiosPublic.get('products/exploreOurProducts')
-                .then((res) => {
-                    console.log(res.data);
-                    setProducts(res.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            } catch (error) {
-                console.error('error while fetching explore our products', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    }, [axiosPublic])
+    const { products, isFetching, isLoading } = useFetchExploreOurProducts()
 
     return (
         <div>
@@ -46,7 +22,7 @@ const ExploreOurProducts = () => {
             </div>
 
             <div className="grid md:grid-cols-4 grid-cols-1 md:gap-5 gap-7 mx-6">
-                {!loading ?
+                {!isLoading || !isFetching ?
                     products.map(product => <OurProduct key={product.id} product={product}></OurProduct>) :
                     Array.from({ length: 8 }).map((_, idx) => (
                         <ProductCardSkeleton key={idx}/>
