@@ -1,5 +1,5 @@
-import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth';
-import app from '../firebase/firebase.config';
+import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
+import { app } from '../firebase/firebase.config';
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useAxiosPublic from '../hooks/useAxiosPublic.js';
@@ -16,6 +16,12 @@ const AuthProvider = ({children}) => {
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
+
+    const profileUpdate = (name) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name
+        })
+    };
 
     //sign in existing user
     const signIn = (email, password) => {
@@ -49,7 +55,7 @@ const AuthProvider = ({children}) => {
             setUser(currentUser);
             if(currentUser) {
                 const userInfo = {email: currentUser.email};
-                axiosPublic.post('auth/jwt', userInfo)
+                axiosPublic.post('/auth/jwt', userInfo)
                 .then((res) => {
                     if(res.data.token) {
                         localStorage.setItem('access-token', res.data.token);
@@ -77,6 +83,7 @@ const AuthProvider = ({children}) => {
         signIn,
         forgetPassword,
         logOut,
+        profileUpdate
     }
     return (
         <AuthContext.Provider value={authInfo}>
