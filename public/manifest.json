@@ -10,6 +10,7 @@
     ],
     "background_color": "#ffffff",
     "theme_color": "#000000",
+    "lang": "en",
     "icons": [
       {
         "src": "/images/e-commerc-logo.png",
