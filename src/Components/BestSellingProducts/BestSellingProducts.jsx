@@ -1,33 +1,9 @@
-import { useEffect, useState } from "react";
 import BestSellingProduct from "./BestSellingProduct";
-import useAxiosPublic from '../../hooks/useAxiosPublic.js';
 import { ProductCardSkeleton } from '../Skeletons/ProductCardSkeleton.jsx';
+import useBestSellingProducts from "../../hooks/useBestSellingProducts.js";
 
 const BestSellingProducts = () => {
-    const [products, setProducts] = useState([]);
-    const axiosPublic = useAxiosPublic();
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true);
-        const fetchProducts = async () => {
-            try {
-                axiosPublic.get('products/bestSellingProducts')
-                .then((res) => {
-                    console.log(res.data);
-                    setProducts(res.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            } catch (error) {
-                console.error('error while fetching bestsellingproducts', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    }, [axiosPublic]);
+    const { isLoading, isFetching, products } = useBestSellingProducts();
 
     return (
         <div className="pb-20">
@@ -43,7 +19,7 @@ const BestSellingProducts = () => {
             </div>
 
             <div className="md:flex justify-center grid gap-8 md:gap-4 items-center pt-8">
-                { !loading ? 
+                { !isLoading || !isFetching ? 
                     products.map(product => <BestSellingProduct key={product.id} product={product}></BestSellingProduct>) :
                     Array.from({ length: 4 }).map((_, idx) => (
                         <ProductCardSkeleton key={idx}/>
