@@ -32,15 +32,38 @@ This project is the frontend of an e-commerce website designed to provide users 
 - React Router (for navigation)
 - Context API (for state management)
 
+## Folder Structure
+
+```
+E-Commerce/
+├── public/                 # Static files like images, icons, manifest, etc.
+│
+├── src/
+│   ├── assets/             # Fonts, icons, and other asset files
+│   ├── components/         # Reusable UI components
+│   ├── pages/              # Application pages
+│   ├── utils/              # Utility functions and helpers
+│   └── hooks/              # Custom React hooks
+│
+├── .gitignore              # Git ignored files and folders
+├── package.json            # Project metadata and dependencies
+├── README.md               # Project overview and documentation
+├── tailwind.config.js      # Tailwind CSS configuration
+├── postcss.config.js       # PostCSS configuration
+├── tsconfig.app.json       # App-specific TypeScript settings
+├── tsconfig.json           # Base typescript configuration
+└── vite.config.js          # vite configuration or setup
+```
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps:
 
-1. Clone the repository: `git clone https://github.com/iamkhalidhussein/E-Commerce.git`
-2. Navigate into the directory: `cd your-repository`
+1. Clone the repository: ```git clone https://github.com/iamkhalidhussein/E-Commerce.git```
+2. Navigate into the directory: ```cd your-repository```
 3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
-5. Open your browser and go to: `http://localhost:4000`
+4. Start the development server: ```npm start```
+5. Open your browser and go to: ```http://localhost:4000```
 
 ## Usage
 
