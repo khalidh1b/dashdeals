@@ -9,13 +9,14 @@ const useCart = () => {
     const {data: carts=[], refetch} = useQuery({
         queryKey: ['carts', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`users/userProductCarts/${user?.email}`, {
+            const res = await axiosSecure.get(`/users/userProductCarts/${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("access-token")}`,
                 },
             });
             return res.data;
-        }
+        },
+        enabled: !!user?.email
     })
     return [carts, refetch];
 };
