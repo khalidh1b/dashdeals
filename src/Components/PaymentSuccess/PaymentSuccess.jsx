@@ -39,7 +39,7 @@ const amount = getUrlParameter('amount');
 
     return (
         <div className="py-20 border">
-            <div className="border dark:border-white w-2/5 mx-auto pt-5 pb-5 rounded-2xl px-10">
+            <div className="border dark:border-white md:w-2/5 md:mx-auto mx-2 pt-5 pb-5 rounded-2xl px-10">
                 <div className="bg-[#23A26D1F] p-3 rounded-full w-[54px] mx-auto"><IoMdCheckmark className="text-white bg-[#23A26D] rounded-full text-3xl p-1"/></div>
                 <h3 className="text-center pt-3">Payment Success!</h3>
                 <h2 className="text-[#121212] dark:text-white poppins text-[30px] pt-1 pb-7 text-center font-semibold">{currency_type} {amount}</h2>
