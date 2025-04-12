@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useHandleCart from "../../hooks/useHandleCart";
 import useHandleDeleteWishlist from "../../hooks/useHandleDeleteWishlist";
 import useFetchWishlist from "../../hooks/useFetchWishlist";
@@ -8,7 +7,6 @@ import { ProductCard } from "../../Components/ProductCard/ProductCard";
 
 const Wishlists = () => {
     const [products, , isLoading] = useFetchWishlist();
-    const [ratings, setRatings] = useState(20);
     const handleDelete = useHandleDeleteWishlist();
     const handleCart = useHandleCart();
 
