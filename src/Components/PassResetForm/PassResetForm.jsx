@@ -21,13 +21,18 @@ const PassResetForm = ({ handleForgetPass }) => {
                         <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label className="text-right">
-                            Email
+                                Email
                             </Label>
                             <Input id="reset-email" className="col-span-3"/>
                         </div>
                         </div>
                         <DialogFooter>
-                        <Button type="submit" onClick={() => handleForgetPass()}>Reset</Button>
+                        <Button 
+                            type="submit" 
+                            onClick={() => handleForgetPass()}
+                        >
+                            Reset
+                        </Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
