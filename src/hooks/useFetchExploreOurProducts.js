@@ -2,10 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from './useAxiosPublic';
 
 const useFetchExploreOurProducts = () => {
-    
+    const axiosPublic = useAxiosPublic();
+
     const fetchProducts = async () => {
         try {
-            const data = await useAxiosPublic.get('/products/exploreOurProducts')
+            const data = await axiosPublic.get('/products/exploreOurProducts')
             return data.data;
         } catch (error) {
             console.error('error while fetching explore our products', error);
