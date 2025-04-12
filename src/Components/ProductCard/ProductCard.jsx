@@ -71,15 +71,23 @@ const ProductImage = ({
                 {discount_percent || '0%'}
             </span>
         </Link>
+        
         <IoEyeOutline className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-20 left-60 text-[45px] p-2.5 rounded-full" />
-        {isWishlist 
-        ? <RiDeleteBinLine onClick={() => handleDelete(_id, product_title)} className="bg-red-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/> 
-        : <FaRegHeart
-        onClick={() => handleWishlist(product_title)}
-        className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"/>
+        
+        {
+            isWishlist 
+            ? <RiDeleteBinLine 
+                onClick={() => handleDelete(_id, product_title)} 
+                className="bg-red-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"
+            /> 
+            : <FaRegHeart
+                onClick={() => handleWishlist(product_title)}
+                className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"
+            />
         }
         
-        <p onClick={() => handleCart(product)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins select-none font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">
+        <p onClick={() => handleCart(product)} className="bg-[#000000] absolute bottom-0 w-full text-base poppins select-none font-medium text-[#FFFFFF] py-2.5 text-center rounded-b"
+        >
             Add To Cart
         </p>
     </div>
