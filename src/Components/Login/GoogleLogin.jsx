@@ -20,7 +20,7 @@ const GoogleLogin = ({ handleGoogleSignIn, loading }) => {
 
 GoogleLogin.propTypes = {
     handleGoogleSignIn: PropTypes.func,
-    loading: PropTypes.func
+    loading: PropTypes.bool
 }
 
 export default GoogleLogin;
