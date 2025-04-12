@@ -20,6 +20,7 @@ const GoogleSignup = ({ handleGoogleSignup, loading }) => {
 
 GoogleSignup.propTypes = {
     handleGoogleSignup: PropTypes.func,
+    loading: PropTypes.bool
 }
 
 export default GoogleSignup;
