@@ -9,8 +9,13 @@ import SignupHeader from "../../Components/Signup/SignupHeader.jsx";
 const Signup = () => {
     const [isLoading, setIsLoading] = useState(true);
 
-    const { handleSignup, handleGoogleSignup, loading, googleLoading } = useSignUp();
-    
+    const { 
+        handleSignup, 
+        handleGoogleSignup, 
+        loading, 
+        googleLoading 
+    } = useSignUp();
+
     const handleImageLoad = () => {
         setIsLoading(false);
     };
@@ -26,8 +31,14 @@ const Signup = () => {
 
             <div>
                 <SignupHeader/>
-                <SignupForm handleSignup={handleSignup} loading={loading}/>
-                <GoogleSignup handleGoogleSignup={handleGoogleSignup} loading={googleLoading}/>
+                <SignupForm 
+                    handleSignup={handleSignup} 
+                    loading={loading}
+                />
+                <GoogleSignup 
+                    handleGoogleSignup={handleGoogleSignup} 
+                    loading={googleLoading}
+                />
                 <SignupFooter/>
             </div>
         </div>
