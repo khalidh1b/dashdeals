@@ -1,139 +1,172 @@
-import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import useHandleCheckout from "../../hooks/useHandleCheckout";
+import PropTypes from 'prop-types';
 
 const Checkout = () => {
-    const location = useLocation();
-    const { pandey, cartSubtotal, cartData } = location.state || {};
-    const [productDetails, setProductDetails] = useState([]);
-    const [payment_method, setPaymentMethod] = useState();
-    const navigate = useNavigate();
 
-    const isFirstRender = useRef(true);
+    const { 
+        bankOrMFS, 
+        cashOnDelivery, 
+        placeOrder, 
+        productDetails, 
+        cartSubtotal
+    } = useHandleCheckout();
 
-    useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
-            // Your request logic here
-        } else {
-            console.log('Skipping additional effect run');
-        }
-    }, [location.state, pandey, cartSubtotal, cartData]);
-
-    useEffect(() => {
-            if (cartData && pandey) {
-            const details = Object.entries(pandey).map(([productId, subtotal]) => {
-                const product = cartData.find(p => p._id === productId);
-                return {
-                id: productId, 
-                product_title: product?.product_title || 'Unknown Product',
-                product_image: product?.product_image || '',
-                price: subtotal
-                };
-            });
-            setProductDetails(details);
-            }
-        }, [cartData, pandey]);
-        // console.log(productDetails)
-
-        let path = '/bankormfs';
-        if(payment_method === 'cashondelivery') {
-            path = '/cashondelivery';
-        }
-        else if(payment_method === 'bankormfs') {
-            path = '/bankormfs';
-        }
-        const bankOrMFS = () => {
-            setPaymentMethod('bankormfs');
-            console.log(payment_method)
-        }
-        
-        const cashOnDelivery = () => {
-            setPaymentMethod('cashondelivery')
-            console.log(payment_method)
-        }
-
-        const placeOrder = () => {
-            const data = { cartSubtotal, cartData };
-            console.log(`Navigating to ${path} with state:`, data);
-            navigate(`${path}`, { state: data })
-        }
     return (
         <div className="md:flex items-center justify-center gap-28 py-40">
-            <div className="md:w-[480px] mx-5">
-                <h1 className="text-[#000] dark:text-white text-[32px] font-medium pb-8">Billing Details</h1>
-                <label className="text-base font-normal poppins text-gray-400">First Name<span className="text-red-400">*</span></label> <br />
-                <input type="text" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
-                <label>Company Name</label> <br />
-                <input type="text" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
-                <label>Street Address<span className="text-red-400">*</span></label> <br />
-                <input type="text" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
-                <label>Apartment, floor, etc, (optional)</label> <br />
-                <input type="text" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
-                <label>Town/City<span className="text-red-400">*</span></label> <br />
-                <input type="text" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
-                <label>Phone Number<span className="text-red-400">*</span></label> <br />
-                <input type="number" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/> <br />
-                <label>Email Address<span className="text-red-400">*</span></label> <br />
-                <input type="email" name="" id="" className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none mb-6"/>
-                <label className="relative flex select-none items-center cursor-pointer text-lg">
-                <input type="checkbox" className="sr-only peer"/>
-                <div className="w-5 h-5 bg-gray-200 rounded peer-checked:bg-orange-500 "></div>
-                <span className="ml-2 poppins text-base font-normal">Save this information for faster check-out next time</span>
-                </label>
-            </div>
+        <div className="md:w-[480px] mx-5">
+            <h1 className="text-[#000] dark:text-white text-[32px] font-medium pb-8">Billing Details</h1>
 
-            <div className="md:pr-24 md:w-5/12 md:mx-0 mx-4 md:mt-0 mt-5 text-[#000] text-base font-normal poppins">
-                {
-                    productDetails.map(productDetail => <div className="dark:text-white" key={productDetail.id}>
-                    <div className="flex justify-between items-center pb-7">
-                    <div className="flex gap-6 items-center"><img className="w-14 h-14" src={productDetail.product_image} alt="LCD-Monitor" />
-                    <p>{productDetail.product_title}</p></div>
-                    <p>${productDetail.price}</p>
-                    </div>
-                </div>)
-                }
-                <div className="flex justify-between pb-3 dark:text-white"><p>Subtotal:</p><span>${cartSubtotal}</span></div>
-                <hr className="border-gray-300"/>
-                <div className="flex justify-between py-3 dark:text-white"><p>Shipping:</p><span>Free</span></div>
-                <hr className="border-t-2"/>
-                <div className="flex justify-between pt-3 dark:text-white"><p>Total:</p><span>${cartSubtotal}</span></div>
-                {/* radio */}
+            <BillingInput label="First Name"  required />
+            <BillingInput label="Company Name" />
+            <BillingInput label="Street Address" required />
+            <BillingInput label="Apartment, floor, etc. (optional)" />
+            <BillingInput label="Town/City" required />
+            <BillingInput label="Phone Number" type="number" required />
+            <BillingInput label="Email Address" type="email" required />
 
-                <div className="flex justify-between items-center pt-8">
-                    <div>
-                        <label onClick={bankOrMFS} className="flex items-center cursor-pointer text-lg">
-                        <input defaultChecked type="radio" name="payment_method" id="payment_method" className="peer hidden" />
-                        <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center">
-                        </div>
-                        <span className="ml-2 dark:text-white">Bank/MFS</span>
-                        </label>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <img src="https://i.postimg.cc/q7zc7RQ8/bkash.png" alt="bkash" />
-                        <img src="https://i.postimg.cc/CK38L4Rg/visaCard.png" alt="visa" />
-                        <img src="https://i.postimg.cc/KvGMzj8R/mastercard.png" alt="mastercard" />
-                        <img src="https://i.postimg.cc/Kz71chXP/nagad.png" alt="nagad" />
-                    </div>
-                </div>
-
-                {/* radio */}
-                <label onClick={cashOnDelivery} className="flex items-center cursor-pointer text-lg pt-3">
-                <input type="radio" name="payment_method" id="payment_method" className="peer hidden" />
-                <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center">
-                </div>
-                <span className="ml-2 dark:text-white">Cash on delivery</span>
-                </label>
-                {/* radio */}
-                <div className="flex gap-4 pt-6">
-                    <input className="md:py-3 pl-4 md:pr-16 border rounded border-[#000000] focus:outline-none" type="text" name="" id="" placeholder="Coupon Code"/>
-                    <button className="bg-[#DB4444] md:py-3 md:px-9 px-6 rounded text-white" type="submit">Apply Coupon</button>
-                </div>
-                <button onClick={placeOrder} className="bg-[#DB4444] md:py-3 py-2 w-40 px-8 rounded mt-7 text-white" type="submit">Place Order</button>
-            </div>
-
+            <label className="relative flex select-none items-center cursor-pointer text-lg">
+                <input type="checkbox" className="sr-only peer" />
+                <div className="w-5 h-5 bg-gray-200 rounded peer-checked:bg-orange-500"></div>
+                <span className="ml-2 poppins text-base font-normal">
+                    Save this information for faster check-out next time
+                </span>
+            </label>
         </div>
+
+        <div className="md:pr-24 md:w-5/12 md:mx-0 mx-4 md:mt-0 mt-5 text-[#000] text-base font-normal poppins">
+            {productDetails.map((product) => (
+            <ProductSummary key={product.id} product={product} />
+            ))}
+
+            <OrderSummary cartSubtotal={cartSubtotal} />
+
+            <div className="flex justify-between items-center pt-8">
+            <RadioOption label="Bank/MFS" onClick={bankOrMFS} defaultChecked />
+            <div className="flex gap-2 items-center">
+                <img src="https://i.postimg.cc/q7zc7RQ8/bkash.png" alt="bkash" />
+                <img src="https://i.postimg.cc/CK38L4Rg/visaCard.png" alt="visa" />
+                <img src="https://i.postimg.cc/KvGMzj8R/mastercard.png" alt="mastercard" />
+                <img src="https://i.postimg.cc/Kz71chXP/nagad.png" alt="nagad" />
+            </div>
+            </div>
+
+            <RadioOption label="Cash on delivery" onClick={cashOnDelivery} />
+
+            <CouponSection />
+
+            <button
+                onClick={placeOrder}
+                className="bg-[#DB4444] md:py-3 py-2 w-40 px-8 rounded mt-7 text-white"
+                type="submit"
+            >
+            Place Order
+            </button>
+        </div>
+    </div>
     );
 };
 
 export default Checkout;
+
+const BillingInput = ({ label, required, type = 'text', ...props }) => {
+    return (
+        <div className="mb-6">
+            <label className="text-base font-normal poppins text-gray-400">
+                {label}
+                {required && <span className="text-red-400">*</span>}
+            </label>
+            <input
+                type={type}
+                className="bg-[#F5F5F5] w-full py-2 pl-2 mt-1 rounded focus:outline-none"
+                {...props}
+            />
+        </div>
+    )
+};
+
+const RadioOption = ({ label, onClick, defaultChecked }) => {
+    return (
+        <label onClick={onClick} className="flex items-center cursor-pointer text-lg pt-3">
+            <input
+                type="radio"
+                name="payment_method"
+                className="peer hidden"
+                defaultChecked={defaultChecked}
+            />
+            <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center" />
+            <span className="ml-2 dark:text-white">{label}</span>
+        </label>
+    )
+};
+
+const ProductSummary = ({ product }) => {
+    return (
+        <div className="flex justify-between items-center pb-7 dark:text-white">
+            <div className="flex gap-6 items-center">
+            <img 
+                className="w-14 h-14" 
+                src={product.product_image} 
+                alt={product.product_title} 
+            />
+            <p>{product.product_title}</p>
+            </div>
+            <p>${product.price}</p>
+        </div>
+    )
+};
+
+const CouponSection = () => {
+    return (
+        <div className="flex gap-4 pt-6">
+            <input
+                className="md:py-3 pl-4 md:pr-16 border rounded border-[#000000] focus:outline-none"
+                type="text"
+                placeholder="Coupon Code"
+            />
+            <button className="bg-[#DB4444] md:py-3 md:px-9 px-6 rounded text-white" type="submit">
+                Apply Coupon
+            </button>
+        </div>
+    )
+};
+
+const OrderSummary = ({ cartSubtotal }) => {
+    return (
+        <>
+        <div className="flex justify-between pb-3 dark:text-white">
+          <p>Subtotal:</p>
+          <span>${cartSubtotal}</span>
+        </div>
+        <hr className="border-gray-300" />
+        <div className="flex justify-between py-3 dark:text-white">
+          <p>Shipping:</p>
+          <span>Free</span>
+        </div>
+        <hr className="border-t-2" />
+        <div className="flex justify-between pt-3 dark:text-white">
+          <p>Total:</p>
+          <span>${cartSubtotal}</span>
+        </div>
+      </>
+    )
+};
+
+OrderSummary.propTypes = {
+    cartSubtotal: PropTypes.number,
+};
+
+ProductSummary.propTypes = {
+    product: PropTypes.object
+};
+
+RadioOption.propTypes = {
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+    defaultChecked: PropTypes.any
+};
+
+BillingInput.propTypes = {
+    label: PropTypes.string,
+    required: PropTypes.bool,
+    type: PropTypes.string
+};
