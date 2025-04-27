@@ -13,50 +13,124 @@ const OrderTableBody = ({
     
     return (
         <>
-        {
-            ordersLoading && <OrderTableSleketon/>
-        }
-            <table>
-                <tbody>
+            { ordersLoading && <OrderTableSleketon/> }
+                
                 {
                     orders.map((order) => (
                         <React.Fragment key={order.orderId}>
-                                    {order.products.map((product) => (
-                                <tr key={product._id} className="border bg-blue-600 text-white">
-                                {console.log(product)}
-                                <th>{product._id}</th>
-                                <td>
-                                    <img className="w-[50px] bg-white p-2 rounded-lg" 
-                                        src={product.product_image} 
-                                        alt={product.product_title}
+                            <tbody>
+                                {order.products.map((product) => (
+                                    <tr key={product._id} className="border bg-blue-600 text-white">
+                                        <TableDataId product={product}/>
+                                        <TableDataImage product={product}/>
+                                        <TableDataName product={product}/>
+                                        <TableDataPrice product={product}/>
+                                        <TableDataStatus order={order}/>
+                                        <TableDataAction
+                                            deletingProduct={deletingProduct}
+                                            order={order}
+                                            product={product}
+                                            onDeleteProduct={onDeleteProduct}
+                                            
                                         />
-                                </td>
-                                    <td>{product.product_title}</td>
-                                    <td>
-                                    {product.discount_price === '$0'
-                                        ? product.main_price
-                                        : product.discount_price}
-                                    </td>
-                                    <td>{order.status}</td>
-                                <td>
-                                {deletingProduct?.productId == product?._id ? (
-                                    <Loader2 className="animate-spin"/>
-                                ) : (
-                                    <MdDelete
-                                        onClick={() => onDeleteProduct(order.orderId, product._id)}
-                                        className="text-red-600 text-4xl bg-gray-100 p-1 rounded-md cursor-pointer"
-                                    />
-                                )}
-                                </td>
-                            </tr>
-                            ))}
+                                    </tr>
+                                ))}
+                            </tbody>
                         </React.Fragment>
                     ))
                 }
-                </tbody>
-            </table>
         </>
     );
+};
+
+export default OrderTableBody;
+
+export const TableDataAction = ({ 
+    deletingProduct, 
+    product, 
+    onDeleteProduct, 
+    order 
+}) => {
+    return (
+        <td>
+            {deletingProduct?.productId == product?._id ? (
+                <Loader2 className="animate-spin"/>
+            ) : (
+                <MdDelete
+                    onClick={() => onDeleteProduct(order.orderId, product._id)}
+                    className="text-red-600 text-4xl bg-gray-100 p-1 rounded-md cursor-pointer"
+                />
+            )}
+        </td>
+    )
+};
+
+const TableDataStatus = ({ order }) => {
+    return (
+        <td>{order.status}</td>
+    )
+};
+
+const TableDataName = ({ product }) => {
+    return (
+        <td>{product.product_title}</td>
+    )
+};
+
+const TableDataImage = ({ product }) => {
+    return (
+        <td>
+            <img className="w-[50px] bg-white p-2 rounded-lg" 
+                src={product.product_image} 
+                alt={product.product_title}
+            />
+        </td>
+    )
+};
+
+const TableDataId = ({ product }) => {
+    return (
+        <td>{product._id}</td>
+    )
+};
+
+const TableDataPrice = ({ product }) => {
+    return (
+        <td>
+            {   
+            product.discount_price === '$0'
+                ? product.main_price
+                : product.discount_price
+            }
+        </td>
+    )
+};
+
+TableDataAction.propTypes = {
+    deletingProduct: PropTypes.object,
+    onDeleteProduct: PropTypes.func,
+    product: PropTypes.object,
+    order: PropTypes.object
+};
+
+TableDataPrice.propTypes = {
+    product: PropTypes.object
+};
+
+TableDataId.propTypes = {
+    product: PropTypes.object
+};
+
+TableDataImage.propTypes = {
+    product: PropTypes.object
+};
+
+TableDataName.propTypes = {
+    product: PropTypes.object
+};
+
+TableDataStatus.propTypes = {
+    order: PropTypes.object
 };
 
 OrderTableBody.propTypes = {
@@ -65,6 +139,4 @@ OrderTableBody.propTypes = {
     onDeleteProduct: PropTypes.func,
     ordersLoading: PropTypes.bool,
     deletingProduct: PropTypes.any
-}
-
-export default OrderTableBody;
+};
