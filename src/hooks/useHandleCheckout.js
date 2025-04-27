@@ -1,19 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import useAxiosSecure from './useAxiosSecure';
+import { loadStripe } from '@stripe/stripe-js';
 
 const useHandleCheckout = () => {
     const location = useLocation();
-    const { pandey, cartSubtotal, cartData } = location.state || {};
+    const { pandey, cartSubtotal, cartData, quantities } = location.state || {};
     const [productDetails, setProductDetails] = useState([]);
     const [payment_method, setPaymentMethod] = useState();
-    const navigate = useNavigate();
+    const axiosSecure = useAxiosSecure();
+    const stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK);
 
     const isFirstRender = useRef(true);
     
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
-            console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
+            // console.log('Received state in Checkout:', { pandey, cartSubtotal, cartData });
         } else {
             console.log('Skipping additional effect run');
         }
@@ -45,18 +48,43 @@ const useHandleCheckout = () => {
     
     const bankOrMFS = () => {
         setPaymentMethod('bankormfs');
-        console.log(payment_method)
+        // console.log(payment_method)
     };
     
     const cashOnDelivery = () => {
         setPaymentMethod('cashondelivery')
-        console.log(payment_method)
+        // console.log(payment_method)
     };
 
-    const placeOrder = () => {
-        const data = { cartSubtotal, cartData };
+    const placeOrder = async () => {
+        const data = { cartSubtotal, cartData, quantities };
+        // console.log('data', data);
+
+        try {
+                const response = await axiosSecure.post('/payments/create-payment', {data});
+
+                if(!response.data) {
+                    const error = await response;
+                    console.error('Error creating checkout session', error);
+                    return;
+                }
+                const { id } = await response.data;
+
+                const stripe = await stripePromise;
+                const result = await stripe.redirectToCheckout({
+                    sessionId: id
+                });
+
+                console.log(result);
+                if(result.error) {
+                    console.log(result.error.message);
+                }
+
+            } catch (error) {
+                console.error('Error during place order', error);
+            }
+
         console.log(`Navigating to ${path} with state:`, data);
-        navigate(`${path}`, { state: data })
     };
 
     return { 
