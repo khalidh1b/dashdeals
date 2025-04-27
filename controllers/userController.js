@@ -15,6 +15,102 @@ exports.addUserProductWishlist = async (req, res) => {
     res.send(result);
 };
 
+exports.saveUser = async (req, res) => {
+    try {
+        const data = req.body;
+
+        const name = data?.name;
+        const pattern = /^(.*?)\s+(.*)$/;
+        const splitedName = name.match(pattern);
+        let firstName, lastName
+        if(splitedName) {
+            firstName = splitedName[1];
+            lastName = splitedName[2];
+        } else {
+            firstName = name;
+            lastName = ''
+        }
+
+        const user = {...data, firstName: firstName, lastName: lastName};
+
+        const searchQuery = { email: data?.email }
+        const collection = getCollection('saved-user')
+        const userExist = await collection.findOne(searchQuery);
+        if(userExist) {
+            res.status(200).json({ message: 'user already exists', user: true })
+        }
+        const result = await collection.insertOne(user);
+        res.send(result);
+    } catch (error) {
+        console.error('error while saving user',error);
+    }
+};
+
+exports.updatePass = async (req, res) => {
+    try {
+        const { currentPass, newPass } = req.body;
+        const email = req.params.email;
+        const query = { email: email, password: currentPass };
+        
+        const newUpdatedPass = { $set: { password: newPass } }
+        const collection = await getCollection('saved-user');
+        
+        const currentPassExist = await collection.findOne(query);
+        if(!currentPassExist) {
+            res.status(201).json({ success: false, message: 'currentPass not matched' });
+            return;
+        };
+        console.log(currentPassExist, currentPass, newUpdatedPass);
+        
+        const result = await collection.updateOne(
+            query,
+            newUpdatedPass
+        )
+        res.send(result);
+    } catch (error) {
+        console.error('error while saving user',error);
+    }
+};
+
+
+
+exports.updateUserProfile = async (req, res) => {
+    try {
+        const data = req.body;
+        const email = req.params.email;
+        const searchQuery = { email: email };
+        const dataToUpdate = { $set: data };
+        console.log(dataToUpdate);
+        const collection = getCollection('saved-user');
+        const result = await collection.updateOne(
+            searchQuery,
+            dataToUpdate
+        );
+        console.log(result)
+        if(result.matchedCount === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        if(result.modifiedCount === 0) {
+            return res.status(200).json({ message: 'No changes made to the user profile' })
+        }
+        res.send(result);
+    } catch (error) {
+        console.error('errro in update user profile', error);
+    }
+};
+
+exports.getUserProfile = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const searchQuery = { email: email };
+        const collection = getCollection('saved-user');
+        const result = await collection.findOne(searchQuery);
+        res.send(result); 
+    } catch (error) {
+        console.error('error in get user profile');
+    }
+};
+
 exports.getUserProductCarts = async (req, res) => {
     try {
         const email = req.params.email;
@@ -135,5 +231,3 @@ exports.getUserProductWishlist = async (req, res) => {
     const wishlist = await getCollection('userProductWishlist').find(query).toArray();
     res.send(wishlist);
 }
-
-// Repeat similar functions for other user-related routes
