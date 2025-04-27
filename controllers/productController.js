@@ -27,4 +27,7 @@ exports.getFlashSalesProductById = async (req, res) => {
     res.send(result);
 };
 
-// Repeat similar functions for other product-related routes
+exports.getSearchedProducts = async (req, res) => {
+    const searchString = req.params.searchString;
+    console.log(searchString, req.params);
+};
