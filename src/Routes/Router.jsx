@@ -7,8 +7,8 @@ import HomePage from '../pages/HomePage/HomePage';
 import Signup from "../pages/Signup/Signup";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import MyOrderSkeleton from "../Components/LoadingSkeletons/MyOrderSkeleton";
-import { SettingSkeleton } from "../Components/Skeletons/SettingSkeleton";
+import MyOrderSkeleton from "../components/LoadingSkeletons/MyOrderSkeleton";
+import { SettingSkeleton } from "../components/Skeletons/SettingSkeleton";
 
 const About = lazy(() => import('../pages/About/About'));
 const Contact = lazy(() => import('../pages/Contact/Contact'));
@@ -17,17 +17,16 @@ const Carts = lazy(() => import("../pages/Carts/Carts"));
 const ProductDetailsPage = lazy(() => import("../pages/ProductDetailsPage/ProductDetailsPage"));
 const CashOnDelivery = lazy(() => import("../pages/CashOnDelivery/CashOnDelivery"));
 const BankOrMFS = lazy(() => import('../pages/BankOrMFS/BankOrMFS'));
-const PaymentSuccess = lazy(() => import('../Components/PaymentSuccess/PaymentSuccess'));
-const PaymentCancel = lazy(() => import('../Components/PaymentCanceled/PaymentCanceled'));
-const PaymentFailed = lazy(() => import('../Components/PaymentFailed/PaymentFailed'));
+const PaymentSuccess = lazy(() => import('../components/PaymentSuccess/PaymentSuccess'));
+const PaymentCancel = lazy(() => import('../components/PaymentCanceled/PaymentCanceled'));
 const MyOrders = lazy(() => import('../pages/MyOrders/MyOrders'));
 const Wishlists = lazy(() => import("../pages/Wishlist/Wishlists"));
 const Settings = lazy(() => import('../pages/Settings/Settings'));
-const Profile = lazy(() => import('../Components/Settings/Profile/Profile'));
-const PasswordSecurity = lazy(() => import('../Components/Settings/Password&Security/Password&Security'));
-const Appearance = lazy(() => import('../Components/Settings/Appearance/Appearance'));
-const Notifications = lazy(() => import('../Components/Settings/Notifications/Notifications'));
-const Display = lazy(() => import('../Components/Settings/Display/Display'));
+const Profile = lazy(() => import('../components/Settings/Profile/Profile'));
+const PasswordSecurity = lazy(() => import('../components/Settings/Password&Security/Password&Security'));
+const Appearance = lazy(() => import('../components/Settings/Appearance/Appearance'));
+const Notifications = lazy(() => import('../components/Settings/Notifications/Notifications'));
+const Display = lazy(() => import('../components/Settings/Display/Display'));
 
 
 const router = createBrowserRouter([
@@ -88,10 +87,6 @@ const router = createBrowserRouter([
             {
                 path: '/paymentcancel',
                 element: <Suspense fallback={<MyOrderSkeleton/>}><PaymentCancel/></Suspense>
-            },
-            {
-                path: '/paymentfailed',
-                element: <Suspense fallback={<MyOrderSkeleton/>}><PaymentFailed/></Suspense>
             },
             {
                 path: '/myorders',
