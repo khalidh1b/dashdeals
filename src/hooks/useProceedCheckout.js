@@ -24,14 +24,13 @@ const useProceedCheckout = () => {
     const quantityMinus = useQuantityMinus(setQuantities, setSubtotals);
 
     const proceedToCheckout = () => {
-        // Assign the value of 'subtotals' to the variable 'pandey'
         const pandey = subtotals;
         const cartData = products;
-        const data = { pandey, cartSubtotal, cartData };
-        console.log('Navigating to checkout with state:', data);
+        const data = { pandey, cartSubtotal, cartData, quantities };
+        // console.log('Navigating to checkout with state:', data);
         navigate('/checkout', { state: data })
     };
-    
+
     return { 
         loading,
         products,
