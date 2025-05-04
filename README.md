@@ -83,21 +83,30 @@ To get a local copy up and running follow these simple steps:
 ```
 VITE_apiKey = your_api_key
 ```
+```
 VITE_authDomain = your_firebase_auth_domain
+```
 ```
 VITE_projectId = your_firebase_proeject_id
 ```
+```
 VITE_storageBucket = your_firebase_storage-bucket
+```
 ```
 VITE_messagingSenderId = your_firebase_senderid
 ```
+```
 VITE_appId = your_firebase_app-id
+```
 ```
 VITE_measurementId = your_firebase_measurementid
 ```
+```
 VITE_backendUrl = http://localhost:4000
 ```
+```
 VITE_Stripe_PK = your_stripe_public_key
+```
 ```
 VITE_Stripe_SK = your_stripe_secret_key
 ```
