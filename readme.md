@@ -64,13 +64,27 @@ dotenv	    Manage environment variables
 
 ## 🔐 Environment Variables
 
+```
 DB_USER = your_db_user
+```
+```
 DB_PASS = your_db_user-password
+```
+```
 ACCESS_TOKEN_SECRET = 'your access token'
+```
+```
 PORT = 4000
+```
+```
 Stripe_Secret_Key = your_stripe_secret_key
+```
+```
 CLIENT_URL = http://localhost:5173
+```
+```
 BACKEND_URL = http://localhost:4000
+```
 
 ## ⚙️ Setup & Installation
 
