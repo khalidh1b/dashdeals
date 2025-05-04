@@ -14,6 +14,4 @@ router.get('/exploreOurProducts', getExploreOurProducts);
 router.get('/flashSalesProducts/:id', getFlashSalesProductById);
 router.get('/searchProducts/:searchString', getSearchedProducts);
 
-// Add other product-related routes here
-
 module.exports = router;
