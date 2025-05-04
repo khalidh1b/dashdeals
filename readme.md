@@ -1,5 +1,5 @@
 # 🛍️ E-Commerce Backend API
-## This is the backend API for a simple e-commerce web application. It supports product management, user authentication, cart operations, and order processing. Built with Node.js, Express, and MongoDB, it serves as the core engine powering the frontend interface of the store.
+This is the backend API for a simple e-commerce web application. It supports product management, user authentication, cart operations, and order processing. Built with Node.js, Express, and MongoDB, it serves as the core engine powering the frontend interface of the store.
 
 ## 📑 Table of Contents
 
@@ -62,7 +62,7 @@ Mongoose	MongoDB object modeling
 JWT	User    authentication
 dotenv	    Manage environment variables
 
-🔐 Environment Variables
+## 🔐 Environment Variables
 
 DB_USER = your_db_user
 DB_PASS = your_db_user-password
