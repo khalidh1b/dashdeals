@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1,
+      "image": "https://res.cloudinary.com/dksiicemx/image/upload/v1729411591/playstation_wmqlfr.png",
+      "title": "PlayStation 5",
+      "description": "Black and White version of the PS5 coming out on sale.",
+      "linkText": "Shop Now",
+      "bgColor": "#0D0D0D"
+    },
+    {
+      "id": 2,
+      "image": "https://res.cloudinary.com/dksiicemx/image/upload/v1729411590/woman-wearing-hat_vcw2am.png",
+      "title": "Womens Collections",
+      "description": "Featured woman collections that give you another vibe.",
+      "linkText": "Shop Now",
+      "bgColor": "#0D0D0D"
+    },
+    {
+      "id": 3,
+      "image": "https://res.cloudinary.com/dksiicemx/image/upload/v1729411588/amazon-alexa_ccroy1.png",
+      "title": "Speakers",
+      "description": "Amazon wireless speakers.",
+      "linkText": "Shop Now",
+      "bgColor": "#0D0D0D"
+    },
+    {
+      "id": 4,
+      "image": "https://res.cloudinary.com/dksiicemx/image/upload/v1729411587/guchi-perfume_r6r8gy.png",
+      "title": "Perfume",
+      "description": "GUCCI INTENSE OUD EDP",
+      "linkText": "Shop Now",
+      "bgColor": "#0D0D0D"
+    }
+  ]
