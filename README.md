@@ -101,13 +101,13 @@ To get a local copy up and running follow these simple steps:
 4. Open your browser and go to: ```http://localhost:4000```
 
 ## 🛠 Tech Stack
-Tech	    Description
-Node.js	    JavaScript runtime
-Express	    Minimal web framework for Node
-MongoDB	    NoSQL database
-Mongoose	MongoDB object modeling
-JWT	User    authentication
-dotenv	    Manage environment variables
+1. Tech	    Description
+2. Node.js	    JavaScript runtime
+3. Express	    Minimal web framework for Node
+4. MongoDB	    NoSQL database
+5. Mongoose	MongoDB object modeling
+6. JWT	User    authentication
+7. dotenv	    Manage environment variables
 
 ## 🧩 Usage
 
