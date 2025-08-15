@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  backend:
+  backend:                  
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,7 +24,7 @@ jobs:
           working-directory: backend
           prod: true
 
-frontend:
+  frontend:                 
     runs-on: ubuntu-latest
     needs: backend
     defaults:
@@ -40,19 +40,19 @@ frontend:
           node-version: 22
 
       - name: Install frontend dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Lint frontend
-        run: pnpm run lint
+        run: npm run lint
 
       - name: Test frontend
-        run: pnpm test
+        run: npm test
 
       - name: Build frontend
-        run: pnpm run build
+        run: npm run build
 
       - name: Install Firebase CLI
-        run: pnpm install -g firebase-tools
+        run: npm install -g firebase-tools
 
       - name: Deploy frontend to Firebase
         run: firebase deploy --only hosting
