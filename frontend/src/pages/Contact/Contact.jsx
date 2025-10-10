@@ -1,6 +1,6 @@
 import { IoCallOutline } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
-import useUserFeedback from "../../hooks/useUserFeedback";
+import useUserFeedback from "@/hooks/ui/useUserFeedback";
 
 const Contact = () => {
     const { handleUserFeedback } = useUserFeedback();

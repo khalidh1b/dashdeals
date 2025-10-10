@@ -1,17 +1,13 @@
 import { useState } from "react";
-import { Skeleton } from '@/Components/ui/skeleton';
-import useSignIn from "../../hooks/useSignIn.js";
-import useForgetPass from "../../hooks/useForgetPass.js";
-import LoginHeader from "../../Components/Login/LoginHeader.jsx";
-import LoginForm from "../../Components/Login/LoginForm.jsx";
-import GoogleLogin from "../../Components/Login/GoogleLogin.jsx";
-import LoginFooter from "../../Components/Login/LoginFooter.jsx";
+import { Skeleton } from '@/components/ui/skeleton';
+import LoginHeader from "@/components/auth/login/LoginHeader.jsx";
+import LoginForm from "@/components/auth/login/LoginForm.jsx";
+import GoogleLogin from "@/components/auth/login/GoogleLogin.jsx";
+import LoginFooter from "@/components/auth/login/LoginFooter.jsx";
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { handleSignIn, handleGoogleSignIn, loading, googleLoading } = useSignIn();
-    const { handleForgetPass } = useForgetPass();
-    
+
     const handleImageLoad = () => {
         setIsLoading(false);
     }
@@ -26,11 +22,8 @@ const Login = () => {
             </div>
             <div>
                 <LoginHeader/>
-                <LoginForm handleSignIn={handleSignIn} handleForgetPass={handleForgetPass} loading={loading}/>
-                <GoogleLogin 
-                    loading={googleLoading} 
-                    handleGoogleSignIn={handleGoogleSignIn}
-                />
+                <LoginForm/>
+                <GoogleLogin/>
                 <LoginFooter/>
             </div>
         </div>

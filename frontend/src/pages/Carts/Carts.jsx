@@ -1,10 +1,10 @@
-import CartTotal from "../../Components/Carts/CartTotal/CartTotal";
-import Coupon from "../../Components/Carts/Coupon/Coupon";
-import CartsTableHeader from "../../Components/Carts/CartsTableHeader/CartsTableHeader";
-import UpdateCartButton from "../../Components/Carts/UpdateCartButton/UpdateCartButton";
-import ReturnToShopButton from "../../Components/Carts/ReturnToShopButton/ReturnToShopButton";
-import CartsTableBody from "../../Components/Carts/CartsTableBody/CartsTableBody";
-import useProceedCheckout from "../../hooks/useProceedCheckout";
+import CartTotal from "@/components/carts/CartTotal/CartTotal";
+import Coupon from "@/components/carts/Coupon/Coupon";
+import CartsTableHeader from "@/components/carts/CartsTableHeader/CartsTableHeader";
+import UpdateCartButton from "@/components/carts/UpdateCartButton/UpdateCartButton";
+import ReturnToShopButton from "@/components/carts/ReturnToShopButton/ReturnToShopButton";
+import CartsTableBody from "@/components/carts/CartsTableBody/CartsTableBody";
+import useProceedCheckout from "@/hooks/useProceedCheckout";
 
 const Carts = () => {
     

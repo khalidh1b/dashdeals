@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import AllOrders from './AllOrders';
-import useDeleteOrder from '../../hooks/useDeleteOrder';
-import useFetchOrdersData from '../../hooks/useFetchOrdersData';
+import useDeleteOrder from '@/hooks/orders/useDeleteOrder';
+import useFetchOrdersData from '@/hooks/orders/useFetchOrdersData';
 
 const MyOrders = () => {
     const [loadingProducts, setLoadingProducts] = useState({});

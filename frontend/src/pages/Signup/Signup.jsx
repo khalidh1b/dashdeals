@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Skeleton } from '@/Components/ui/skeleton';
-import useSignUp from "../../hooks/useSignUp.js";
-import SignupForm from "../../Components/Signup/SignupForm.jsx";
-import GoogleSignup from "../../Components/Signup/GoogleSignup.jsx";
-import SignupFooter from "../../Components/Signup/SignupFooter.jsx";
-import SignupHeader from "../../Components/Signup/SignupHeader.jsx";
+import { Skeleton } from '@/components/ui/skeleton';
+import useSignUp from "@/hooks/auth/useSignUp.js";
+import SignupForm from "@/components/auth/signup/SignupForm.jsx";
+import GoogleSignup from "@/components/auth/signup/GoogleSignup.jsx";
+import SignupFooter from "@/components/auth/signup/SignupFooter.jsx";
+import SignupHeader from "@/components/auth/signup/SignupHeader.jsx";
 
 const Signup = () => {
     const [isLoading, setIsLoading] = useState(true);

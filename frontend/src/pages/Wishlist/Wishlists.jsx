@@ -1,9 +1,9 @@
-import useHandleCart from "../../hooks/useHandleCart";
-import useHandleDeleteWishlist from "../../hooks/useHandleDeleteWishlist";
-import useFetchWishlist from "../../hooks/useFetchWishlist";
-import Wishlist from "./Wishlist";
-import WishlistSkeleton from '../../Components/LoadingSkeletons/WishlistSkeleton';
-import { ProductCard } from "../../Components/ProductCard/ProductCard";
+import useHandleCart from "@/hooks/cart/useHandleCart";
+import useHandleDeleteWishlist from "@/hooks/wishlist/useHandleDeleteWishlist";
+import useFetchWishlist from "@/hooks/wishlist/useFetchWishlist";
+import Wishlist from "@/pages/Wishlist/Wishlist";
+import WishlistSkeleton from '@/pages/Wishlist/wishlist-skeleton/WishlistSkeleton';
+import { ProductCard } from "@/components/common/product-card/ProductCard";
 
 const Wishlists = () => {
     const [products, , isLoading] = useFetchWishlist();
@@ -18,7 +18,7 @@ const Wishlists = () => {
                 <button className="text-[#000] poppins text-base font-medium py-3 px-10 border border-[#000] dark:text-white dark:border-white rounded">Move All To Bag</button>
             </div>
 
-            <div className="grid justify-start md:grid-cols-3 grid-cols-1 gap-8 pt-10 md:mx-32">
+            <div className="grid md:grid-cols-3 grid-cols-1 gap-8 pt-10 md:mx-32">
                 {   isLoading ? <WishlistSkeleton/> :
                     products.map(product => (<Wishlist key={product._id} product={product} handleDelete={handleDelete} handleCart={handleCart}/>))
                 }

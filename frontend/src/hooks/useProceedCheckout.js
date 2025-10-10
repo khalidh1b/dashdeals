@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import useQuantityPlus from './useQuantityPlus';
-import useQuantityMinus from './useQuantityMinus';
-import useFetchCartData from './useFetchCartData';
+import useQuantityPlus from '@/hooks/cart/useQuantityPlus';
+import useQuantityMinus from '@/hooks/cart/useQuantityMinus';
+import useFetchCartData from '@/hooks/cart/useFetchCartData';
 import { useNavigate } from 'react-router-dom';
-import useHandleDeleteCart from './useHandleDeleteCart';
+import useHandleDeleteCart from '@/hooks/cart/useHandleDeleteCart';
 
 const useProceedCheckout = () => {
     const [quantities, setQuantities] = useState({});

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import DashDealsPros from '../../Components/DashDealPros/DashDealsPros';
-import OurStoryStats from '../../Components/OurStoryStats/OurStoryStats';
+import DashDealsPros from '@/components/home/dash-deals-pros/DashDealsPros';
+import OurStoryStats from '@/components/home/our-story-stats/OurStoryStats';
 import { CiTwitter } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";

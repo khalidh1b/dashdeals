@@ -1,4 +1,4 @@
-import useHandleCheckout from "../../hooks/useHandleCheckout";
+import useHandleCheckout from "@/hooks/cart/useHandleCheckout";
 import PropTypes from 'prop-types';
 
 const Checkout = () => {

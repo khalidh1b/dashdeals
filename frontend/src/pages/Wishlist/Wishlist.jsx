@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"; 
-import { ProductCard } from "../../Components/ProductCard/ProductCard";
+import { ProductCard } from "@/components/common/product-card/ProductCard";
 
 const Wishlist = ({ product, handleDelete, handleCart }) => {
     const { 

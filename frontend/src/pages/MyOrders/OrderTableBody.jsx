@@ -1,7 +1,7 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
 import PropTypes from 'prop-types';
-import OrderTableSleketon from '../../Components/LoadingSkeletons/OrderTableSkeleton';
+import OrderTableSleketon from '@/pages/MyOrders/order-table-skeleton/OrderTableSkeleton';
 import { Loader2 } from "lucide-react";
 
 const OrderTableBody = ({ 
