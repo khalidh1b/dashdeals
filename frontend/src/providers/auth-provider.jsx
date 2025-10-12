@@ -9,6 +9,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
     const axiosPublic = useAxiosPublic();
 
@@ -51,29 +52,33 @@ const AuthProvider = ({children}) => {
 
     //observe current user
     useEffect(() => {
-        const onSubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const onSubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
+            
             if(currentUser) {
-                const userInfo = {email: currentUser.email};
-                axiosPublic.post('/auth/jwt', userInfo)
-                .then((res) => {
-                    if(res.data.token) {
-                        localStorage.setItem('access-token', res.data.token);
+                try {
+                    const userInfo = {email: currentUser.email};
+                    const res = await axiosPublic.post('/auth/jwt', userInfo)
+                    
+                    if(res?.data?.token) {
+                        localStorage.setItem('dashdeals-access-token', res?.data?.token);
+                    } else {
+                        localStorage.removeItem('dashdeals-access-token');
                     }
-                    else {
-                        localStorage.removeItem('access-token');
-                    }
-
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
+                } catch (error) {
+                    console.error('Jwt error:', error);
+                }
+            } else {
+                localStorage.removeItem('dashdeals-access-token');
             }
-        console.log('current user:', currentUser);
+
+            setLoading(false);
+            console.log('current user:', currentUser);
         })
+
         return () => {
             onSubscribe();
-        }
+        };
     }, [axiosPublic])
 
     const authInfo = {
@@ -83,7 +88,8 @@ const AuthProvider = ({children}) => {
         signIn,
         forgetPassword,
         logOut,
-        profileUpdate
+        profileUpdate,
+        loading
     }
     return (
         <AuthContext.Provider value={authInfo}>

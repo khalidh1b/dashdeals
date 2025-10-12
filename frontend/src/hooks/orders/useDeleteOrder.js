@@ -17,7 +17,7 @@ const useDeleteOrder = (setLoadingProducts, refetch) => {
             }))
             await axiosSecure.delete(`/users/deleteOrderedProduct/${orderId}/${productId}`, {
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem('access-token')}`,
+                    authorization: `Bearer ${localStorage.getItem('dashdeals-access-token')}`,
                 }
             })
             refetch()

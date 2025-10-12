@@ -12,7 +12,7 @@ const useFetchWishlist = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/getUserProductWishlist/${user?.email}`, {
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem('access-token')}`
+                    authorization: `Bearer ${localStorage.getItem('dashdeals-access-token')}`
                 }
             })
             return res.data;

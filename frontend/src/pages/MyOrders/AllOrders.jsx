@@ -13,7 +13,7 @@ const AllOrders = ({
     return (
         <div>
             <div className="overflow-x-auto md:mx-20 mx-2">
-                <table className="table">
+                <table className="min-w-full table">
                     <OrderTableHead/>
                     <OrderTableBody 
                         orders={orders} 

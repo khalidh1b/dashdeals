@@ -20,7 +20,7 @@ const OrderTableBody = ({
                         <React.Fragment key={order.orderId}>
                             <tbody>
                                 {order.products.map((product) => (
-                                    <tr key={product._id} className="border bg-blue-600 text-white">
+                                    <tr key={product._id} className="border bg-blue-600 text-center text-white">
                                         <TableDataId product={product}/>
                                         <TableDataImage product={product}/>
                                         <TableDataName product={product}/>
@@ -58,7 +58,7 @@ export const TableDataAction = ({
             ) : (
                 <MdDelete
                     onClick={() => onDeleteProduct(order.orderId, product._id)}
-                    className="text-red-600 text-4xl bg-gray-100 p-1 rounded-md cursor-pointer"
+                    className="text-red-600 mx-auto text-4xl bg-gray-100 p-1 rounded-md cursor-pointer"
                 />
             )}
         </td>
@@ -80,7 +80,7 @@ const TableDataName = ({ product }) => {
 const TableDataImage = ({ product }) => {
     return (
         <td>
-            <img className="w-[50px] bg-white p-2 rounded-lg" 
+            <img className="w-[50px] flex mx-auto bg-white p-2 my-1.5 rounded-lg" 
                 src={product.product_image} 
                 alt={product.product_title}
             />

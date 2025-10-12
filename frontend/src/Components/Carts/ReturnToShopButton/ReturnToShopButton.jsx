@@ -1,10 +1,14 @@
+import '@/components/carts/style.css';
+import { Link } from 'react-router-dom';
 
 const ReturnToShopButton = () => {
     return (
         <>
-            <button className="text-black dark:text-white poppins text-base font-medium py-3 px-9 border-2 rounded">
-                Return To Shop  
-            </button>
+            <Link to="/">
+                <button className="return-to-shop-button poppins">
+                    Return To Shop  
+                </button>
+            </Link>
         </>
     );
 };

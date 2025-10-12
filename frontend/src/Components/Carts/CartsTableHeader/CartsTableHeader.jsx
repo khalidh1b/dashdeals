@@ -1,7 +1,8 @@
+import '@/components/carts/style.css';
 
 const CartsTableHeader = () => {
     return (
-        <div className="flex justify-between border md:mx-32 py-5 px-5 rounded shadow-md text-base poppins font-normal">
+        <div className="cart-table-header poppins">
             <p className="">Product</p>
             <p>Price</p>
             <p>Quantity</p>

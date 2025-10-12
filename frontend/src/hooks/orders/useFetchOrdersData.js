@@ -11,7 +11,7 @@ const useFetchOrdersData = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`users/getUserOrderedProducts/${user?.email}`, {
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem("access-token")}`,
+                    authorization: `Bearer ${localStorage.getItem("dashdeals-access-token")}`,
                 },
             });
             return res.data;

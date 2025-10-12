@@ -13,7 +13,7 @@ const useFetchCartData = (setLoading, setQuantities, setSubtotals) => {
         setLoading(true);
         const res = await axiosSecure.get(`/users/userProductCarts/${user?.email}`, {
             headers: {
-            authorization: `Bearer ${localStorage.getItem("access-token")}`,
+            authorization: `Bearer ${localStorage.getItem("dashdeals-access-token")}`,
             },
         });
         

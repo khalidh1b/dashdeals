@@ -1,0 +1,34 @@
+@reference "@/index.css";
+
+@layer components {
+    .checkout-container {
+        @apply md:flex items-center justify-center gap-28 py-40
+    }
+    .billing-heading {
+        @apply text-black dark:text-white text-[32px] font-medium pb-8
+    }
+    .billing-checkbox-container {
+        @apply relative flex select-none items-center cursor-pointer text-lg
+    }
+    .billing-checkbox-design {
+        @apply w-5 h-5 bg-gray-200 rounded peer-checked:bg-orange-500
+    }
+    .checkout-summary {
+        @apply md:pr-24 md:w-5/12 md:mx-0 mx-4 md:mt-0 mt-5 text-black text-base font-normal
+    }
+    .place-order-button {
+        @apply md:py-3 py-2 w-40 px-8 rounded mt-7 text-white bg-[#DB4444] cursor-pointer 
+    }
+    .radio-option-container {
+        @apply flex items-center cursor-pointer text-lg pt-3
+    }
+    .radio-option-peer-checked {
+        @apply w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center
+    }
+    .coupon-section-input {
+        @apply md:py-3 pl-4 md:pr-16 border rounded border-[#000000] focus:outline-none
+    }
+    .coupon-section-button {
+        @apply bg-[#DB4444] md:py-3 md:px-9 px-6 rounded text-white
+    }
+}

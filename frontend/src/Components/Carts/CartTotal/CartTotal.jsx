@@ -1,10 +1,11 @@
 import CartCheckoutButton from "./CartCheckoutButton";
 import CartSubtotal from "./CartSubtotal";
 import PropTypes from 'prop-types';
+import '@/components/carts/style.css';
 
 const CartTotal = ({ cartSubtotal, proceedToCheckout }) => {
     return (
-        <div className="border-2 rounded border-black dark:border-white py-7 px-7 md:w-4/12 poppins text-base font-normal text-black">
+        <div className="cart-total-container poppins">
             <h3 className="text-xl font-medium pb-5 dark:text-white">Cart Total</h3>
             <CartSubtotal cartSubtotal={cartSubtotal}/>
             <hr className="border-b"/>

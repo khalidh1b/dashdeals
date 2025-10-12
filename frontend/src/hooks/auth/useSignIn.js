@@ -1,15 +1,23 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/providers/auth-provider";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const useSignIn = () => {
-    const { signIn, googleSignIn } = useContext(AuthContext);
+    const { user, signIn, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [googleLoading, setGoogleLoading] = useState(false);
+    const location = useLocation();
 
-    console.log('loading', loading);
+    const from = location.state?.from?.pathname || '/';
+
+    useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, navigate, from]);
+
     // Email Sign In
     const handleSignIn = async (e) => {
         e.preventDefault()
@@ -52,7 +60,7 @@ const useSignIn = () => {
             setGoogleLoading(true);
             const result = await googleSignIn()
             console.log(result.user);
-
+            
             if(result.user) {
                 await navigate('/');
                 Swal.fire({

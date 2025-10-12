@@ -1,20 +1,23 @@
 import useHandleCheckout from "@/hooks/cart/useHandleCheckout";
 import PropTypes from 'prop-types';
+import { Loader2 } from "lucide-react";
+import '@/pages/CheckOut/style.css';
 
 const Checkout = () => {
-
     const { 
         bankOrMFS, 
         cashOnDelivery, 
-        placeOrder, 
+        placeOrder,
+        orderPlacing, 
         productDetails, 
         cartSubtotal
     } = useHandleCheckout();
 
+    console.log('Order placing:', orderPlacing);
     return (
-        <div className="md:flex items-center justify-center gap-28 py-40">
+        <div className="checkout-container">
         <div className="md:w-[480px] mx-5">
-            <h1 className="text-black dark:text-white text-[32px] font-medium pb-8">Billing Details</h1>
+            <h1 className="billing-heading">Billing Details</h1>
 
             <BillingInput label="First Name"  required />
             <BillingInput label="Company Name" />
@@ -24,16 +27,16 @@ const Checkout = () => {
             <BillingInput label="Phone Number" type="number" required />
             <BillingInput label="Email Address" type="email" required />
 
-            <label className="relative flex select-none items-center cursor-pointer text-lg">
+            <label className="billing-checkbox-container">
                 <input type="checkbox" className="sr-only peer" />
-                <div className="w-5 h-5 bg-gray-200 rounded peer-checked:bg-orange-500"></div>
+                <div className="billing-checkbox-design"/>
                 <span className="ml-2 poppins text-base font-normal">
                     Save this information for faster check-out next time
                 </span>
             </label>
         </div>
 
-        <div className="md:pr-24 md:w-5/12 md:mx-0 mx-4 md:mt-0 mt-5 text-black text-base font-normal poppins">
+        <div className="checkout-summary poppins">
             {productDetails.map((product) => (
             <ProductSummary key={product.id} product={product} />
             ))}
@@ -56,10 +59,11 @@ const Checkout = () => {
 
             <button
                 onClick={placeOrder}
-                className="bg-[#DB4444] md:py-3 py-2 w-40 px-8 rounded mt-7 text-white"
+                className={`place-order-button ${orderPlacing && 'pointer-events-none'}`}
                 type="submit"
+                disabled={orderPlacing}
             >
-            Place Order
+            {orderPlacing ? <Loader2 className="animate-spin mx-auto"/> : 'Place Order'}
             </button>
         </div>
     </div>
@@ -70,7 +74,7 @@ export default Checkout;
 
 const BillingInput = ({ label, required, type = 'text', ...props }) => {
     return (
-        <div className="mb-6">
+        <div className="mb-6 dark:text-black">
             <label className="text-base font-normal poppins text-gray-400">
                 {label}
                 {required && <span className="text-red-400">*</span>}
@@ -86,14 +90,14 @@ const BillingInput = ({ label, required, type = 'text', ...props }) => {
 
 const RadioOption = ({ label, onClick, defaultChecked }) => {
     return (
-        <label onClick={onClick} className="flex items-center cursor-pointer text-lg pt-3">
+        <label onClick={onClick} className="radio-option-container">
             <input
                 type="radio"
                 name="payment_method"
                 className="peer hidden"
                 defaultChecked={defaultChecked}
             />
-            <div className="w-5 h-5 border-[3px] border-gray-300 rounded-full peer-checked:bg-blue-600 flex items-center justify-center" />
+            <div className="radio-option-peer-checked" />
             <span className="ml-2 dark:text-white">{label}</span>
         </label>
     )
@@ -119,11 +123,11 @@ const CouponSection = () => {
     return (
         <div className="flex gap-4 pt-6">
             <input
-                className="md:py-3 pl-4 md:pr-16 border rounded border-[#000000] focus:outline-none"
+                className="coupon-section-input"
                 type="text"
                 placeholder="Coupon Code"
             />
-            <button className="bg-[#DB4444] md:py-3 md:px-9 px-6 rounded text-white" type="submit">
+            <button className="coupon-section-button" type="submit">
                 Apply Coupon
             </button>
         </div>

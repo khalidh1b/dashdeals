@@ -31,63 +31,46 @@ const ProfileMenu = () => {
                         <div className="w-10 rounded-full bg-red-200">
                         <img 
                             alt={user?.displayName}
-                            loading="lazy"
+                            loading="eager"
+                            className="rounded-full"
                             src={ user?.photoURL || 'https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif'}
                         />
                         </div>
                     </div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
+                <DropdownMenuContent className="w-56 bg-black text-white">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                     <Link to="/settings">
                         <DropdownMenuItem>
                                 Settings
-                            <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
                         </DropdownMenuItem>
                     </Link>
                     <Link to="/myorders">
                         <DropdownMenuItem>
                                 My Order
-                            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
                         </DropdownMenuItem>
+                        <Link to="/my-cancellations">
+                            <DropdownMenuItem>
+                                My Cancellations
+                            </DropdownMenuItem>
+                        </Link>
+                        <Link to="/my-reviews">
+                            <DropdownMenuItem>
+                                My Reviews
+                            </DropdownMenuItem>
+                        </Link>
                     </Link>
                     </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        <Link>My Cancellations</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-                        <DropdownMenuPortal>
-                        <DropdownMenuSubContent>
-                            <DropdownMenuItem>Email</DropdownMenuItem>
-                            <DropdownMenuItem>Message</DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>More...</DropdownMenuItem>
-                        </DropdownMenuSubContent>
-                        </DropdownMenuPortal>
-                    </DropdownMenuSub>
-                    <DropdownMenuItem>
-                        <Link>
-                            My Reviews
-                        </Link>
-                        <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
                     <DropdownMenuItem checked={true} onClick={handleThemeChange}>
                     <div className="flex items-center space-x-2">
                         <Label htmlFor="airplane-mode">Theme</Label>
                         <Switch id="airplane-mode" />
                     </div>
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={handleLogout}>
                     {user ? 'Log out' : <Link to="/login">Please Login!</Link>}
-                    <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

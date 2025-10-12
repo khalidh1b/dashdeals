@@ -1,7 +1,10 @@
 
 const Coupon = () => {
+    // Logic for handling apply coupon button click can be added here later
+    // will make it reusable later
+
     return (
-        <div className="md:w-3/2">
+        <div className="md:w-1/3">
             <input
                 className="border-2 border-gray-400 rounded py-2.5 pr-10 pl-3"
                 type="text"

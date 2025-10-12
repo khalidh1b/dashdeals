@@ -1,8 +1,11 @@
+import '@/components/carts/style.css';
 
 const UpdateCartButton = () => {
+    // Logic for handling button click can be added here later
+    // will make it reusable later
     return (
         <>
-            <button className="text-black dark:text-white poppins text-base font-medium py-3 px-9 border-2 rounded">
+            <button className="update-cart-button poppins">
                 Update Cart
             </button>
         </>

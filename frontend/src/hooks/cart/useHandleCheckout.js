@@ -10,6 +10,7 @@ const useHandleCheckout = () => {
     const [payment_method, setPaymentMethod] = useState();
     const axiosSecure = useAxiosSecure();
     const stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK);
+    const [orderPlacing, setOrderPlacing] = useState(false);
 
     console.log(import.meta.env.VITE_Stripe_PK);
     const isFirstRender = useRef(true);
@@ -62,6 +63,7 @@ const useHandleCheckout = () => {
         // console.log('data', data);
 
         try {
+                setOrderPlacing(true);
                 const response = await axiosSecure.post('/payments/create-payment', {data});
 
                 if(!response.data) {
@@ -83,6 +85,8 @@ const useHandleCheckout = () => {
 
             } catch (error) {
                 console.error('Error during place order', error);
+            } finally {
+                setOrderPlacing(false);
             }
 
         console.log(`Navigating to ${path} with state:`, data);
@@ -94,6 +98,7 @@ const useHandleCheckout = () => {
         bankOrMFS,
         cashOnDelivery,
         placeOrder,
+        orderPlacing,
         cartSubtotal
     };
 };
