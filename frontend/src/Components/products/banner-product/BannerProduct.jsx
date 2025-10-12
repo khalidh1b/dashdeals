@@ -4,7 +4,7 @@ import renderer from '@/components/products/banner-product-countdown/BannerProdu
 const BannerProduct = () => {
     const endTime = Date.now() + 343196000;
     return (
-        <div className="bg-[#000] md:flex justify-center items-center py-16 md:mx-36 gap-8">
+        <div className="bg-black md:flex justify-center items-center py-16 md:mx-36 gap-8">
             <div className=''>
                 <h4 className="text-[#0F6] pb-7">Categories</h4>
                 <h1 className="text-[48px] text-[#FAFAFA] font-semibold leading-[52px] pb-7">Enhance Your <br /> Music Experience</h1>

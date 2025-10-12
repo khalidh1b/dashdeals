@@ -3,7 +3,7 @@ const OrderTableHead = () => {
     return (
         <>
             <thead>
-                <tr className="bg-gray-100 text-[#000] text-[14px] font-medium">
+                <tr className="bg-gray-100 text-black text-[14px] font-medium">
                     <th>Id</th>
                     <th>Product Image</th>
                     <th>Product Name</th>

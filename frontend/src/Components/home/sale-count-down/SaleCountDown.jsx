@@ -31,8 +31,8 @@ export default SaleCountDown;
 const TimeUnit = ({ label, value }) => {
     return (
         <div className="text-center">
-            <p className="text-[12px] font-medium text-[#000] dark:text-white">{label}</p>
-            <span className="text-[32px] font-bold text-[#000] dark:text-white">
+            <p className="text-[12px] font-medium text-black dark:text-white">{label}</p>
+            <span className="text-[32px] font-bold text-black dark:text-white">
                 {value < 10 ? `0${value}` : value}
             </span>
         </div>

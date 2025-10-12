@@ -198,7 +198,7 @@ const SecurityQuestions = () => {
                 )}
 
                 <div className="rounded-lg border p-3 bg-muted flex gap-3">
-                <AlertCircleIcon className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
+                <AlertCircleIcon className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
                 <div>
                     <p className="text-sm">
                     Security questions are used to verify your identity if you forget your password or need to reset it.

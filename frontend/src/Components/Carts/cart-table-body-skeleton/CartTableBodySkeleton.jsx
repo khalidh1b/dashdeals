@@ -16,7 +16,7 @@ const CartTableBodySkeleton = () => {
             </div>
     
             <div className="w-2/12 pl-10">
-            <div className="flex items-center justify-center gap-4 py-1 rounded border-[#000] w-20 border">
+            <div className="flex items-center justify-center gap-4 py-1 rounded border-black w-20 border">
                 <Skeleton className="w-6 h-5" />
                 <div>
                 <Skeleton className="w-5 h-5 mb-2" />

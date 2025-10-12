@@ -22,7 +22,7 @@ const MyOrders = () => {
     return (
         <div className='pb-20 min-h-screen'>
             <div className='md:mx-20 mx-2'>
-                <h2 className='text-3xl font-medium text-[#000] dark:text-white pb-1 pt-8'>Order</h2>
+                <h2 className='text-3xl font-medium text-black dark:text-white pb-1 pt-8'>Order</h2>
                 <h3>{cus_orderData.length} order{cus_orderData.length !== 1 ? 's' : ''} found</h3>
 
                 <ul className='flex gap-10 pt-7 pb-6'>

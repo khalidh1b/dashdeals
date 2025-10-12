@@ -189,7 +189,7 @@ const Header = ({ is2FAEnabled, handleToggle2FA, isLoading, setupStep }) => {
 const SecurityMessage = () => {
     return (
         <div className="rounded-lg border p-3 bg-amber-50 border-amber-200 flex gap-3">
-            <AlertCircleIcon className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+            <AlertCircleIcon className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
             <div>
                 <h4 className="font-medium text-amber-800">Your account is not fully protected</h4>
                 <p className="text-sm text-amber-700 mt-1">
@@ -367,7 +367,7 @@ const Complete2FVerify = ({ selectedMethod }) => {
     return (
         <div className="space-y-4">
                 <div className="rounded-lg border p-3 bg-green-50 border-green-200 flex gap-3">
-                <CheckIcon className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckIcon className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                 <div>
                     <h4 className="font-medium text-green-800">Two-factor authentication is enabled</h4>
                     <p className="text-sm text-green-700 mt-1">

@@ -15,7 +15,7 @@ const Wishlists = () => {
         <div className="pt-20 pb-28">
             <div className="flex md:justify-between justify-evenly items-center md:mx-32">
                 <p>Wishlist<span> ({products.length})</span></p>
-                <button className="text-[#000] poppins text-base font-medium py-3 px-10 border border-[#000] dark:text-white dark:border-white rounded">Move All To Bag</button>
+                <button className="text-black poppins text-base font-medium py-3 px-10 border border-black dark:text-white dark:border-white rounded">Move All To Bag</button>
             </div>
 
             <div className="grid md:grid-cols-3 grid-cols-1 gap-8 pt-10 md:mx-32">
@@ -29,7 +29,7 @@ const Wishlists = () => {
                     <div className="bg-[#DB4444] rounded py-5 px-2"></div>
                     Just For You
                 </div>
-                <button className="py-3 px-12 text-[#000] dark:border-white dark:text-white poppins text-base font-medium rounded border-2">See All</button>
+                <button className="py-3 px-12 text-black dark:border-white dark:text-white poppins text-base font-medium rounded border-2">See All</button>
             </div>
 
 

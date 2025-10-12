@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Skeleton } from '@/components/ui/skeleton';
 import useSignUp from "@/hooks/auth/useSignUp.js";
-import SignupForm from "@/components/auth/signup/SignupForm.jsx";
-import GoogleSignup from "@/components/auth/signup/GoogleSignup.jsx";
-import SignupFooter from "@/components/auth/signup/SignupFooter.jsx";
-import SignupHeader from "@/components/auth/signup/SignupHeader.jsx";
+import { AuthHeader } from "@/components/auth/common/auth-header.jsx";
+import { AuthFooter } from "@/components/auth/common/auth-footer.jsx";
+import { GoogleAuthButton } from "@/components/auth/common/google-auth-button.jsx";
+import { AuthForm } from "@/components/auth/common/auth-form.jsx";
+import { AuthBanner } from "@/components/auth/common/auth-banner";
 
 const Signup = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -22,24 +22,37 @@ const Signup = () => {
 
     return (
         <div className="md:flex items-center pb-32 md:pt-20 pt-6 md:mx-0 mx-8 gap-24">
-            {
-                isLoading && <><Skeleton className="w-1/2 h-screen" /></>
-            } 
-            <div className={`bg-[#CBE4E8] md:block hidden pt-10 w-1/2 ${isLoading ? 'hidden' : ''}`}>
-                <img src="https://res.cloudinary.com/dksiicemx/image/upload/v1729422686/authentication-banner_i6gqed.png" alt="signup-banner" onLoad={handleImageLoad}/>
-            </div>
+            <AuthBanner 
+                isLoading={isLoading} 
+                altText='Signup Banner' 
+                handleImageLoad={handleImageLoad}
+            />
 
             <div>
-                <SignupHeader/>
-                <SignupForm 
-                    handleSignup={handleSignup} 
+                <AuthHeader
+                    title="Create an account"
+                    subtitle="Enter your details below"
+                />
+                <AuthForm
+                    onSubmitFn={handleSignup}
                     loading={loading}
+                    submitText="Create Account"
+                    fields={[
+                        { name: 'name', type: 'text', classes: "border-b w-full border-[#000000] dark:bg-[#09090B] dark:border-b-2 dark:border-b-gray-400 pb-1 mb-7 border-x-0 border-t-0 focus:outline-none", placeholder: 'Name' },
+                        { name: 'email', type: 'email', classes: "border-b w-full border-[#000000] dark:bg-[#09090B] dark:border-b-2 dark:border-b-gray-400 pb-1 mb-7 border-x-0 border-t-0 focus:outline-none", placeholder: 'Email' },
+                        { name: 'password', type: 'password', classes: "border-b w-full border-[#000000] dark:bg-[#09090B] dark:border-b-2 dark:border-b-gray-400 pb-1 mb-7 border-x-0 border-t-0 focus:outline-none", placeholder: 'Password' }
+                    ]} 
                 />
-                <GoogleSignup 
-                    handleGoogleSignup={handleGoogleSignup} 
+                <GoogleAuthButton
+                    label="Sign up with Google"
                     loading={googleLoading}
+                    onClickFn={handleGoogleSignup} 
                 />
-                <SignupFooter/>
+                <AuthFooter
+                    text="Already have an account?"
+                    linkText="Login"
+                    linkTo="/login" 
+                />
             </div>
         </div>
     );

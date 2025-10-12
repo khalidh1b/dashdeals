@@ -55,7 +55,7 @@ const StatCard = ({ icon, value, label, isPrimary }) => {
                     alt={label}
                 />
             </div>
-            <h3 className="text-2xl poppins font-semibold pt-4 text-center text-[#000] dark:text-white">
+            <h3 className="text-2xl poppins font-semibold pt-4 text-center text-black dark:text-white">
                 {value}
             </h3>
             <p className="text-[14px] poppins font-normal text-center">{label}</p>

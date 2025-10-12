@@ -50,7 +50,7 @@ const FeaturedItem = ({
         <div className="absolute bottom-9 left-9">
             <h3 className="text-[#FAFAFA] text-2xl font-semibold">{title}</h3>
             <h4 className="text-[#FAFAFA] pt-3 pb-3 text-[14px] font-normal poppins">{description}</h4>
-            <p className="text-[#FFFFFF] text-base font-medium border-b-[1px] w-20">{linkText}</p>
+            <p className="text-[#FFFFFF] text-base font-medium border-b w-20">{linkText}</p>
         </div>
         </div>
     )

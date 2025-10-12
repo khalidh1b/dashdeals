@@ -1,12 +1,15 @@
+import useSignIn from "@/hooks/auth/useSignIn";
 import { useState } from "react";
-import { Skeleton } from '@/components/ui/skeleton';
-import LoginHeader from "@/components/auth/login/LoginHeader.jsx";
-import LoginForm from "@/components/auth/login/LoginForm.jsx";
-import GoogleLogin from "@/components/auth/login/GoogleLogin.jsx";
-import LoginFooter from "@/components/auth/login/LoginFooter.jsx";
+import { AuthHeader } from "@/components/auth/common/auth-header.jsx";
+import { AuthFooter } from "@/components/auth/common/auth-footer.jsx";
+import { GoogleAuthButton } from "@/components/auth/common/google-auth-button.jsx";
+import { AuthForm } from "@/components/auth/common/auth-form.jsx";
+import { AuthBanner } from "@/components/auth/common/auth-banner";
+
 
 const Login = () => {
     const [isLoading, setIsLoading] = useState(true);
+    const { handleSignIn, handleGoogleSignIn, googleLoading, loading } = useSignIn();
 
     const handleImageLoad = () => {
         setIsLoading(false);
@@ -14,17 +17,37 @@ const Login = () => {
 
     return (
         <div className="md:flex items-center pb-32 md:pt-20 pt-7 md:mx-0 mx-8 gap-24">
-            {
-                isLoading && <><Skeleton className="w-1/2 h-screen" /></>
-            } 
-            <div className={`bg-[#CBE4E8] md:block hidden pt-10 w-1/2 ${isLoading ? 'hidden' : ''}`}>
-                <img src="https://res.cloudinary.com/dksiicemx/image/upload/v1729422686/authentication-banner_i6gqed.png" alt="login-banner" onLoad={handleImageLoad}/>
-            </div>
+            <AuthBanner
+                isLoading={isLoading} 
+                altText='Login Banner' 
+                handleImageLoad={handleImageLoad}
+            />
+
             <div>
-                <LoginHeader/>
-                <LoginForm/>
-                <GoogleLogin/>
-                <LoginFooter/>
+                <AuthHeader
+                    title="Login to Exclusive"
+                    subtitle="Enter your details below"
+                />
+                <AuthForm
+                    onSubmitFn={handleSignIn}
+                    loading={loading}
+                    submitText="Login"
+                    fields={[
+                        { name: 'email', type: 'email', classes: "focus:outline-none border-b-2 w-full pb-1 mb-7 border-x-0 border-t-0 dark:bg-[#09090B]", placeholder: 'Email' },
+                        { name: 'password', type: 'password', classes: "border-b-2 focus:outline-none w-full  pb-1 border-x-0 border-t-0 dark:bg-[#09090B]", placeholder: 'Password' }
+                    ]}
+                    isLoginForm={true} 
+                />
+                <GoogleAuthButton
+                    label="Sign In with Google"
+                    loading={googleLoading}
+                    onClickFn={handleGoogleSignIn} 
+                />
+                <AuthFooter
+                    text="New to here go?"
+                    linkText="Signup"
+                    linkTo="/signup" 
+                />
             </div>
         </div>
     );

@@ -14,7 +14,7 @@ const Checkout = () => {
     return (
         <div className="md:flex items-center justify-center gap-28 py-40">
         <div className="md:w-[480px] mx-5">
-            <h1 className="text-[#000] dark:text-white text-[32px] font-medium pb-8">Billing Details</h1>
+            <h1 className="text-black dark:text-white text-[32px] font-medium pb-8">Billing Details</h1>
 
             <BillingInput label="First Name"  required />
             <BillingInput label="Company Name" />
@@ -33,7 +33,7 @@ const Checkout = () => {
             </label>
         </div>
 
-        <div className="md:pr-24 md:w-5/12 md:mx-0 mx-4 md:mt-0 mt-5 text-[#000] text-base font-normal poppins">
+        <div className="md:pr-24 md:w-5/12 md:mx-0 mx-4 md:mt-0 mt-5 text-black text-base font-normal poppins">
             {productDetails.map((product) => (
             <ProductSummary key={product.id} product={product} />
             ))}

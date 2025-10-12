@@ -44,7 +44,7 @@ const socialIcons = [
 const Footer = () => {
     return (
         <div>
-        <div className="bg-[#000] md:flex justify-center gap-20 pt-20 pb-16">
+        <div className="bg-black md:flex justify-center gap-20 pt-20 pb-16">
           
           <div className="pl-5 md:pl-0">
             <h4 className="text-2xl font-semibold text-[#FAFAFA]">Exclusive</h4>
@@ -54,7 +54,7 @@ const Footer = () => {
             </p>
             <div className="md:flex relative">
               <input
-                className="py-2 pl-3 bg-[#000] dark:bg-[#27272A] border rounded"
+                className="py-2 pl-3 bg-black dark:bg-[#27272A] border rounded"
                 type="text"
                 placeholder="Enter your email"
               />
@@ -91,7 +91,7 @@ const Footer = () => {
           </div>
         </div>
   
-        <p className="text-white poppins text-base font-normal flex items-center gap-1 justify-center py-6 border-t-[1px] border-t-gray-500 bg-[#000]">
+        <p className="text-white poppins text-base font-normal flex items-center gap-1 justify-center py-6 border-t border-t-gray-500 bg-black">
           <FaRegCopyright /> Copyright DashDeals 2024. All right reserved
         </p>
       </div>

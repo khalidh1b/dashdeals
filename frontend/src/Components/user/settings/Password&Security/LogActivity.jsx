@@ -242,7 +242,7 @@ const LogActivity = () => {
 
                                 {selectedSession.status !== "current" && (
                                 <div className="rounded-lg border p-3 bg-amber-50 border-amber-200 flex gap-3">
-                                    <AlertTriangleIcon className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                                    <AlertTriangleIcon className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                                     <div>
                                     <h4 className="font-medium text-amber-800">Sign out this device?</h4>
                                     <p className="text-sm text-amber-700 mt-1">

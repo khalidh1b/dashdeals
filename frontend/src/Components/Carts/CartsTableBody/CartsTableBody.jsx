@@ -26,7 +26,7 @@ const CartsTableBody = ({
             : product.discount_price}
         </p>
         <div className="w-2/12 md:pl-10">
-            <div className="flex items-center justify-center gap-4 py-1 rounded border-[#000] w-20 border">
+            <div className="flex items-center justify-center gap-4 py-1 rounded border-black w-20 border">
             <span>{quantities[product._id]}</span>
             <div>
                 <IoIosArrowUp

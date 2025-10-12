@@ -51,7 +51,7 @@ const ProductDetailsPage = () => {
                 </div>
 
                 <div>
-                    <h2 className="text-[#000] dark:text-white font-semibold text-2xl">
+                    <h2 className="text-black dark:text-white font-semibold text-2xl">
                         {product_title}
                     </h2>
                     <div className="flex gap-2 items-center py-3">
@@ -65,12 +65,12 @@ const ProductDetailsPage = () => {
                                 <span className="text-[#0F6] poppins text-[14px] font-normal">In Stock</span>
                             </span>
                     </div>
-                    <p className="text-[#000] dark:text-white text-xl font-normal">{discount_price}</p>
-                    <p className="text-[14px] poppins dark:text-white text-[#000] font-normal py-4">PlayStation 5 Controller Skin High quality vinyl with air <br /> channel adhesive for easy bubble free install & mess <br /> free removal Pressure sensitive.</p>
+                    <p className="text-black dark:text-white text-xl font-normal">{discount_price}</p>
+                    <p className="text-[14px] poppins dark:text-white text-black font-normal py-4">PlayStation 5 Controller Skin High quality vinyl with air <br /> channel adhesive for easy bubble free install & mess <br /> free removal Pressure sensitive.</p>
                     
-                    <hr className="border-[#000]"/>
-                    <p className="text-xl font-normal dark:text-white text-[#000] py-3">Colours:</p>
-                    <p className="text-xl font-normal dark:text-white text-[#000] pb-3">Size:</p>
+                    <hr className="border-black"/>
+                    <p className="text-xl font-normal dark:text-white text-black py-3">Colours:</p>
+                    <p className="text-xl font-normal dark:text-white text-black pb-3">Size:</p>
 
                     <div className="flex gap-4 items-center">
                         <div className="flex items-center border">
@@ -82,20 +82,20 @@ const ProductDetailsPage = () => {
                         <IoIosHeartEmpty className="text-[45px] px-2 py-2 border rounded border-gray-400"/>
                     </div>
 
-                    <div className="border rounded border-[#000] mt-6">
+                    <div className="border rounded border-black mt-6">
                         <div className="flex items-center gap-3 py-3 px-4">
                             <TbTruckDelivery className="text-3xl"/>
                             <div>
-                                <p className="text-[#000] dark:text-white poppins text-base font-medium">Free Delivery</p>
-                                <p className="text-[12px] dark:text-white text-[#000] font-medium">Enter your postal code for Delivery Availability</p>
+                                <p className="text-black dark:text-white poppins text-base font-medium">Free Delivery</p>
+                                <p className="text-[12px] dark:text-white text-black font-medium">Enter your postal code for Delivery Availability</p>
                             </div>
                         </div>
-                        <hr className="border-[#000]"/>
+                        <hr className="border-black"/>
                         <div className="flex items-center px-4 py-3 gap-3">
                             <GrPowerCycle className="text-3xl"/>
                             <div>
-                                <p className="text-[#000] dark:text-white poppins text-base font-medium">Return Delivery</p>
-                                <p className="text-[12px] text-[#000] dark:text-white font-medium">Free 30 Days Delivery Returns. Details</p>
+                                <p className="text-black dark:text-white poppins text-base font-medium">Return Delivery</p>
+                                <p className="text-[12px] text-black dark:text-white font-medium">Free 30 Days Delivery Returns. Details</p>
                             </div>
                         </div>
                     </div>

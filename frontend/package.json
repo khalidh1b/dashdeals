@@ -48,6 +48,8 @@
     "theme-change": "^2.5.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.14",
+    "@tailwindcss/vite": "^4.1.14",
     "@types/node": "^22.10.2",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
@@ -60,7 +62,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.38",
     "react-scripts": "^5.0.1",
-    "tailwindcss": "^3.4.4",
+    "tailwindcss": "^4.1.14",
     "vite": "^5.2.0",
     "webpack-bundle-analyzer": "^4.10.2"
   }

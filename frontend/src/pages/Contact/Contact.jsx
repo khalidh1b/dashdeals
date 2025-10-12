@@ -7,12 +7,12 @@ const Contact = () => {
 
     const sectionTitleClass = "flex gap-4 items-center pb-4";
     const iconWrapperClass = "bg-[#DB4444] text-white p-[7px] text-4xl rounded-full";
-    const titleTextClass = "poppins text-base font-medium text-[#000] dark:text-white";
-    const paragraphClass = "poppins font-normal text-[14px] text-[#000] dark:text-white";
+    const titleTextClass = "poppins text-base font-medium text-black dark:text-white";
+    const paragraphClass = "poppins font-normal text-[14px] text-black dark:text-white";
 
     return (
         <div>
-        <p className='text-gray-300 pt-10 pl-20'>Home / <span className='text-[14px] text-[#000] dark:text-white poppins font-normal'>Contact</span></p>
+        <p className='text-gray-300 pt-10 pl-20'>Home / <span className='text-[14px] text-black dark:text-white poppins font-normal'>Contact</span></p>
         <div className="flex justify-center gap-8 pt-28 pb-36">
             
             <div className="border dark:border-white px-10 py-14 rounded shadow-md">

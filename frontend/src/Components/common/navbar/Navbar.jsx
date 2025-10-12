@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <nav className="flex items-center md:justify-around justify-between md:mx-0 mx-2 pt-5 border-b pb-5">
         <Link to="/">
-            <h1 className="text-[#000] dark:text-white text-2xl font-semibold">DashDeals</h1>
+            <h1 className="text-black dark:text-white text-2xl font-semibold">DashDeals</h1>
         </Link>
         <ul className="md:flex gap-12 items-center hidden">
             {navLinks.map((link, index) => (
@@ -42,7 +42,7 @@ export default Navbar;
 
 const NavLink = ({ to, label }) => {
     return (
-        <Link to={to} className="text-[#000] dark:text-white text-base font-medium">
+        <Link to={to} className="text-black dark:text-white text-base font-medium">
             <li>{label}</li>
         </Link>
     )
