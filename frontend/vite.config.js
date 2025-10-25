@@ -18,8 +18,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // React vendor
-          if (id.includes('react') && id.includes('react-dom')) {
+          // React 
+          if (id.includes('react') || id.includes('react-dom')) {
             return 'react-vendor';
           }
           
