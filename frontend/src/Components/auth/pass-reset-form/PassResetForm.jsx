@@ -3,8 +3,13 @@ import { Input } from "@/Components/ui/input";
 import { Label } from "@/Components/ui/label";
 import { Button } from "@/Components/ui/button";
 import PropTypes from 'prop-types';
+import useForgetPass from "@/features/auth/hooks/useForgetPass";
+import { useState } from "react";
 
-const PassResetForm = ({ handleForgetPass }) => {
+const PassResetForm = () => {
+    const [resetEmail, setResetEmail] = useState('');
+    const { handleForgetPass } = useForgetPass();
+    
     return (
         <>
             <Dialog>
@@ -23,13 +28,18 @@ const PassResetForm = ({ handleForgetPass }) => {
                             <Label className="text-right">
                                 Email
                             </Label>
-                            <Input id="reset-email" className="col-span-3"/>
+                            <Input 
+                                id="reset-email" 
+                                className="col-span-3"
+                                value={resetEmail}
+                                onChange={(e) => setResetEmail(e.target.value)}
+                            />
                         </div>
                         </div>
                         <DialogFooter>
                         <Button 
                             type="submit" 
-                            onClick={() => handleForgetPass()}
+                            onClick={() => handleForgetPass(resetEmail)}
                         >
                             Reset
                         </Button>
