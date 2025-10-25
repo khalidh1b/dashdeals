@@ -1,42 +1,30 @@
-import { useContext } from "react";
-import Swal from "sweetalert2";
+import { useContext, useCallback } from "react";
 import { AuthContext } from "@/app/providers/auth-provider";
+import { VALIDATION, SWEET_ALERT_CONFIG } from '@/features/auth/constants/email-validation';
+import { validateEmail, showErrorAlert, showSuccessAlert } from '@/features/auth/utils/validation-and-alerts';
 
 const useForgetPass = () => {
-    const { forgetPassword } = useContext(AuthContext);
+  const { forgetPassword } = useContext(AuthContext);
 
-    const handleForgetPass = async () => {
-        let email = document.getElementById("reset-email").value;
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if(!emailRegex.test(email)) {
-            return Swal.fire({
-                icon: "error",
-                title: "Enter a valid email address",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        } 
+  const handleForgetPass = useCallback(async (email) => {
 
-        try {
-            await forgetPassword(email)
-            Swal.fire({
-                icon: "success",
-                title: "Password reset email sent successfully! Please check your inbox or spam folder",
-                showConfirmButton: true,
-            });
-            const escKeyEvent = new KeyboardEvent("keydown", { key: "Escape",  code: "Escape",  keyCode: 27,  bubbles: true, cancelable: true });
-            document.dispatchEvent(escKeyEvent);
-        } catch (error) {
-            console.log(error.message);
-            Swal.fire({
-                icon: "error",
-                title: `${error.message}`,
-                showConfirmButton: true,
-            });
-        }
-    };
+    if (!email || !validateEmail(email)) {
+      return showErrorAlert(VALIDATION.ERROR_MESSAGES.INVALID_EMAIL);
+    }
 
-    return { handleForgetPass };
+    try {
+      await forgetPassword(email);
+      showSuccessAlert(VALIDATION.SUCCESS_MESSAGES.EMAIL_SENT);
+      return { success: true };
+    } catch (error) {
+      console.error("Password reset error:", error);
+      const errorMessage = error.message || VALIDATION.ERROR_MESSAGES.GENERIC_ERROR;
+      showErrorAlert(errorMessage, SWEET_ALERT_CONFIG.ERROR_WITH_CONFIRM);
+      return { success: false, error: errorMessage };
+    }
+  }, [forgetPassword]);
+
+  return { handleForgetPass };
 };
 
 export default useForgetPass;
