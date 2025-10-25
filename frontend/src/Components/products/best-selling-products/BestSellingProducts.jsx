@@ -1,6 +1,6 @@
 import BestSellingProduct from "@/components/products/best-selling-products/BestSellingProduct";
 import { ProductCardSkeleton } from '@/components/common/skeletons/ProductCardSkeleton.jsx';
-import useBestSellingProducts from "@/hooks/products/useBestSellingProducts.js";
+import useBestSellingProducts from "@/features/products/hooks/useBestSellingProducts.js";
 
 const BestSellingProducts = () => {
     const { isLoading, isFetching, products } = useBestSellingProducts();

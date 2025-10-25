@@ -4,7 +4,7 @@ import Countdown from 'react-countdown';
 import renderer from '@/components/home/sale-count-down/SaleCountDown';
 import PropTypes from 'prop-types';
 import { ProductCardSkeleton } from '@/components/common/skeletons/ProductCardSkeleton.jsx';
-import useFetchFlashSalesItems from "@/hooks/products/useFetchFlashSalesItems.js";
+import useFetchFlashSalesItems from "@/features/products/hooks/useFetchFlashSalesItems.js";
 
 const AllProducts = () => {
     const { products, isFetching, isLoading } = useFetchFlashSalesItems();

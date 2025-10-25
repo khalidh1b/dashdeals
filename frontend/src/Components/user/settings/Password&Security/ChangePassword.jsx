@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Toaster } from "react-hot-toast";
-import usePasswordChange from "@/hooks/auth/usePasswordChange";
+import usePasswordChange from "@/features/auth/hooks/usePasswordChange";
 import PropTypes from 'prop-types';
 
 const ChangePassword = () => {

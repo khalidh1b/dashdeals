@@ -11,7 +11,6 @@ import LoadingSkeleton from "@/components/common/skeletons/loading-skeleton";
 import { SettingSkeleton } from "@/components/user/settings/setting-skeleton/setting-skeleton.jsx";
 
 
-// --- Lazy imports ---
 const About = lazy(() => import("@/pages/About/About"));
 const Contact = lazy(() => import("@/pages/Contact/Contact"));
 const Checkout = lazy(() => import("@/pages/CheckOut/Checkout"));
@@ -31,14 +30,12 @@ const Display = lazy(() => import("@/components/user/settings/Display/Display"))
 const MyCancellations = lazy(() => import("@/pages/MyCancellations/MyCancellations"));
 const MyReviews = lazy(() => import("@/pages/MyReviews/MyReviews"));
 
-// --- Loadable Lazy Component Wrapper ---
 const Loadable = (Component, Fallback = <LoadingSkeleton />) => (
   <Suspense fallback={Fallback}>
     <Component />
   </Suspense>
 );
 
-// --- Public Routes ---
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
     { path: "/signup", element: <Signup /> },
@@ -53,7 +50,6 @@ const publicRoutes = [
     },
 ];
 
-// --- Private Routes ---
 const privateRoutes = [
   { path: "/wishlist", element: Loadable(Wishlists) },
   { path: "/carts", element: Loadable(Carts) },
@@ -66,7 +62,6 @@ const privateRoutes = [
   { path: "/paymentcancel", element: Loadable(PaymentCancel) },
 ];
 
-// --- Settings Sub-Routes ---
 const settingsRoutes = [
   { index: true, element: <Navigate to="profile" replace /> },
   { path: "profile", element: <Profile /> },
@@ -76,9 +71,6 @@ const settingsRoutes = [
   { path: "display", element: <Display /> },
 ];
 
-// TODO: later make this router more organized, maintainable and clean
-
-// --- Router Configuration ---
 const router = createBrowserRouter([
   {
     path: "/",

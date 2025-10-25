@@ -4,7 +4,7 @@ import CartsTableHeader from "@/components/carts/CartsTableHeader/CartsTableHead
 import UpdateCartButton from "@/components/carts/UpdateCartButton/UpdateCartButton";
 import ReturnToShopButton from "@/components/carts/ReturnToShopButton/ReturnToShopButton";
 import CartsTableBody from "@/components/carts/CartsTableBody/CartsTableBody";
-import useProceedCheckout from "@/hooks/cart/useProceedCheckout";
+import useProceedCheckout from "@/features/cart/hooks/useProceedCheckout";
 
 const Carts = () => {
     

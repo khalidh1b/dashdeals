@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import useHandleCart from "@/hooks/cart/useHandleCart.js";
-import useHandleWishlist from "@/hooks/wishlist/useHandleWishlist.js";
+import useHandleCart from "@/features/cart/hooks/useHandleCart.js";
+import useHandleWishlist from "@/features/user/hooks/useHandleWishlist.js";
 import { ProductCard } from "@/components/common/product-card/ProductCard.jsx";
 
 const BestSellingProduct = ({ product }) => {

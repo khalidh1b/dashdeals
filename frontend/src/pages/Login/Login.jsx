@@ -1,4 +1,4 @@
-import useSignIn from "@/hooks/auth/useSignIn";
+import useSignIn from "@/features/auth/hooks/useSignIn";
 import { useState } from "react";
 import { AuthHeader } from "@/components/auth/common/auth-header.jsx";
 import { AuthFooter } from "@/components/auth/common/auth-footer.jsx";

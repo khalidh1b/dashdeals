@@ -2,7 +2,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import OurProduct from "@/components/products/explore-our-products/OurProduct";
 import { ProductCardSkeleton } from '@/components/common/skeletons/ProductCardSkeleton.jsx';
-import useFetchExploreOurProducts from "@/hooks/products/useFetchExploreOurProducts.js";
+import useFetchExploreOurProducts from "@/features/products/hooks/useFetchExploreOurProducts.js";
 
 const ExploreOurProducts = () => {
     const { products, isFetching, isLoading } = useFetchExploreOurProducts()

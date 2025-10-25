@@ -1,6 +1,6 @@
-import useHandleCart from "@/hooks/cart/useHandleCart";
-import useHandleDeleteWishlist from "@/hooks/wishlist/useHandleDeleteWishlist";
-import useFetchWishlist from "@/hooks/wishlist/useFetchWishlist";
+import useHandleCart from "@/features/cart/hooks/useHandleCart";
+import useHandleDeleteWishlist from "@/features/user/hooks/useHandleDeleteWishlist";
+import useFetchWishlist from "@/features/user/hooks/useFetchWishlist";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import WishlistSkeleton from '@/pages/Wishlist/wishlist-skeleton/WishlistSkeleton';
 import { ProductCard } from "@/components/common/product-card/ProductCard";

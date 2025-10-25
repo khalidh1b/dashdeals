@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useSignUp from "@/hooks/auth/useSignUp.js";
+import useSignUp from "@/features/auth/hooks/useSignUp.js";
 import { AuthHeader } from "@/components/auth/common/auth-header.jsx";
 import { AuthFooter } from "@/components/auth/common/auth-footer.jsx";
 import { GoogleAuthButton } from "@/components/auth/common/google-auth-button.jsx";

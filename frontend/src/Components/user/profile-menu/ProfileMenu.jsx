@@ -1,11 +1,11 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger 
 } from "@/Components/ui/dropdown-menu";
 import { useContext } from "react";
-import { AuthContext } from "@/providers/auth-provider";
+import { AuthContext } from "@/app/providers/auth-provider";
 import { Link } from "react-router-dom";
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import useToggleTheme from "@/hooks/ui/useToggleTheme";
+import useToggleTheme from "@/shared/hooks/useToggleTheme";
 
 
 const ProfileMenu = () => {

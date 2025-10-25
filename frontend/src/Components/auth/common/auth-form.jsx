@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import useForgetPass from "@/hooks/auth/useForgetPass";
+import useForgetPass from "@/features/auth/hooks/useForgetPass";
 import PassResetForm from "@/components/auth/pass-reset-form/PassResetForm";
 import './style.css';
 

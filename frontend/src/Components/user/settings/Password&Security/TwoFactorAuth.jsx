@@ -7,9 +7,9 @@ import { Input } from "@/Components/ui/input";
 import { AlertCircleIcon, SmartphoneIcon, MailIcon, CheckIcon, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import PropTypes from 'prop-types';
-import useAxiosSecure from '@/hooks/access/useAxiosSecure';
-import useAuth from "@/hooks/auth/useAuth";
-import { app} from "@/firebase/firebase.config";
+import useAxiosSecure from '@/shared/hooks/useAxiosSecure';
+import useAuth from "@/features/auth/hooks/useAuth";
+import { app} from "@/app/config/firebase/firebase.config";
 import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from "firebase/auth";
 import { useQuery } from '@tanstack/react-query';
 
