@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import useToggleTheme from "@/shared/hooks/useToggleTheme";
-
+import { Image } from '@/components/common/image/image';
 
 const ProfileMenu = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -29,9 +29,8 @@ const ProfileMenu = () => {
                 <DropdownMenuTrigger asChild>
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full bg-red-200">
-                        <img 
+                        <Image 
                             alt={user?.displayName}
-                            loading="eager"
                             className="rounded-full"
                             src={ user?.photoURL || 'https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif'}
                         />

@@ -4,6 +4,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { RiDeleteBinLine } from "react-icons/ri";
+import { Image } from '@/components/common/image/image';
 
 export const ProductCard = ({ 
     _id,
@@ -62,10 +63,10 @@ const ProductImage = ({
     return (
         <div className="relative">
         <Link to={`/productdetailspage/${_id}`}>
-            <img
+            <Image
                 className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded"
                 src={product_image}
-                alt="G92 Gamepad"
+                alt={product_title}
             />
             <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">
                 {discount_percent || '0%'}

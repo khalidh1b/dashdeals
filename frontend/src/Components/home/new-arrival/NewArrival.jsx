@@ -1,5 +1,6 @@
 import featuredItems from './featuredItems.json';
 import PropTypes from 'prop-types';
+import { Image } from '@/components/common/image/image';
 
 const NewArrival = () => {
     return (
@@ -46,7 +47,7 @@ const FeaturedItem = ({
 }) => {
     return (
         <div className='rounded relative' style={{ backgroundColor: bgColor }}>
-        <img src={image} alt={title} className="w-full" />
+        <Image src={image} alt={title} className="w-full" />
         <div className="absolute bottom-9 left-9">
             <h3 className="text-[#FAFAFA] text-2xl font-semibold">{title}</h3>
             <h4 className="text-[#FAFAFA] pt-3 pb-3 text-[14px] font-normal poppins">{description}</h4>

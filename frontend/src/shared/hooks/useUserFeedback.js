@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import useAxiosSecure from '@/hooks/access/useAxiosSecure';
+import useAxiosSecure from '@/shared/hooks/useAxiosSecure';
 
 const useUserFeedback = () => {
     const axiosSecure = useAxiosSecure();

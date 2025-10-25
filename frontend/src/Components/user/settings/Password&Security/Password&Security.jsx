@@ -1,8 +1,12 @@
+import { Suspense, lazy } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/ui/tabs";
-import ChangePassword from "./ChangePassword";
-import TwoFactorAuth from "./TwoFactorAuth";
-import LogActivity from "./LogActivity";
-import SecurityQuestions from "./SecurityQuestions";
+import LoadingSkeleton from '@/components/common/skeletons/loading-skeleton';
+
+// Lazy load tab components
+const ChangePassword = lazy(() => import("./ChangePassword"));
+const TwoFactorAuth = lazy(() => import("./TwoFactorAuth"));
+const LogActivity = lazy(() => import("./LogActivity"));
+const SecurityQuestions = lazy(() => import("./SecurityQuestions"));
 
 const PasswordSecurity = () => {
     return (
@@ -20,16 +24,24 @@ const PasswordSecurity = () => {
                 <TabsTrigger value="questions">Security Questions</TabsTrigger>
                 </TabsList>
                 <TabsContent value="password" className="mt-6 pointer-events-none">
-                    <ChangePassword/>
+                    <Suspense fallback={<LoadingSkeleton />}>
+                        <ChangePassword/>
+                    </Suspense>
                 </TabsContent>
                 <TabsContent value="2fa" className="mt-6 pointer-events-none">
-                    <TwoFactorAuth/>
+                    <Suspense fallback={<LoadingSkeleton />}>
+                        <TwoFactorAuth/>
+                    </Suspense>
                 </TabsContent>
                 <TabsContent value="activity" className="mt-6 pointer-events-none">
-                    <LogActivity/>
+                    <Suspense fallback={<LoadingSkeleton />}>
+                        <LogActivity/>
+                    </Suspense>
                 </TabsContent>
                 <TabsContent value="questions" className="mt-6 pointer-events-none">
-                    <SecurityQuestions/>
+                    <Suspense fallback={<LoadingSkeleton />}>
+                        <SecurityQuestions/>
+                    </Suspense>
                 </TabsContent>
             </Tabs>
         </div>

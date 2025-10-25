@@ -1,5 +1,6 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { Image } from '@/components/common/image/image';
 
 const categories = [
     { name: "Womans Fashion", hasIcon: true },
@@ -44,33 +45,39 @@ const CategoriesList = () => {
     )
 };
 
+
 const BannerContent = () => {
     return (
         <div className="md:flex items-center gap-5 rounded bg-black pl-14 py-5">
-        <div>
-            <div className="flex items-center gap-6">
-            <img
-                src="https://res.cloudinary.com/dksiicemx/image/upload/v1729410233/apple-logo_uvcfq8.png"
-                alt="logo"
-            />
-            <span className="text-white poppins text-base font-normal">
-                iPhone 14 Series
-            </span>
+            <div className="flex-1">
+                <div className="flex items-center gap-6">
+                    <Image
+                        src="https://res.cloudinary.com/dksiicemx/image/upload/v1729410233/apple-logo_uvcfq8.png"
+                        alt="Apple iPhone 14 Series logo"
+                        className="w-12 h-12 object-contain"
+                    />
+                    <span className="text-white poppins text-base font-normal">
+                        iPhone 14 Series
+                    </span>
+                </div>
+                <h1 className="text-white text-[48px] pt-3 pb-5 font-semibold leading-[60px]">
+                    Up to 10% <br /> off Voucher
+                </h1>
+                <div className="flex gap-2 items-center">
+                    <p className="flex items-center gap-2 border-b text-white poppins text-base font-medium cursor-pointer hover:text-gray-300 transition-colors">
+                        Shop Now
+                    </p>
+                    <FaArrowRight className="text-white" />
+                </div>
             </div>
-            <h1 className="text-white text-[48px] pt-3 pb-5 font-semibold leading-[60px]">
-            Up to 10% <br /> off Voucher
-            </h1>
-            <div className="flex gap-2 items-center">
-            <p className="flex items-center gap-2 border-b text-white poppins text-base font-medium">
-                Shop Now
-            </p>
-            <FaArrowRight className="text-white" />
+            <div className="flex-shrink-0">
+                <Image
+                    src="https://res.cloudinary.com/dksiicemx/image/upload/v1729410063/banner_uln8mz.png"
+                    alt="iPhone 14 Series promotional banner showing smartphone with discount offer"
+                    className="w-full max-w-md h-auto object-contain md:max-w-lg lg:max-w-xl"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
             </div>
         </div>
-        <img
-            src="https://res.cloudinary.com/dksiicemx/image/upload/v1729410063/banner_uln8mz.png"
-            alt="banner"
-        />
-    </div>
-    )
+    );
 };

@@ -3,6 +3,7 @@ import { MdDelete } from "react-icons/md";
 import PropTypes from 'prop-types';
 import OrderTableSleketon from '@/pages/MyOrders/order-table-skeleton/OrderTableSkeleton';
 import { Loader2 } from "lucide-react";
+import { Image } from '@/components/common/image/image';
 
 const OrderTableBody = ({ 
     orders, 
@@ -80,7 +81,7 @@ const TableDataName = ({ product }) => {
 const TableDataImage = ({ product }) => {
     return (
         <td>
-            <img className="w-[50px] flex mx-auto bg-white p-2 my-1.5 rounded-lg" 
+            <Image className="w-[50px] flex mx-auto bg-white p-2 my-1.5 rounded-lg" 
                 src={product.product_image} 
                 alt={product.product_title}
             />

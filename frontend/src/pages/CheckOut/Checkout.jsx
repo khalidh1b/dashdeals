@@ -2,6 +2,7 @@ import useHandleCheckout from "@/features/cart/hooks/useHandleCheckout";
 import PropTypes from 'prop-types';
 import { Loader2 } from "lucide-react";
 import '@/pages/CheckOut/style.css';
+import { Image } from '@/components/common/image/image';
 
 const Checkout = () => {
     const { 
@@ -46,10 +47,10 @@ const Checkout = () => {
             <div className="flex justify-between items-center pt-8">
             <RadioOption label="Bank/MFS" onClick={bankOrMFS} defaultChecked />
             <div className="flex gap-2 items-center">
-                <img src="https://i.postimg.cc/q7zc7RQ8/bkash.png" alt="bkash" />
-                <img src="https://i.postimg.cc/CK38L4Rg/visaCard.png" alt="visa" />
-                <img src="https://i.postimg.cc/KvGMzj8R/mastercard.png" alt="mastercard" />
-                <img src="https://i.postimg.cc/Kz71chXP/nagad.png" alt="nagad" />
+                <Image src="https://i.postimg.cc/q7zc7RQ8/bkash.png" alt="bkash" />
+                <Image src="https://i.postimg.cc/CK38L4Rg/visaCard.png" alt="visa" />
+                <Image src="https://i.postimg.cc/KvGMzj8R/mastercard.png" alt="mastercard" />
+                <Image src="https://i.postimg.cc/Kz71chXP/nagad.png" alt="nagad" />
             </div>
             </div>
 
@@ -107,7 +108,7 @@ const ProductSummary = ({ product }) => {
     return (
         <div className="flex justify-between items-center pb-7 dark:text-white">
             <div className="flex gap-6 items-center">
-            <img 
+            <Image 
                 className="w-14 h-14" 
                 src={product.product_image} 
                 alt={product.product_title} 

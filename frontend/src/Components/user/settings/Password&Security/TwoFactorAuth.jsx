@@ -12,6 +12,7 @@ import useAuth from "@/features/auth/hooks/useAuth";
 import { app} from "@/app/config/firebase/firebase.config";
 import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from "firebase/auth";
 import { useQuery } from '@tanstack/react-query';
+import { Image } from '@/components/common/image/image';
 
 const auth = getAuth(app);
 
@@ -258,11 +259,10 @@ const AuthenticatorApp = ({
             </ol>
             <div className="flex justify-center my-6">
             <div className="border p-4 inline-block mb-10">
-                <img
+                <Image
                     src={qrCode}
                     alt="QR Code for authenticator app"
                     className="h-48 w-48"
-                    loading="lazy"
                 />
             </div>
             </div>

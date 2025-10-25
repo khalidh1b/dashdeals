@@ -3,6 +3,7 @@ import { FaInstagram, FaLinkedinIn, FaRegCopyright } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
 import PropTypes from "prop-types";
+import { Image } from '@/components/common/image/image';
 
 const footerSections = [
     {
@@ -72,16 +73,16 @@ const Footer = () => {
               Save $3 with App New User Only
             </p>
             <div className="flex gap-3">
-              <img
+              <Image
                 src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411583/Qrcode_1_frzc4d.png"
                 alt="qr-code"
               />
               <div className="grid gap-2">
-                <img
+                <Image
                   src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411582/google-play-store_xz5mmg.png"
                   alt="play-store"
                 />
-                <img
+                <Image
                   src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411581/appstore_lkwdcq.png"
                   alt="app-store"
                 />

@@ -1,5 +1,6 @@
 import services from './services.json';
 import PropTypes from 'prop-types';
+import { Image } from '@/components/common/image/image';
 
 const DashDealsPros = () => {
     return (
@@ -22,7 +23,7 @@ const ServiceItem = ({ icon, title, description }) => {
     return (
         <div>
             <div className="border p-2.5 rounded-full w-[70px] mx-auto bg-[#2F2E30]">
-            <img className="bg-[#000000] rounded-full p-1" src={icon} alt={title} />
+            <Image className="bg-[#000000] rounded-full p-1" src={icon} alt={title} />
             </div>
             <h3 className="text-xl poppins font-semibold pt-4 text-black dark:text-white text-center">
                 {title}

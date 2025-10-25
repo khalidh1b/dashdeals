@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
-import useForgetPass from "@/features/auth/hooks/useForgetPass";
 import PassResetForm from "@/components/auth/pass-reset-form/PassResetForm";
 import './style.css';
 
 export const AuthForm = ({ onSubmitFn, loading, submitText, fields, isLoginForm }) => {
-    const { handleForgetPass } = useForgetPass();
-
+    
     return (
         <>
             <form onSubmit={onSubmitFn}>
@@ -22,7 +20,7 @@ export const AuthForm = ({ onSubmitFn, loading, submitText, fields, isLoginForm 
                         </label>
                     ))}
                     
-                    {isLoginForm && <PassResetForm handleForgetPass={handleForgetPass}/>}
+                    {isLoginForm && <PassResetForm/>}
                     <br />
                     <button 
                         disabled={loading ? true : false} 

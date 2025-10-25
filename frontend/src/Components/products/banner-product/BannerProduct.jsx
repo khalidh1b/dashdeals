@@ -1,5 +1,6 @@
 import Countdown from 'react-countdown';
 import renderer from '@/components/products/banner-product-countdown/BannerProductCountdown';
+import { Image } from '@/components/common/image/image'
 
 const BannerProduct = () => {
     const endTime = Date.now() + 343196000;
@@ -12,7 +13,11 @@ const BannerProduct = () => {
                 <button className="bg-[#0F6] mt-10 text-white py-3 px-8 rounded">Buy Now!</button>
             </div>
             <div className='mt-6 md:mt-0'>
-                <img className='w-96' src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411603/boom-box_h3ajsf.png" alt="Boombox" />
+                <Image 
+                    className='w-96' 
+                    src="https://res.cloudinary.com/dksiicemx/image/upload/v1729411603/boom-box_h3ajsf.png" 
+                    alt="Boombox" 
+                />
             </div>
         </div>
     );

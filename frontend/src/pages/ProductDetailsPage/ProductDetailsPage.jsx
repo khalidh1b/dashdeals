@@ -6,7 +6,7 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { TbTruckDelivery } from "react-icons/tb";
 import { GrPowerCycle } from "react-icons/gr";
 import { useLoaderData } from "react-router-dom";
-
+import { Image } from '@/components/common/image/image';
 
 const ProductDetailsPage = () => {
     const [ratings, setRatings] = useState(20);
@@ -21,27 +21,27 @@ const ProductDetailsPage = () => {
                 
                 <div className="flex gap-7">
                 <div className="">
-                    <img 
+                    <Image 
                         className="bg-[#F5F5F5] p-4 rounded mb-4 w-[121px] h-[114px]" 
                         src="https://i.postimg.cc/BtWZwCvm/review-1.png" 
                         alt="#" 
                     />
-                    <img 
+                    <Image 
                         className="bg-[#F5F5F5] p-4 rounded mb-4 w-[121px] h-[114px]" src="https://i.postimg.cc/KvLsX5zt/review-2.png" 
                         alt="#" 
                     />
-                    <img 
+                    <Image 
                         className="bg-[#F5F5F5] p-4 rounded mb-4 w-[121px] h-[114px]" src="https://i.postimg.cc/B6kNk8fh/review-3.png" 
                         alt="#" 
                     />
-                    <img 
+                    <Image 
                         className="bg-[#F5F5F5] p-4 rounded mb-4 w-[121px] h-[114px]" src="https://i.postimg.cc/C1qbZm9N/review-4.png" 
                         alt="#" 
                     />
                 </div>
 
                     <div>
-                        <img 
+                        <Image 
                             src={product_image} 
                             alt={product_title} 
                             className="w-[300px]"
@@ -114,9 +114,10 @@ const ProductDetailsPage = () => {
                 <div key={index} className="flex justify-center pb-10 gap-10">
                 <div>
                     <div className="relative">
-                        <img 
+                        <Image 
                             className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded" 
-                            src="https://i.postimg.cc/7PsTbfws/asus-gaming-laptop.png" alt="G92 Gamepad" 
+                            src="https://i.postimg.cc/7PsTbfws/asus-gaming-laptop.png" 
+                            alt="G92 Gamepad" 
                         />
                         <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">-45%</span>
                         <IoEyeOutline className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full"/>

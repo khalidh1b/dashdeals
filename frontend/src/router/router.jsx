@@ -10,7 +10,8 @@ import ErrorPage from "@/pages/ErrorPage/ErrorPage";
 import LoadingSkeleton from "@/components/common/skeletons/loading-skeleton";
 import { SettingSkeleton } from "@/components/user/settings/setting-skeleton/setting-skeleton.jsx";
 
-
+const Navbar = lazy(() => import("@/components/common/navbar/Navbar"));
+const Footer = lazy(() => import("@/components/common/footer/Footer"));
 const About = lazy(() => import("@/pages/About/About"));
 const Contact = lazy(() => import("@/pages/Contact/Contact"));
 const Checkout = lazy(() => import("@/pages/CheckOut/Checkout"));
@@ -88,9 +89,11 @@ const router = createBrowserRouter([
     path: "/settings",
     element: (
       <PrivateRoute>
+        <Navbar/>
         <Suspense fallback={<SettingSkeleton />}>
           <Settings />
         </Suspense>
+        <Footer/>
       </PrivateRoute>
     ),
     children: settingsRoutes,

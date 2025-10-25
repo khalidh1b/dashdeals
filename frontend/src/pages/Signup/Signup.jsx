@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useSignUp from "@/features/auth/hooks/useSignUp.js";
 import { AuthHeader } from "@/components/auth/common/auth-header.jsx";
 import { AuthFooter } from "@/components/auth/common/auth-footer.jsx";
@@ -7,7 +6,6 @@ import { AuthForm } from "@/components/auth/common/auth-form.jsx";
 import { AuthBanner } from "@/components/auth/common/auth-banner";
 
 const Signup = () => {
-    const [isLoading, setIsLoading] = useState(true);
 
     const { 
         handleSignup, 
@@ -16,16 +14,10 @@ const Signup = () => {
         googleLoading 
     } = useSignUp();
 
-    const handleImageLoad = () => {
-        setIsLoading(false);
-    };
-
     return (
         <div className="md:flex items-center pb-32 md:pt-20 pt-6 md:mx-0 mx-8 gap-24">
             <AuthBanner 
-                isLoading={isLoading} 
                 altText='Signup Banner' 
-                handleImageLoad={handleImageLoad}
             />
 
             <div>

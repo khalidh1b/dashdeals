@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Image } from '@/components/common/image/image';
 
 const OurStoryStats = () => {
     
@@ -47,7 +48,7 @@ const StatCard = ({ icon, value, label, isPrimary }) => {
             }`}
             >
             <div className="border p-2.5 rounded-full w-[70px] mx-auto bg-[#2F2E30]">
-                <img
+                <Image
                     className={`rounded-full p-2.5 ${
                         isPrimary ? "bg-white" : "bg-[#000000]"
                     }`}
