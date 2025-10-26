@@ -35,31 +35,30 @@ This project is the frontend of an e-commerce website designed to provide users 
 ## 📁 Frontend Project Structure
 
 ```bash
-Frontend/
-├── .firebase/              # Firebase-related files and cache for hosting
-├── public/                 # Static files like images, icons, manifest, etc.
-│
-├── src/
-│   ├── assets/             # Fonts, icons, and other asset files
-│   ├── components/         # Reusable UI components
-│   ├── pages/              # Application pages
-│   ├── utils/              # Utility functions and helpers
-│   └── hooks/              # Custom React hooks
-│
-├── .gitignore              # Git ignored files and folders
-├── .eslintrc.cjs           # ESLint configuration for linting rules
-├── .firebaserc             # Firebase project configuration
-├── index.html              # Root HTML file for the app (used by Vite)
-├── tailwind.config.js      # Tailwind CSS configuration
-├── README.md               # Project overview and documentation
-├── package.json            # Project dependencies and scripts
-├── package-lock.json       # Lockfile for npm dependency resolution
-├── pnpm-lock.yaml          # Lockfile for pnpm (alternative package manager)
-├── components.json         # Configuration or registration for UI components
-├── postcss.config.js       # PostCSS configuration
-├── tsconfig.app.json       # App-specific TypeScript settings
-├── tsconfig.json           # Base typescript configuration
-└── vite.config.js          # vite configuration or setup
+src/
+├── app/                          # App-level configurations
+│   ├── providers/                # Context providers
+│   ├── hooks/                    # Global app hooks
+│   └── config/                   # App configuration
+├── features/                     # Feature-based modules
+│   ├── auth/                     # Authentication feature
+│   │   ├── hooks/                # Auth hooks
+│   │   ├── services/             # Auth API calls
+│   │   └── index.ts              # Feature exports
+│   ├── products/                 # Products feature
+│   ├── cart/                     # Cart feature
+│   ├── checkout/                 # Checkout feature
+│   ├── orders/                   # Orders feature
+│   ├── user/                     # User profile feature
+│   └── payment/                  # Payment feature
+├── shared/                       # Shared utilities
+│   ├── components/               # Reusable UI components
+│   ├── hooks/                    # Shared hooks
+│   ├── utils/                    # Utility functions
+├── pages/                        # Route pages (container components)
+├── router/                       # Routing configuration
+├── lib/                          # External library configurations
+└── index.css                     # Global styles
 ```
 
 ## 📁 Backend Project Structure
