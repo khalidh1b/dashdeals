@@ -9,7 +9,9 @@ const useHandleCheckout = () => {
     const [productDetails, setProductDetails] = useState([]);
     const [payment_method, setPaymentMethod] = useState();
     const axiosSecure = useAxiosSecure();
-    const stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK);
+    const stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK, {
+        locale: 'auto'
+    });
     const [orderPlacing, setOrderPlacing] = useState(false);
 
     console.log(import.meta.env.VITE_Stripe_PK);
@@ -55,35 +57,46 @@ const useHandleCheckout = () => {
     };
 
     const placeOrder = async () => {
+        if (!cartData || !quantities || cartSubtotal === undefined) {
+            console.error('Missing required data for checkout');
+            return;
+        }
+
         const data = { cartSubtotal, cartData, quantities };
 
         try {
-                setOrderPlacing(true);
-                const response = await axiosSecure.post('/payments/create-payment', {data});
+            setOrderPlacing(true);
+            console.log('Creating payment session with data:', data);
+            
+            const response = await axiosSecure.post('/payments/create-payment', {data});
 
-                if(!response.data) {
-                    const error = await response;
-                    console.error('Error creating checkout session', error);
-                    return;
-                }
-                const { id } = await response.data;
-
-                const stripe = await stripePromise;
-                const result = await stripe.redirectToCheckout({
-                    sessionId: id
-                });
-
-                console.log(result);
-                if(result.error) {
-                    console.log(result.error.message);
-                }
-
-            } catch (error) {
-                console.error('Error during place order', error);
-            } finally {
-                setOrderPlacing(false);
+            if (!response.data || !response.data.id) {
+                console.error('Invalid response from payment endpoint:', response);
+                throw new Error('Invalid payment session response');
             }
 
+            const { id } = response.data;
+            console.log('Payment session created with ID:', id);
+
+            const stripe = await stripePromise;
+            if (!stripe) {
+                throw new Error('Failed to load Stripe');
+            }
+
+            const result = await stripe.redirectToCheckout({
+                sessionId: id
+            });
+
+            if (result.error) {
+                console.error('Stripe checkout error:', result.error);
+                throw new Error(result.error.message);
+            }
+
+        } catch (error) {
+            console.error('Error during place order:', error);
+        } finally {
+            setOrderPlacing(false);
+        }
     };
 
     return { 

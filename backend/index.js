@@ -12,7 +12,10 @@ const paymentRoutes = require('./routes/paymentRoutes');
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:4173',, 'https://dashdeals-8226d.web.app', 'https://dashdeals-frontend.vercel.app'],
+    credentials: true
+}));
 
 // Routes
 app.use('/auth', authRoutes);

@@ -1,12 +1,12 @@
-import { client } from "../config/db.js";
+const { client } = require("../config/db.js");
 
 const getCollection = (collectionName) => client.db('Dashdeals').collection(collectionName);
 
-export const saveOrderAndPayment = async (data, uuidv4) => {
+const saveOrderAndPayment = async (data, transactionId) => {
     const saveOrders = {
-        paymentId: uuidv4(),
+        paymentId: transactionId,
         amount: data?.cartSubtotal,
-        cus_email: data?.cartData[0].email,
+        cus_email: data?.cartData[0]?.email || 'guest@example.com',
         status: 'pending',
         delivery_status: 'ongoing',
         orderDate: new Date(),
@@ -22,3 +22,5 @@ export const saveOrderAndPayment = async (data, uuidv4) => {
         status: 'paid',
     });
 };
+
+module.exports = { saveOrderAndPayment };
