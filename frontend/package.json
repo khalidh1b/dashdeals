@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+    "test:watch": "set NODE_OPTIONS=--experimental-vm-modules && jest --watch",
+    "test:coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.6",
