@@ -14,6 +14,7 @@ dist-ssr
 .env
 *.env.*.local
 .env.test
+.firebase
 
 # Editor directories and files
 .vscode/*
