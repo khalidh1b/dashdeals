@@ -29,6 +29,6 @@ app.get('/', (req, res) => {
 
 connectDB().then(() => {
     app.listen(port, () => {
-        console.log(`DashDeal server running on port ${port}`);
+        //console.log(`DashDeal server running on port ${port}`);
     });
 });

@@ -29,5 +29,5 @@ exports.getFlashSalesProductById = async (req, res) => {
 
 exports.getSearchedProducts = async (req, res) => {
     const searchString = req.params.searchString;
-    console.log(searchString, req.params);
+    //console.log(searchString, req.params);
 };
