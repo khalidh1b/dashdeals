@@ -2,10 +2,10 @@ const { v4: uuidv4 } = require('uuid');
 const { saveOrderAndPayment } = require('../services/orderService.js');
 const stripe = require('stripe')(process.env.Stripe_Secret_Key);
 
-console.log(process.env.Stripe_Secret_Key);
+//console.log(process.env.Stripe_Secret_Key);
 
 exports.createPayment = async (req, res) => {
-    console.log('Creating payment session...', req.body);
+    //console.log('Creating payment session...', req.body);
     const { data } = req.body;
 
     if (!data || !data.cartData || !data.quantities) {
@@ -51,7 +51,7 @@ exports.createPayment = async (req, res) => {
         // Save order and payment data
         await saveOrderAndPayment(data, transactionId);
         
-        console.log('Checkout session created successfully:', session.id);
+        //console.log('Checkout session created successfully:', session.id);
         res.json({ id: session.id });
     } catch (error) {
         console.error('Error creating checkout session:', error);
