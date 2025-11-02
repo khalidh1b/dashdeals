@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Components/ui/card";
-import { Button } from "@/Components/ui/button";
-import { Switch } from "@/Components/ui/switch";
-import { Label } from "@/Components/ui/label";
-import { Input } from "@/Components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { AlertCircleIcon, SmartphoneIcon, MailIcon, CheckIcon, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import PropTypes from 'prop-types';

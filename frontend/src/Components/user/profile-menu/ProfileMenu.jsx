@@ -1,4 +1,4 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/Components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Settings, ShoppingBag, XCircle, Star, Moon, Sun, LogOut, LogIn } from "lucide-react";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/app/providers/auth-provider";

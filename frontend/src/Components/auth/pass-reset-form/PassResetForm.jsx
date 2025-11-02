@@ -1,7 +1,7 @@
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/Components/ui/dialog";
-import { Input } from "@/Components/ui/input";
-import { Label } from "@/Components/ui/label";
-import { Button } from "@/Components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import PropTypes from 'prop-types';
 import useForgetPass from "@/features/auth/hooks/useForgetPass";
 import { useState } from "react";

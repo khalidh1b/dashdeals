@@ -1,4 +1,4 @@
-import { Skeleton } from '@/Components/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export const ProductCardSkeleton = () => {
     return (
