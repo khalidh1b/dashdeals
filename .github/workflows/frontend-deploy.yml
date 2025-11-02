@@ -1,0 +1,99 @@
+name: Frontend Deployment
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-deploy.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-deploy.yml'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./frontend
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: pnpm setup
+      uses: pnpm/action-setup@v4  
+      with:
+        version: 9
+        run_install: false
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'pnpm'
+        cache-dependency-path: frontend/package-lock.json
+        
+    - name: Install dependencies
+      run: pnpm Install
+      
+    - name: Run linting
+      run: pnpm run lint
+      
+    - name: Run tests
+      run: pnpm run test
+      
+    - name: Build application
+      run: pnpm run build
+      env:
+        VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY}}
+        VITE_STRIPE_PK: ${{ secrets.VITE_STRIPE_PK}}
+        VITE_AUTH_DOMAIN: ${{ secrets.VITE_AUTH_DOMAIN }}
+        VITE_PROJECT_ID: ${{ secrets.VITE_PROJECT_ID }}
+        VITE_STORAGE_BUCKET: ${{ secrets.VITE_STORAGE_BUCKET }}
+        VITE_MESSAGING_SENDER_ID: ${{ secrets.VITE_MESSAGING_SENDER_ID }}
+        VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
+        VITE_MEASUREMENT_ID: ${{ secrets.VITE_MEASUREMENT_ID }}
+        VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+        
+    - name: Deploy to Firebase Hosting
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+        channelId: live
+        projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
+        workingDirectory: frontend
+
+    - name: Create GitHub Deployment
+      id: create_deployment
+      uses: altinukshini/deployment-action@v1.2.6
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
+        environment: production
+        transient_environment: false
+        auto_merge: false
+        description: Deploying Dashdeals
+
+    - name: Mark Deployment as Successful
+      uses: actions/github-script@v6
+      env:
+        DEPLOYMENT_ID: ${{ steps.create_deployment.outputs.deployment_id }}
+      with:
+        script: |
+          const deployment_id = process.env.DEPLOYMENT_ID;
+          if (!deployment_id) {
+            console.log("No deployment ID found.");
+            return;
+          }
+          await github.rest.repos.createDeploymentStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            deployment_id: deployment_id,
+            state: 'success',
+            description: 'Firebase deployment successful',
+            environment: 'production'
+          });
