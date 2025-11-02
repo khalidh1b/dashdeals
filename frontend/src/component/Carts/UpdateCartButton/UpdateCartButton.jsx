@@ -1,4 +1,4 @@
-import '@/component/carts/style.css';
+import '@/component/Carts/style.css';
 
 const UpdateCartButton = () => {
     // Logic for handling button click can be added here later

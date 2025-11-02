@@ -1,7 +1,7 @@
 import CartCheckoutButton from "./CartCheckoutButton";
-import CartSubtotal from "./CartSubtotal";
+import CartSubtotal from "./Cartsubtotal";
 import PropTypes from 'prop-types';
-import '@/component/carts/style.css';
+import '@/component/Carts/style.css';
 
 const CartTotal = ({ cartSubtotal, proceedToCheckout }) => {
     return (
