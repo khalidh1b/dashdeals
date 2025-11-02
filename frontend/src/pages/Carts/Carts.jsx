@@ -1,9 +1,9 @@
-import CartTotal from "@/component/carts/CartTotal/CartTotal";
-import Coupon from "@/component/carts/Coupon/Coupon";
-import CartsTableHeader from "@/component/carts/CartsTableHeader/CartsTableHeader";
-import UpdateCartButton from "@/component/carts/UpdateCartButton/UpdateCartButton";
-import ReturnToShopButton from "@/component/carts/ReturnToShopButton/ReturnToShopButton";
-import CartsTableBody from "@/component/carts/CartsTableBody/CartsTableBody";
+import CartTotal from "@/component/Carts/CartTotal/CartTotal";
+import Coupon from "@/component/Carts/Coupon/Coupon";
+import CartsTableHeader from "@/component/Carts/CartsTableHeader/CartsTableHeader";
+import UpdateCartButton from "@/component/Carts/UpdateCartButton/UpdateCartButton";
+import ReturnToShopButton from "@/component/Carts/ReturnToShopButton/ReturnToShopButton";
+import CartsTableBody from "@/component/Carts/CartsTableBody/CartsTableBody";
 import useProceedCheckout from "@/features/cart/hooks/useProceedCheckout";
 
 const Carts = () => {

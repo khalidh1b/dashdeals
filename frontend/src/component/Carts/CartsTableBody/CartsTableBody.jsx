@@ -1,7 +1,7 @@
 import { GiCancel } from "react-icons/gi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import PropTypes from 'prop-types';
-import CartsTableBodySkeleton from '@/component/carts/cart-table-body-skeleton/CartTableBodySkeleton';
+import CartsTableBodySkeleton from '@/component/Carts/cart-table-body-skeleton/CartTableBodySkeleton';
 import "@/component/carts/style.css";
 import { Image } from '@/component/common/image/image';
 
