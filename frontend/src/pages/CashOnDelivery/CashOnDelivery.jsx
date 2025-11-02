@@ -5,7 +5,7 @@ const CashOnDelivery = () => {
     const location = useLocation();
     const { cartSubtotal } = location.state || {};
     useEffect(() => {
-        console.log('Received state in cashondelivery:', { cartSubtotal });
+        //console.log('Received state in cashondelivery:', { cartSubtotal });
     }, [location.state, cartSubtotal ]);
 
     return (
