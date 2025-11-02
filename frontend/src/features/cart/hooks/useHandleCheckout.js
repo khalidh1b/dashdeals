@@ -14,14 +14,14 @@ const useHandleCheckout = () => {
     });
     const [orderPlacing, setOrderPlacing] = useState(false);
 
-    console.log(import.meta.env.VITE_Stripe_PK);
+    //console.log(import.meta.env.VITE_Stripe_PK);
     const isFirstRender = useRef(true);
     
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
         } else {
-            console.log('Skipping additional effect run');
+            //console.log('Skipping additional effect run');
         }
     }, [location.state, pandey, cartSubtotal, cartData]);
 
@@ -66,7 +66,7 @@ const useHandleCheckout = () => {
 
         try {
             setOrderPlacing(true);
-            console.log('Creating payment session with data:', data);
+            //console.log('Creating payment session with data:', data);
             
             const response = await axiosSecure.post('/payments/create-payment', {data});
 
@@ -76,7 +76,7 @@ const useHandleCheckout = () => {
             }
 
             const { id } = response.data;
-            console.log('Payment session created with ID:', id);
+            //console.log('Payment session created with ID:', id);
 
             const stripe = await stripePromise;
             if (!stripe) {

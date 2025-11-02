@@ -29,7 +29,7 @@ const useSignIn = () => {
             setLoading(true);
             
             const result = await signIn(data.email, data.password);
-            console.log(result);
+            //console.log(result);
 
             if(result.user.email) {
                 await navigate('/');
@@ -57,7 +57,7 @@ const useSignIn = () => {
         try {
             setGoogleLoading(true);
             const result = await googleSignIn()
-            console.log(result.user);
+            //console.log(result.user);
             
             if(result.user) {
                 await navigate('/');

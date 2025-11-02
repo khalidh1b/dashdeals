@@ -18,12 +18,12 @@ const useSignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const data = {name, email, password};
-        console.log(data);
+        //console.log(data);
 
         try {
             setLoading(true);
             const result = await createUser(data.email, data.password)
-            console.log('signup result', result);
+            //console.log('signup result', result);
 
             if(result.user.email) {
                 Swal.fire({
@@ -40,7 +40,7 @@ const useSignUp = () => {
             const profileupdate = await profileUpdate(name);
 
             const savedata = await axiosSecure.post('/users/saveuser', data)
-            console.log('savedata', savedata);
+            //console.log('savedata', savedata);
             
         } catch (error) {
             console.error('error in signup',error)
