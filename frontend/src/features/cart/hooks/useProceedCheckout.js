@@ -10,9 +10,18 @@ const useProceedCheckout = () => {
     const [subtotals, setSubtotals] = useState({});
     const [cartSubtotal, setCartSubtotal] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [products, refetchCartData] = useFetchCartData(setLoading, setQuantities, setSubtotals);
+    const [fetchedProducts, initialQuantities, initialSubtotals, refetchCartData] = useFetchCartData(setLoading);
     const navigate = useNavigate();
     const handleDelete = useHandleDeleteCart(refetchCartData);
+
+    useEffect(() => {
+        if (Object.keys(initialQuantities).length > 0) {
+            setQuantities(initialQuantities);
+        }
+        if (Object.keys(initialSubtotals).length > 0) {
+            setSubtotals(initialSubtotals);
+        }
+    }, [initialQuantities, initialSubtotals]);
 
     useEffect(() => {
         const numbers = Object.values(subtotals);
@@ -25,14 +34,14 @@ const useProceedCheckout = () => {
 
     const proceedToCheckout = () => {
         const pandey = subtotals;
-        const cartData = products;
+        const cartData = fetchedProducts;
         const data = { pandey, cartSubtotal, cartData, quantities };
         navigate('/checkout', { state: data })
     };
 
     return { 
         loading,
-        products,
+        products: fetchedProducts,
         handleDelete,
         quantities,
         quantityPlus,

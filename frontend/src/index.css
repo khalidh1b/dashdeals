@@ -18,6 +18,53 @@ layer(base);
   }
 }
 
+@theme inline {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif;
+
+  /* Light mode colors */
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-muted: #6b7280;
+  --color-muted-foreground: #9ca3af;
+  --color-border: #e5e7eb;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #1f2937;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-accent: #8b5cf6;
+
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rounding-mode" 1;
+  }
+
+  /* Dark mode */
+  .dark {
+    --color-background: #0f172a;
+    --color-foreground: #f8fafc;
+    --color-muted: #64748b;
+    --color-muted-foreground: #94a3b8;
+    --color-border: #1e293b;
+    --color-primary: #60a5fa;
+    --color-primary-foreground: #0f172a;
+    --color-secondary: #1e293b;
+    --color-secondary-foreground: #f1f5f9;
+    --color-destructive: #f87171;
+    --color-destructive-foreground: #0f172a;
+    --color-accent: #a78bfa;
+  }
+}
 @layer base {
   :root {
         --background: 0 0% 100%;

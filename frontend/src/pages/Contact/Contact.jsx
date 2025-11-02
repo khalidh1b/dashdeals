@@ -6,7 +6,7 @@ const Contact = () => {
     const { handleUserFeedback } = useUserFeedback();
 
     const sectionTitleClass = "flex gap-4 items-center pb-4";
-    const iconWrapperClass = "bg-[#DB4444] text-white p-[7px] text-4xl rounded-full";
+    const iconWrapperClass = "bg-red-600 text-white p-[7px] text-4xl rounded-full";
     const titleTextClass = "poppins text-base font-medium text-black dark:text-white";
     const paragraphClass = "poppins font-normal text-[14px] text-black dark:text-white";
 
@@ -67,7 +67,7 @@ const Contact = () => {
                         placeholder="Your Message"
                     ></textarea> <br />
                     <input 
-                        className="py-3 px-10 bg-[#DB4444] mt-5 text-white rounded absolute right-40" 
+                        className="py-3 px-10 bg-red-600 hover:bg-red-700 mt-5 text-white rounded absolute right-40 transition-colors" 
                         type="submit" 
                         value="Send Message" 
                     />

@@ -14,7 +14,7 @@ const useToggleTheme = () => {
         document.documentElement.classList.toggle("dark", theme);
     }, [theme]);
     
-    return { handleThemeChange };
+    return { handleThemeChange, theme };
 };
 
 export default useToggleTheme;

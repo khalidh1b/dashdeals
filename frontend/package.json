@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "vite build && node scripts/analyze-bundle.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
     "test:watch": "set NODE_OPTIONS=--experimental-vm-modules && jest --watch",
-    "test:coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage"
+    "test:coverage": "set NODE_OPTIONS=--experimental-vm-modules && jest --coverage",
+    "size-check": "pnpm run build && node scripts/analyze-bundle.js",
+    "performance-check": "node scripts/performance-check.js",
+    "perf:validate": "pnpm run performance-check",
+    "perf:build": "pnpm run build && pnpm run performance-check"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.6",

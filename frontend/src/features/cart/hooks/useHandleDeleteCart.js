@@ -35,7 +35,13 @@ const useHandleDeleteCart = (refetchCartData) => {
             }
             });
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                    icon: "error",
+                    title: error.message || 'An Unexpected Error Occured, Try Again!',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            //console.log(error);
         }
     };
     

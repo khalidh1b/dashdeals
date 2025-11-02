@@ -3,11 +3,11 @@ import useAxiosSecure from "@/shared/hooks/useAxiosSecure";
 import { AuthContext } from "@/app/providers/auth-provider";
 import { useContext } from "react";
 
-const useFetchCartData = (setLoading, setQuantities, setSubtotals) => {
+const useFetchCartData = (setLoading) => {
     const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
 
-    const { data: products = [], refetch: refetchCartData } = useQuery({
+    const { data, refetch: refetchCartData } = useQuery({
         queryKey: ["products", user?.email],
         queryFn: async () => {
         setLoading(true);
@@ -17,11 +17,13 @@ const useFetchCartData = (setLoading, setQuantities, setSubtotals) => {
             },
         });
         
-        const initialQuantities = res.data.reduce(
+        const products = res.data;
+
+        const initialQuantities = products.reduce(
             (acc, product) => ({ ...acc, [product._id]: 1 }),
             {}
         );
-        const initialSubtotals = res.data.reduce((acc, product) => {
+        const initialSubtotals = products.reduce((acc, product) => {
             const price = parseFloat(
             (product.discount_price === "$0"
                 ? product.main_price
@@ -30,13 +32,11 @@ const useFetchCartData = (setLoading, setQuantities, setSubtotals) => {
             );
             return { ...acc, [product._id]: price };
         }, {});
-        setQuantities(initialQuantities);
-        setSubtotals(initialSubtotals);
         setLoading(false);
-        return res.data;
+        return { products, initialQuantities, initialSubtotals };
         },
     });
-    return [products, refetchCartData]
+    return [data?.products || [], data?.initialQuantities || {}, data?.initialSubtotals || {}, refetchCartData]
 };
 
 export default useFetchCartData;

@@ -18,6 +18,8 @@ const About = () => {
                 </div> 
                 <Image 
                     className='rounded w-full' 
+                    width={600}
+                    height={400}
                     src="https://res.cloudinary.com/dksiicemx/image/upload/v1729423553/our-story_suhrrk.png" 
                     alt="our-story-banner" 
                 />
@@ -30,6 +32,8 @@ const About = () => {
                     <div className='pt-9 px-12 rounded bg-[#F5F5F5]'>
                         <Image 
                             className='' 
+                            width={200}
+                            height={200}
                             src="https://res.cloudinary.com/dksiicemx/image/upload/v1729423550/tom-cruisepng_wacarj.png" 
                             alt="Tom Cruise" 
                         />
@@ -45,6 +49,8 @@ const About = () => {
                 <div>
                     <div className='pt-8 px-12 rounded bg-[#F5F5F5]'>
                         <Image 
+                            width={200}
+                            height={200}
                             src="https://res.cloudinary.com/dksiicemx/image/upload/v1729423550/emma-watsonpng_xtapqo.png" 
                             alt="Emma Watson" 
                         />
@@ -60,6 +66,8 @@ const About = () => {
                 <div>
                     <div className='pt-9 px-12 rounded bg-[#F5F5F5]'>
                         <Image 
+                            width={200}
+                            height={200}
                             src="https://res.cloudinary.com/dksiicemx/image/upload/v1729423550/will-smith_qresz7.png" 
                             alt="Will Smith" 
                         />

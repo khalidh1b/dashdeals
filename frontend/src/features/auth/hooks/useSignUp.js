@@ -18,12 +18,12 @@ const useSignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const data = {name, email, password};
-        console.log(data);
+        //console.log(data);
 
         try {
             setLoading(true);
             const result = await createUser(data.email, data.password)
-            console.log('signup result', result);
+            //console.log('signup result', result);
 
             if(result.user.email) {
                 Swal.fire({
@@ -37,10 +37,9 @@ const useSignUp = () => {
                 await navigate('/login');
             }
             
-            const profileupdate = await profileUpdate(name);
+            await profileUpdate(name);
 
-            const savedata = await axiosSecure.post('/users/saveuser', data)
-            console.log('savedata', savedata);
+            await axiosSecure.post('/users/saveuser', data)
             
         } catch (error) {
             console.error('error in signup',error)
@@ -75,9 +74,9 @@ const useSignUp = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-            };
+            }
             
-            const user = await axiosSecure.post('/users/saveuser', data)
+            await axiosSecure.post('/users/saveuser', data)
                 
             } catch (error) {
                 console.error('error in google auth');
@@ -95,4 +94,4 @@ const useSignUp = () => {
         return { handleSignup, handleGoogleSignup, loading, googleLoading };
     };
     
-    export default useSignUp;
+ export default useSignUp;

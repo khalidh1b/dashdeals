@@ -116,34 +116,34 @@ To get a local copy up and running follow these simple steps:
 
 ## 🔐 Environment Variables Frontend
 ```
-VITE_apiKey = your_api_key
+VITE_FIREBASE_API_KEY = your_api_key
 ```
 ```
-VITE_authDomain = your_firebase_auth_domain
+VITE_AUTH_DOMAIN = your_firebase_auth_domain
 ```
 ```
-VITE_projectId = your_firebase_proeject_id
+VITE_PROJECT_ID = your_firebase_proeject_id
 ```
 ```
-VITE_storageBucket = your_firebase_storage-bucket
+VITE_STORAGE_BUCKET = your_firebase_storage-bucket
 ```
 ```
-VITE_messagingSenderId = your_firebase_senderid
+VITE_MESSAGING_SENDER_ID = your_firebase_senderid
 ```
 ```
-VITE_appId = your_firebase_app-id
+VITE_APP_ID = your_firebase_app-id
 ```
 ```
-VITE_measurementId = your_firebase_measurementid
+VITE_MEASUREMENT_ID = your_firebase_measurementid
 ```
 ```
 VITE_backendUrl = http://localhost:4000
 ```
 ```
-VITE_Stripe_PK = your_stripe_public_key
+VITE_STRIPE_PK = your_stripe_public_key
 ```
 ```
-VITE_Stripe_SK = your_stripe_secret_key
+VITE_Stripe_SK = your_STRIPE_SECRET_KEY
 ```
 
 ## 🔐 Environment Variables Backend
@@ -161,7 +161,7 @@ ACCESS_TOKEN_SECRET = 'your access token'
 PORT = 4000
 ```
 ```
-Stripe_Secret_Key = your_stripe_secret_key
+STRIPE_SECRET_KEY = your_STRIPE_SECRET_KEY
 ```
 ```
 CLIENT_URL = http://localhost:5173

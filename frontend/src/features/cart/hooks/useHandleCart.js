@@ -9,14 +9,14 @@ import { useQueryClient } from "@tanstack/react-query";
 const useHandleCart = () => {
     const { user: firebaseUser } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
-    const email = user?.email;
+    const email = firebaseUser?.email;
     const navigate = useNavigate();
     const [, refetch] = useCart();
     const queryClient = useQueryClient();
 
 
     const handleCart = async (product) => {
-        if(!user) {
+        if(!firebaseUser) {
             navigate('/login');
             return;
         }
@@ -27,9 +27,9 @@ const useHandleCart = () => {
         const info = {...product, email, productId, _id};
 
         try {
-            const res = await axiosSecure.post(`/users/userProductCarts/${productId}/${user?.email}`, info)
+            const res = await axiosSecure.post(`/users/userProductCarts/${productId}/${firebaseUser?.email}`, info)
     
-            if(res.data.insertedId) {
+            if(res.data?.insertedId) {
                 Swal.fire({
                     icon: "success",
                     title: `${product_title} successfully saved on cart`,
@@ -40,7 +40,7 @@ const useHandleCart = () => {
                 queryClient.invalidateQueries({ queryKey: ["products", firebaseUser?.email] });
 
             }
-            if(!res.data.insertedId) {
+            if(!res.data?.insertedId) {
                 Swal.fire({
                     icon: "info",
                     title: `${product_title} Already saved on cart`,
@@ -50,6 +50,15 @@ const useHandleCart = () => {
             }
         } catch (error) {
             console.error('error in usehandlecart.js', error);
+            Swal.fire({
+                    icon: "error",
+                    title: error.message || 'Unexpected Error Occured, Try Again!',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            if(error.message === 'No token found') {
+                navigate('/login');
+            }
         }
     }
     return handleCart;

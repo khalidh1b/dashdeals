@@ -61,7 +61,7 @@ const Profile = () => {
         try {
             setSavingChanges(true);
             const res = await axiosSecure.patch(`/users/update-user-profile/${user?.email || user.providerData[0]?.email}`, data)
-            console.log(res);
+            //console.log(res);
             if(res.data.modifiedCount > 0) {
                 toast.success('Profile Updated Successfully!', {
                     duration: 3000
@@ -79,7 +79,7 @@ const Profile = () => {
             try {
                 const response = await axiosSecure.get(`/users/userprofile/${user?.email}`);
                 setUserProfile(response.data);
-                // console.log(response)
+                // //console.log(response)
             } catch (error) {
                 console.error('error while fetching user', error);
             }

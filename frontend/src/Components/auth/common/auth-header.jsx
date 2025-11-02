@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const AuthHeader = ({ title, subtitle }) => {
     return (
         <>
@@ -5,4 +7,9 @@ export const AuthHeader = ({ title, subtitle }) => {
             <h5 className="auth-header-subtitle poppins">{subtitle}</h5>
         </>
     );
+};
+
+AuthHeader.propTypes = {
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired
 };
