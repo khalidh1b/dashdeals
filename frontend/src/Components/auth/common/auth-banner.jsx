@@ -8,6 +8,8 @@ export const AuthBanner = ({ altText }) => {
                 <Image 
                     src="https://res.cloudinary.com/dksiicemx/image/upload/v1729422686/authentication-banner_i6gqed.png" 
                     alt={altText} 
+                    width={600}
+                    height={800}
                 />
             </div>
         </>
