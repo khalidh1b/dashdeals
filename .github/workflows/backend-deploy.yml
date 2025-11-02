@@ -49,7 +49,7 @@ jobs:
         vercel-org-id: ${{ secrets.VERCEL_ORG_ID  }}
         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
         working-directory: ./backend
-        vercel-args: '--prod'
+        vercel-args: '--prod --yes'
       env:
         DB_PASS: ${{ secrets.DB_PASS }}
         ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
