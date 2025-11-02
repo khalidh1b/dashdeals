@@ -14,7 +14,7 @@ const Checkout = () => {
         cartSubtotal
     } = useHandleCheckout();
 
-    console.log('Order placing:', orderPlacing);
+    //console.log('Order placing:', orderPlacing);
     return (
         <div className="checkout-container">
         <div className="md:w-[480px] mx-5">
@@ -56,11 +56,9 @@ const Checkout = () => {
 
             <RadioOption label="Cash on delivery" onClick={cashOnDelivery} />
 
-            <CouponSection />
-
             <button
                 onClick={placeOrder}
-                className={`place-order-button ${orderPlacing && 'pointer-events-none'}`}
+                className={`place-order-button mt-12 ${orderPlacing && 'pointer-events-none'}`}
                 type="submit"
                 disabled={orderPlacing}
             >
@@ -120,20 +118,6 @@ const ProductSummary = ({ product }) => {
     )
 };
 
-const CouponSection = () => {
-    return (
-        <div className="flex gap-4 pt-6">
-            <input
-                className="coupon-section-input"
-                type="text"
-                placeholder="Coupon Code"
-            />
-            <button className="coupon-section-button" type="submit">
-                Apply Coupon
-            </button>
-        </div>
-    )
-};
 
 const OrderSummary = ({ cartSubtotal }) => {
     return (
