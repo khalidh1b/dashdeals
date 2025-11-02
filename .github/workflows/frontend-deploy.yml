@@ -32,9 +32,6 @@ jobs:
         version: 9
         run_install: false
 
-    - name: List skeleotns file
-      run: ls -R src/components/common/skeletons
-
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
