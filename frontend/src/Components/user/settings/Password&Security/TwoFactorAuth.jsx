@@ -30,7 +30,7 @@ const TwoFactorAuth = () => {
 
     const generateTotp = useCallback(async () => {
         const response = await axiosSecure.post(`/auth/generate-totp/${user?.email}`)
-        console.log(response);
+        //console.log(response);
         setQrCode(response.data.qrCode);
         setSecret(response.data.secret);
     }, [axiosSecure, user?.email]);
@@ -58,7 +58,7 @@ const TwoFactorAuth = () => {
     }
     
     const handleSelectMethod = (method) => {
-        console.log('calling', method);
+        //console.log('calling', method);
         setSelectedMethod(method)
         setSetupStep("setup")
     };
@@ -68,7 +68,7 @@ const TwoFactorAuth = () => {
         setIsLoading(true)
         const verifyTotp = async () => {
             const response = await axiosSecure.post('/auth/verify-totp', { token: otp, secret })
-            console.log(response);
+            //console.log(response);
             if(response.data.valid) {
                 setSetupStep('complete');
             }
@@ -77,7 +77,7 @@ const TwoFactorAuth = () => {
         const save2FaStats = async () => {
             const status2Fa = { status2Fa: true };
             const save2FaStat = await axiosSecure.patch(`/auth/save2fa-status/${user?.email}`, status2Fa);
-            console.log(save2FaStat);
+            //console.log(save2FaStat);
         }
         save2FaStats();
     };
@@ -106,7 +106,7 @@ const TwoFactorAuth = () => {
             setIs2FAEnabled(false);
         }
     }, [status2Fa])
-    console.log(status2Fa);
+    //console.log(status2Fa);
 
     return (
         <>
@@ -283,14 +283,14 @@ const SmsVerification = ({ setSetupStep, handleCancel }) => {
 
     const sendOtp = async () => {
         setLoading(true);
-        console.log('auth,phone,recapcha', auth, phone);
+        //console.log('auth,phone,recapcha', auth, phone);
         const appVerifier = new RecaptchaVerifier("recapcha-container", {
             size: "invisible",
             callback: () => {
-                console.log("Recaptcha solved!");
+                //console.log("Recaptcha solved!");
             },
         }, auth);        
-        console.log('recapcha', appVerifier);
+        //console.log('recapcha', appVerifier);
 
         if(appVerifier || !appVerifier) return;
         
