@@ -12,7 +12,7 @@ const AllProducts = () => {
     const endTime = Date.now() + 343196000;
 
     return (
-        <div className="pt-28">
+        <div className="md:pt-28 pt-10">
             <FlashSalesHeader/>
             <CountdownSection endTime={endTime}/>
             <ProductsSection products={products} loading={isLoading || isFetching}/>
@@ -25,8 +25,8 @@ export default AllProducts;
 
 const FlashSalesHeader = () => {
     return (
-        <div className="flex text-[#DB4444] items-center gap-3 md:ml-36 font-semibold">
-            <div className="bg-[#DB4444] rounded py-5 px-2"></div>
+        <div className="flex text-red-700 items-center gap-3 md:ml-36 font-semibold">
+            <div className="bg-red-600 rounded py-5 px-2"></div>
             Todays
         </div>
     )
@@ -65,7 +65,7 @@ const ProductsSection = ({ products, loading }) => {
 const ViewAllProductsButton = () => {
     return (
         <div className="flex justify-center pt-16">
-            <button className="text-[#FAFAFA] text-base font-medium bg-[#DB4444] py-3 px-9 rounded">
+            <button className="text-white text-base font-medium bg-red-600 hover:bg-red-700 py-3 px-9 rounded transition-colors">
                 View All Products
             </button>
         </div>
