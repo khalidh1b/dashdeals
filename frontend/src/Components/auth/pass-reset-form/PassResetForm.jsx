@@ -14,7 +14,7 @@ const PassResetForm = () => {
         <>
             <Dialog>
                     <DialogTrigger asChild>
-                        <p className="mb-8 pt-1 text-[#DB4444] text-[14px] cursor-pointer">forget password</p>
+                        <p className="mb-8 pt-1 text-red-700 text-[14px] cursor-pointer hover:text-red-800 transition-colors">forget password</p>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
