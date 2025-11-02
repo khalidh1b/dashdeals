@@ -30,13 +30,6 @@ const queryClient = new QueryClient({
 // Lazy load AuthProvider to defer Firebase initialization
 const AuthProvider = React.lazy(() => import('@/app/providers/auth-provider'));
 
-// Lazy load Stripe Elements wrapper
-const StripeElementsWrapper = React.lazy(() => 
-  import('@/components/payment/stripe-elements-wrapper').then(module => ({
-    default: module.default
-  }))
-);
-
 // Initialize performance tools with delay to avoid blocking initial render
 // const initializePerformanceTools = () => {
 //   scheduleIdleWork(() => {
@@ -75,4 +68,4 @@ if ('requestIdleCallback' in window) {
 } else {
   // Fallback for browsers without requestIdleCallback
   ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-};
+}
