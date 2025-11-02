@@ -52,10 +52,10 @@ src/
 │   ├── user/                     # User profile feature
 │   └── payment/                  # Payment feature
 ├── shared/                       # Shared utilities
-│   ├── components/               # Reusable UI components
+│   ├── component/               # Reusable UI component
 │   ├── hooks/                    # Shared hooks
 │   ├── utils/                    # Utility functions
-├── pages/                        # Route pages (container components)
+├── pages/                        # Route pages (container component)
 ├── router/                       # Routing configuration
 ├── lib/                          # External library configurations
 └── index.css                     # Global styles

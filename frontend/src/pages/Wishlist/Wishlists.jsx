@@ -3,7 +3,7 @@ import useHandleDeleteWishlist from "@/features/user/hooks/useHandleDeleteWishli
 import useFetchWishlist from "@/features/user/hooks/useFetchWishlist";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import WishlistSkeleton from '@/pages/Wishlist/wishlist-skeleton/WishlistSkeleton';
-import { ProductCard } from "@/components/common/product-card/ProductCard";
+import { ProductCard } from "@/component/common/product-card/ProductCard";
 
 const Wishlists = () => {
     const [products, , isLoading] = useFetchWishlist();

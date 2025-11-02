@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import LoadingSkeleton from '@/components/common/skeletons/loading-skeleton';
+import { LoadingSkeleton } from '@/component/common/skeletons/loading-skeleton';
 
 export const dynamicImport = (importFunc, fallback = <LoadingSkeleton />) => {
   const LazyComponent = React.lazy(importFunc);
@@ -22,7 +22,7 @@ export const preloadComponent = (importFunc) => {
   importFunc();
 };
 
-export const preloadComponents = (importFuncs) => {
+export const preloadcomponent = (importFuncs) => {
   importFuncs.forEach(importFunc => {
     importFunc().catch(() => {
       // console.warn(`Failed to preload: ${importFunc.name}`);

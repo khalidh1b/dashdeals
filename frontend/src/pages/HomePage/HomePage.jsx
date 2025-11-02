@@ -1,15 +1,15 @@
 import { Suspense, lazy } from 'react';
-import LoadingSkeleton from "@/components/common/skeletons/loading-skeleton";
+import { LoadingSkeleton } from "@/component/common/skeletons/loading-skeleton";
 
-// Lazy load heavy components
-const Banner = lazy(() => import("@/components/home/banner/Banner"));
-const AllProducts = lazy(() => import("@/components/products/all-products/AllProducts"));
-const BannerProduct = lazy(() => import("@/components/products/banner-product/BannerProduct"));
-const BestSellingProducts = lazy(() => import("@/components/products/best-selling-products/BestSellingProducts"));
-const BrowserCategory = lazy(() => import("@/components/home/browse-by-category/BrowserCategory"));
-const DashDealsPros = lazy(() => import("@/components/home/dash-deals-pros/DashDealsPros"));
-const ExploreOurProducts = lazy(() => import("@/components/products/explore-our-products/ExploreOurProducts"));
-const NewArrival = lazy(() => import("@/components/home/new-arrival/NewArrival"));
+// Lazy load heavy component
+const Banner = lazy(() => import("@/component/home/banner/Banner"));
+const AllProducts = lazy(() => import("@/component/products/all-products/AllProducts"));
+const BannerProduct = lazy(() => import("@/component/products/banner-product/BannerProduct"));
+const BestSellingProducts = lazy(() => import("@/component/products/best-selling-products/BestSellingProducts"));
+const BrowserCategory = lazy(() => import("@/component/home/browse-by-category/BrowserCategory"));
+const DashDealsPros = lazy(() => import("@/component/home/dash-deals-pros/DashDealsPros"));
+const ExploreOurProducts = lazy(() => import("@/component/products/explore-our-products/ExploreOurProducts"));
+const NewArrival = lazy(() => import("@/component/home/new-arrival/NewArrival"));
 
 const HomePage = () => {
     return (

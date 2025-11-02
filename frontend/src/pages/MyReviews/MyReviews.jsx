@@ -1,4 +1,4 @@
-import RocketIcon from "@/components/ui/rocket-icon/rocket-icon";
+import RocketIcon from "@/component/ui/rocket-icon/rocket-icon";
 
 const MyReviews = () => {
     return (

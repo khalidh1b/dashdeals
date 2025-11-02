@@ -1,10 +1,10 @@
 import useSignIn from "@/features/auth/hooks/useSignIn";
 import { useState } from "react";
-import { AuthHeader } from "@/components/auth/common/auth-header.jsx";
-import { AuthFooter } from "@/components/auth/common/auth-footer.jsx";
-import { GoogleAuthButton } from "@/components/auth/common/google-auth-button.jsx";
-import { AuthForm } from "@/components/auth/common/auth-form.jsx";
-import { AuthBanner } from "@/components/auth/common/auth-banner";
+import { AuthHeader } from "@/component/auth/common/auth-header.jsx";
+import { AuthFooter } from "@/component/auth/common/auth-footer.jsx";
+import { GoogleAuthButton } from "@/component/auth/common/google-auth-button.jsx";
+import { AuthForm } from "@/component/auth/common/auth-form.jsx";
+import { AuthBanner } from "@/component/auth/common/auth-banner";
 
 
 const Login = () => {
