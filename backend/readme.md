@@ -77,7 +77,7 @@ ACCESS_TOKEN_SECRET = 'your access token'
 PORT = 4000
 ```
 ```
-Stripe_Secret_Key = your_stripe_secret_key
+STRIPE_SECRET_KEY = your_STRIPE_SECRET_KEY
 ```
 ```
 CLIENT_URL = http://localhost:5173
