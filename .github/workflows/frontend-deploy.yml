@@ -106,7 +106,7 @@ jobs:
           
     - name: Install dependencies
       working-directory: ./frontend
-      run: pnpm install --frozen-lockfile
+      run: pnpm install --no-frozen-lockfile --prefer-offline
       
     - name: Build project
       working-directory: ./frontend
