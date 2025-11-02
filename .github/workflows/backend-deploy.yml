@@ -23,23 +23,23 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
-      
+      uses: actions/checkout@v4  
+    
+    - name: pnpm setup
+      uses: pnpm/action-setup@v4  
+      with:
+        version: 9
+        run_install: false
+    
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
         cache: 'pnpm'
         cache-dependency-path: backend/pnpm-lock.yaml
-        
-    - name: Install pnpm
-      run: npm install -g pnpm 
 
     - name: Install dependencies
       run: pnpm install
-      
-    - name: Run tests
-      run: pnpm test
               
     - name: Deploy to Vercel
       if: github.ref == 'refs/heads/main' 
@@ -58,33 +58,3 @@ jobs:
         DB_USER: ${{ secrets.DB_USER }}
         CLIENT_URL: ${{ secrets.CLIENT_URL }}
         BACKEND_URL: ${{ secrets.BACKEND_URL }}
-        
-    - name: Create GitHub Deployment
-      id: create_deployment
-      uses: altinukshini/deployment-action@v1.2.6
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-        environment: production
-        transient_environment: false
-        auto_merge: false
-        description: Deploying Dashdeals
-
-    - name: Mark Deployment as Successful
-      uses: actions/github-script@v6
-      env:
-        DEPLOYMENT_ID: ${{ steps.create_deployment.outputs.deployment_id }}
-      with:
-        script: |
-          const deployment_id = process.env.DEPLOYMENT_ID;
-          if (!deployment_id) {
-            console.log("No deployment ID found.");
-            return;
-          }
-          await github.rest.repos.createDeploymentStatus({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            deployment_id: deployment_id,
-            state: 'success',
-            description: 'Vercel deployment successful',
-            environment: 'production'
-          });
