@@ -25,8 +25,8 @@ export default NewArrival;
 const NewArrivalHeader = () => {
     return (
         <>
-            <div className="flex text-[#DB4444] items-center gap-3 md:ml-36 font-semibold pt-20">
-                <div className="bg-[#DB4444] rounded py-5 px-2"></div>
+            <div className="flex text-red-700 items-center gap-3 md:ml-36 font-semibold pt-20">
+                <div className="bg-red-600 rounded py-5 px-2"></div>
                     Featured
                 </div>
                 <div className="flex items-center justify-between md:mx-36 pb-10">
@@ -47,9 +47,9 @@ const FeaturedItem = ({
 }) => {
     return (
         <div className='rounded relative' style={{ backgroundColor: bgColor }}>
-        <Image src={image} alt={title} className="w-full" />
+        <Image src={image} alt={title} className="w-full" width={600} height={400} />
         <div className="absolute bottom-9 left-9">
-            <h3 className="text-[#FAFAFA] text-2xl font-semibold">{title}</h3>
+            <h3 className="text-gray-900 text-2xl font-semibold">{title}</h3>
             <h4 className="text-[#FAFAFA] pt-3 pb-3 text-[14px] font-normal poppins">{description}</h4>
             <p className="text-[#FFFFFF] text-base font-medium border-b w-20">{linkText}</p>
         </div>
