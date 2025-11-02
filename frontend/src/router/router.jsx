@@ -4,7 +4,7 @@ import PrivateRoute from "@/router/private-route";
 
 import Root from "@/pages/Root/Root";
 import ErrorPage from "@/pages/ErrorPage/ErrorPage";
-import LoadingSkeleton from "@/components/common/skeletons/loading-skeleton";
+import { LoadingSkeleton } from "@/components/common/skeletons/loading-skeleton";
 import { SettingSkeleton } from "@/components/user/settings/setting-skeleton/setting-skeleton.jsx";
 
 import StripeElementsWrapper from "@/components/payment/stripe-elements-wrapper";

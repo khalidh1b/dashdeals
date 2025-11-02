@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 
-const LoadingSkeleton = () => {
+export const LoadingSkeleton = () => {
     return (
         <div className='pb-20 h-screen'>
             <div className='mx-20'>
@@ -19,5 +19,3 @@ const LoadingSkeleton = () => {
         </div>
     );
 };
-
-export default LoadingSkeleton;

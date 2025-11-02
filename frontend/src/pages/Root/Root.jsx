@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import LoadingSkeleton from '@/components/common/skeletons/loading-skeleton';
+import { LoadingSkeleton } from '@/components/common/skeletons/loading-skeleton';
 
 // Lazy load layout components
 const Navbar = lazy(() => import('@/components/common/navbar/Navbar'));

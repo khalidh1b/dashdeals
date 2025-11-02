@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import LoadingSkeleton from "@/components/common/skeletons/loading-skeleton";
+import { LoadingSkeleton } from "@/components/common/skeletons/loading-skeleton";
 
 // Lazy load heavy components
 const Banner = lazy(() => import("@/components/home/banner/Banner"));
