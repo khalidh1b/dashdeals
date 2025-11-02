@@ -164,7 +164,7 @@ jobs:
           
     - name: Install dependencies
       working-directory: ./frontend
-      run: pnpm install pnpm install --no-frozen-lockfile --prefer-offline
+      run: pnpm install
       
     - name: Download build artifacts
       uses: actions/download-artifact@v4
