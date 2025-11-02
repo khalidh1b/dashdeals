@@ -1,8 +1,17 @@
 import { useState } from "react";
 
-export const Image = ({ src, alt, className, containerClassName, ...props }) => {
+export const Image = ({ src, alt, className, containerClassName, desiredWidth, desiredHeight, ...props }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
+
+    const getCloudinaryTransformedUrl = (originalSrc, width, height) => {
+        if (!originalSrc || !width || !height) return originalSrc;
+        const parts = originalSrc.split('/upload/');
+        if (parts.length !== 2) return originalSrc;
+        return `${parts[0]}/upload/w_${width},h_${height},c_fill,g_auto,f_auto/` + parts[1];
+    };
+
+    const transformedSrc = getCloudinaryTransformedUrl(src, desiredWidth, desiredHeight);
 
     return (
         <div className={`relative ${containerClassName}`}>
@@ -15,7 +24,7 @@ export const Image = ({ src, alt, className, containerClassName, ...props }) => 
                 </div>
             ) : (
                 <img
-                    src={src}
+                    src={transformedSrc}
                     alt={alt}
                     className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${className}`}
                     loading="lazy"
