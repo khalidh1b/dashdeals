@@ -1,0 +1,87 @@
+name: Backend Deployment
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-deploy.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-deploy.yml'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'pnpm'
+        cache-dependency-path: backend/pnpm-lock.yaml
+        
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Run tests
+      run: pnpm test
+              
+    - name: Deploy to Vercel
+      if: github.ref == 'refs/heads/main' 
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID  }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: ./backend
+        vercel-args: '--prod'
+      env:
+        DB_PASS: ${{ secrets.DB_PASS }}
+        ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+        PORT: ${{ secrets.PORT }}
+        STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+        DB_USER: ${{ secrets.DB_USER }}
+        CLIENT_URL: ${{ secrets.CLIENT_URL }}
+        BACKEND_URL: ${{ secrets.BACKEND_URL }}
+        
+    - name: Create GitHub Deployment
+      id: create_deployment
+      uses: altinukshini/deployment-action@v1.2.6
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
+        environment: production
+        transient_environment: false
+        auto_merge: false
+        description: Deploying Dashdeals
+
+    - name: Mark Deployment as Successful
+      uses: actions/github-script@v6
+      env:
+        DEPLOYMENT_ID: ${{ steps.create_deployment.outputs.deployment_id }}
+      with:
+        script: |
+          const deployment_id = process.env.DEPLOYMENT_ID;
+          if (!deployment_id) {
+            console.log("No deployment ID found.");
+            return;
+          }
+          await github.rest.repos.createDeploymentStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            deployment_id: deployment_id,
+            state: 'success',
+            description: 'Vercel deployment successful',
+            environment: 'production'
+          });
