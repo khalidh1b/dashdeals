@@ -60,7 +60,7 @@ exports.updatePass = async (req, res) => {
             res.status(201).json({ success: false, message: 'currentPass not matched' });
             return;
         };
-        console.log(currentPassExist, currentPass, newUpdatedPass);
+        //console.log(currentPassExist, currentPass, newUpdatedPass);
         
         const result = await collection.updateOne(
             query,
@@ -80,13 +80,13 @@ exports.updateUserProfile = async (req, res) => {
         const email = req.params.email;
         const searchQuery = { email: email };
         const dataToUpdate = { $set: data };
-        console.log(dataToUpdate);
+        //console.log(dataToUpdate);
         const collection = getCollection('saved-user');
         const result = await collection.updateOne(
             searchQuery,
             dataToUpdate
         );
-        console.log(result)
+        //console.log(result)
         if(result.matchedCount === 0) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -190,17 +190,17 @@ exports.deleteOrderedProduct = async (req, res) => {
     try {
         const {orderId, productId} = req.params;
         const query =  {_id: new ObjectId(orderId)}
-        console.log(orderId, productId, query);
+        //console.log(orderId, productId, query);
 
         const order = await getCollection('userOrderedProducts').findOne(query);
-        console.log(order);
+        //console.log(order);
         
         const updatedProducts = await order.products.filter((product) => product._id !== (productId));
 
         if(updatedProducts.length === 0) {
-            console.log('this order should be delete',order);
+            //console.log('this order should be delete',order);
             const result = await getCollection('userOrderedProducts').deleteOne(query);
-            console.log('order deleted:', result);
+            //console.log('order deleted:', result);
         }
 
         await getCollection('userOrderedProducts').updateOne(

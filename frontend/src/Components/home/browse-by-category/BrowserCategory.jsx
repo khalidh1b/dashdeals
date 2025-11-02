@@ -62,7 +62,7 @@ const CategoryItem = ({ icon, name, isActive }) => {
     return (
         <div
             className={`border md:mt-0 mt-5 md:mx-0 mx-20 px-10 py-6 rounded ${
-            isActive ? 'text-white bg-[#DB4444]' : ''
+            isActive ? 'text-white bg-red-600' : ''
             }`}
         >
         {icon}

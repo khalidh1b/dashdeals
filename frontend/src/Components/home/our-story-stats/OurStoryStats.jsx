@@ -44,7 +44,7 @@ const StatCard = ({ icon, value, label, isPrimary }) => {
     return (
         <div
             className={`py-8 rounded px-10 ${
-                isPrimary ? "bg-[#DB4444] text-white border-0" : "border-2"
+                isPrimary ? "bg-red-600 text-white border-0" : "border-2"
             }`}
             >
             <div className="border p-2.5 rounded-full w-[70px] mx-auto bg-[#2F2E30]">
@@ -52,6 +52,8 @@ const StatCard = ({ icon, value, label, isPrimary }) => {
                     className={`rounded-full p-2.5 ${
                         isPrimary ? "bg-white" : "bg-[#000000]"
                     }`}
+                    width={50}
+                    height={50}
                     src={icon}
                     alt={label}
                 />

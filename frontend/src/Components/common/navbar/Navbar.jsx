@@ -28,7 +28,7 @@ const Navbar = () => {
         </ul>
         <div className="flex items-center gap-6">
             <SearchInput />
-            <Link to="/wishlist">
+            <Link to="/wishlist" aria-label="Wishlist">
                 <FaRegHeart className="text-2xl" />
             </Link>
             <CartIcon cartCount={carts.length} />
@@ -64,7 +64,7 @@ const SearchInput = () => {
 const CartIcon = ({ cartCount }) => {
     return (
         <div className="relative">
-            <Link to="/carts">
+            <Link to="/carts" aria-label="Cart">
                 <BsCart3 className="text-2xl" />
             </Link>
             {cartCount > 0 && (

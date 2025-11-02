@@ -10,7 +10,7 @@ const useHandleDeleteWishlist = () => {
     const [, refetch] = useFetchWishlist();
 
     const handleDelete = (product_id, product_title) => {
-        console.log('handle delete', product_id);
+        //console.log('handle delete', product_id);
 
         Swal.fire({
             title: `Remove ${product_title} from wishlist`,
@@ -23,7 +23,7 @@ const useHandleDeleteWishlist = () => {
                 if (result.isConfirmed) {
                     axiosSecure.delete(`/users/deleteUserProductWishlist/${user?.email}/${product_id}`)
                     .then((res) => {
-                        console.log(res);
+                        //console.log(res);
                         refetch();
                         if(res.data.deletedCount > 0) {
                             Swal.fire({
@@ -34,7 +34,13 @@ const useHandleDeleteWishlist = () => {
                         }
                     })
                     .catch((error) => {
-                        console.log(error);
+                        Swal.fire({
+                            icon: "error",
+                            title: error.message || 'Unexpected Error Occured, Try Again!',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                        //console.log(error);
                     })
                 }
             });

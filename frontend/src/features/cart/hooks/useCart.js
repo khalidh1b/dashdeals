@@ -14,9 +14,9 @@ const useCart = () => {
                     authorization: `Bearer ${localStorage.getItem("dashdeals-access-token")}`,
                 },
             });
-            return res.data;
+            return res?.data || [];
         },
-        enabled: !!user?.email
+        enabled: !!user?.email && !!localStorage.getItem("dashdeals-access-token")
     })
     return [carts, refetch];
 };

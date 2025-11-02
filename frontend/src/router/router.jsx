@@ -3,15 +3,17 @@ import { Suspense, lazy } from "react";
 import PrivateRoute from "@/router/private-route";
 
 import Root from "@/pages/Root/Root";
-import HomePage from "@/pages/HomePage/HomePage";
-import Signup from "@/pages/Signup/Signup";
-import Login from "@/pages/Login/Login";
 import ErrorPage from "@/pages/ErrorPage/ErrorPage";
 import LoadingSkeleton from "@/components/common/skeletons/loading-skeleton";
 import { SettingSkeleton } from "@/components/user/settings/setting-skeleton/setting-skeleton.jsx";
 
+import StripeElementsWrapper from "@/components/payment/stripe-elements-wrapper";
+
 const Navbar = lazy(() => import("@/components/common/navbar/Navbar"));
 const Footer = lazy(() => import("@/components/common/footer/Footer"));
+const HomePage = lazy(() => import("@/pages/HomePage/HomePage"));
+const Signup = lazy(() => import("@/pages/Signup/Signup"));
+const Login = lazy(() => import("@/pages/Login/Login"));
 const About = lazy(() => import("@/pages/About/About"));
 const Contact = lazy(() => import("@/pages/Contact/Contact"));
 const Checkout = lazy(() => import("@/pages/CheckOut/Checkout"));
@@ -38,9 +40,9 @@ const Loadable = (Component, Fallback = <LoadingSkeleton />) => (
 );
 
 const publicRoutes = [
-    { path: "/", element: <HomePage /> },
-    { path: "/signup", element: <Signup /> },
-    { path: "/login", element: <Login /> },
+    { path: "/", element: Loadable(HomePage) },
+    { path: "/signup", element: Loadable(Signup) },
+    { path: "/login", element: Loadable(Login) },
     { path: "/about", element: Loadable(About) },
     { path: "/contact", element: Loadable(Contact) },
     {
@@ -57,19 +59,33 @@ const privateRoutes = [
   { path: "/myorders", element: Loadable(MyOrders) },
   { path: "/my-cancellations", element: Loadable(MyCancellations) },
   { path: "/my-reviews", element: Loadable(MyReviews) },
-  { path: "/checkout", element: Loadable(Checkout) },
+  {
+    path: "/checkout",
+    element: (
+      <Suspense fallback={<LoadingSkeleton />}>
+        <StripeElementsWrapper>
+          {Loadable(Checkout)}
+        </StripeElementsWrapper>
+      </Suspense>
+    )
+  },
   { path: "/cashondelivery", element: Loadable(CashOnDelivery) },
-  { path: "/paymentsuccess", element: Loadable(PaymentSuccess) },
-  { path: "/paymentcancel", element: Loadable(PaymentCancel) },
-];
+    { 
+      path: "/paymentsuccess", 
+      element: Loadable(PaymentSuccess)
+    },
+    { 
+      path: "/paymentcancel", 
+      element: Loadable(PaymentCancel)
+    },];
 
 const settingsRoutes = [
   { index: true, element: <Navigate to="profile" replace /> },
-  { path: "profile", element: <Profile /> },
-  { path: "password&security", element: <PasswordSecurity /> },
-  { path: "appearance", element: <Appearance /> },
-  { path: "notifications", element: <Notifications /> },
-  { path: "display", element: <Display /> },
+  { path: "profile", element: Loadable(Profile) },
+  { path: "password&security", element: Loadable(PasswordSecurity) },
+  { path: "appearance", element: Loadable(Appearance) },
+  { path: "notifications", element: Loadable(Notifications) },
+  { path: "display", element: Loadable(Display) },
 ];
 
 const router = createBrowserRouter([

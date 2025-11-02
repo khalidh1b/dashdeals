@@ -35,6 +35,16 @@ export const AuthForm = ({ onSubmitFn, loading, submitText, fields, isLoginForm 
 };
 
 AuthForm.propTypes = {
-    handleSignup: PropTypes.func,
-    loading: PropTypes.bool
+    onSubmitFn: PropTypes.func.isRequired,
+    loading: PropTypes.bool,
+    submitText: PropTypes.string.isRequired,
+    fields: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            classes: PropTypes.string.isRequired,
+            placeholder: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    isLoginForm: PropTypes.bool
 };

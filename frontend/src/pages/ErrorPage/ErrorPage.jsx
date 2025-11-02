@@ -11,7 +11,7 @@ const ErrorPage = () => {
                 <h1 className="md:text-[110px] text-[50px] text-black font-medium">404 Not Found</h1>
                 <p className='pb-16'>Your visited page not found. You may go home page.</p>
                 <Link to="/">
-                    <button className="text-[#FAFAFA] text-base  poppins font-normal py-3 px-10 rounded bg-[#DB4444]">Back to home page</button>
+                    <button className="text-white text-base poppins font-normal py-3 px-10 rounded bg-red-600 hover:bg-red-700 transition-colors">Back to home page</button>
                 </Link>
             </div>
             

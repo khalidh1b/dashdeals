@@ -24,7 +24,7 @@ const usePasswordChange = () => {
         formData.append('confirmNewPass',confirmNewPass)
 
         const formDataObject = Object.fromEntries(formData.entries());
-        console.log(formDataObject);
+        //console.log(formDataObject);
 
         if (newPassword !== confirmPassword) {
             toast.error("Passwords don't matched");
@@ -42,7 +42,7 @@ const usePasswordChange = () => {
             }
 
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         } finally {
             setChangingPass(false);
         }

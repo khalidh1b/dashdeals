@@ -65,10 +65,12 @@ const ProductImage = ({
         <Link to={`/productdetailspage/${_id}`}>
             <Image
                 className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded"
+                width={300}
+                height={300}
                 src={product_image}
                 alt={product_title}
             />
-            <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">
+            <span className="bg-red-600 absolute top-5 left-4 text-white py-1 px-4 rounded poppins font-medium">
                 {discount_percent || '0%'}
             </span>
         </Link>
@@ -106,8 +108,8 @@ const ProductTitle = ({ title }) => {
 const ProductPrice = ({ discount_price, main_price }) => {
     return (
         <div className="flex gap-4 py-2">
-            <h5 className="text-[#DB4444] text-xl font-medium">{discount_price}</h5>
-            <span className="text-gray-500 font-medium line-through text-xl">
+            <h5 className="text-red-700 text-xl font-medium">{discount_price}</h5>
+            <span className="text-text-muted font-medium line-through text-xl">
                 {main_price}
             </span>
         </div>
@@ -118,7 +120,7 @@ const ProductRating = ({ ratings, user_rating_count, setRatings }) => {
     return (
         <div className="flex gap-2 items-center">
             <Rating style={{ maxWidth: 130 }} value={ratings} onChange={setRatings} isRequired />
-            <span className="text-gray-500 font-semibold text-[18px]">
+            <span className="text-text-secondary font-semibold text-[18px]">
                 ({user_rating_count})
             </span>
         </div>

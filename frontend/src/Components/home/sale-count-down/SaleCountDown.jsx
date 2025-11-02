@@ -17,7 +17,7 @@ const SaleCountDown = ({ days, hours, minutes, seconds }) => {
                     <div key={unit.label} className='flex items-center gap-1'>
                         <TimeUnit label={unit.label} value={unit.value}/>
                         {index !== timeUnits.length - 1 && (
-                            <div className='text-4xl text-[#DB4444] pt-4'>:</div>
+                            <div className='text-4xl text-red-600 pt-4'>:</div>
                         )}
                     </div>
                 ))}

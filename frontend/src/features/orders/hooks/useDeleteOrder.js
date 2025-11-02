@@ -7,7 +7,7 @@ const useDeleteOrder = (setLoadingProducts, refetch) => {
     const [deletingProduct, setDeletingProduct] = useState(false);
 
     const handleDeleteProduct = async (orderId, productId) => {
-        console.log(orderId, productId);
+        //console.log(orderId, productId);
 
         setDeletingProduct({productId: productId});
         try {
@@ -22,7 +22,7 @@ const useDeleteOrder = (setLoadingProducts, refetch) => {
             })
             refetch()
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if(result.status === 'success') {
                     Swal.fire({
                         icon: "success",
@@ -32,8 +32,8 @@ const useDeleteOrder = (setLoadingProducts, refetch) => {
                     });
                 }
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
+                //console.log(error);
             })
             setLoadingProducts((prevState) => ({
                 ...prevState,

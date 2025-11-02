@@ -10,7 +10,7 @@ const Wishlists = () => {
     const handleDelete = useHandleDeleteWishlist();
     const handleCart = useHandleCart();
 
-    console.log("products wishlist", products)
+    //console.log("products wishlist", products)
     return (
         <div className="pt-20 pb-28">
             <div className="flex md:justify-between justify-evenly items-center md:mx-32">
@@ -25,8 +25,8 @@ const Wishlists = () => {
             </div>
 
             <div className="flex md:justify-between justify-evenly gap-5 md:mx-20 py-24">
-                <div className="flex text-[#DB4444] items-center gap-3 font-semibold">
-                    <div className="bg-[#DB4444] rounded py-5 px-2"></div>
+                <div className="flex text-red-700 items-center gap-3 font-semibold">
+                    <div className="bg-red-600 rounded py-5 px-2"></div>
                     Just For You
                 </div>
                 <button className="py-3 px-12 text-black dark:border-white dark:text-white poppins text-base font-medium rounded border-2">See All</button>

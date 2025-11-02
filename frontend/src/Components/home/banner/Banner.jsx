@@ -17,10 +17,10 @@ const categories = [
 const Banner = () => {
     return (
         <div className="md:flex justify-center gap-10 items-center">
-            <div className="border-r px-5 pt-16">
+            <div className="border-r md:block hidden px-5 pt-16">
                 <CategoriesList/>
             </div>
-            <div className="mt-10 border">
+            <div className="md:mt-10 border">
                 <BannerContent/>
             </div>
         </div>
@@ -37,7 +37,13 @@ const CategoriesList = () => {
                 key={index}
                 className={`flex items-center ${category.hasIcon ? "justify-between" : ""}`}
                 >
-                <a href="#">{category.name}</a>
+                <button 
+                    type="button"
+                    className="text-black dark:text-white text-base poppins font-normal hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer bg-transparent border-none p-0"
+                    aria-label={`Browse ${category.name} category`}
+                >
+                    {category.name}
+                </button>
                 {category.hasIcon && <MdKeyboardArrowRight className="text-xl" />}
             </li>
         ))}
@@ -55,6 +61,8 @@ const BannerContent = () => {
                         src="https://res.cloudinary.com/dksiicemx/image/upload/v1729410233/apple-logo_uvcfq8.png"
                         alt="Apple iPhone 14 Series logo"
                         className="w-12 h-12 object-contain"
+                        width={48}
+                        height={48}
                     />
                     <span className="text-white poppins text-base font-normal">
                         iPhone 14 Series
@@ -75,6 +83,8 @@ const BannerContent = () => {
                     src="https://res.cloudinary.com/dksiicemx/image/upload/v1729410063/banner_uln8mz.png"
                     alt="iPhone 14 Series promotional banner showing smartphone with discount offer"
                     className="w-full max-w-md h-auto object-contain md:max-w-lg lg:max-w-xl"
+                    width={600}
+                    height={400}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
             </div>

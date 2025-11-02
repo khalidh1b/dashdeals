@@ -9,7 +9,7 @@ const ExploreOurProducts = () => {
 
     return (
         <div>
-            <div className="flex text-[#DB4444] items-center gap-3 md:ml-36 font-semibold pt-20"><div className="bg-[#DB4444] rounded py-5 px-2"></div>Our Products</div>
+            <div className="flex text-red-700 items-center gap-3 md:ml-36 font-semibold pt-20"><div className="bg-red-600 rounded py-5 px-2"></div>Our Products</div>
 
             <div className="flex items-center justify-between md:mx-36 pb-10">
                 <div>
@@ -31,7 +31,7 @@ const ExploreOurProducts = () => {
             </div>
 
             <div className="flex justify-center pt-16">
-                <button className="text-white bg-[#DB4444] rounded py-3 px-12">View All Products</button>
+                <button className="text-white bg-red-600 hover:bg-red-700 rounded py-3 px-12 transition-colors">View All Products</button>
             </div>
 
         </div>

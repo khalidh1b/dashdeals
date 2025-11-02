@@ -1,26 +1,71 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from "react-router-dom";
 import router from '@/router/router';
-import AuthProvider from '@/app/providers/auth-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import LoadingSkeleton from '@/components/common/skeletons/loading-skeleton';
 
-// Import Stripe components normally for now
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+// Initialize performance monitoring
+// import { initializePerformanceMonitoring, scheduleIdleWork } from '@/shared/utils/performance-monitor';
+// import { initializePreloading } from '@/shared/utils/component-preloader';
+// import { initializeServiceWorker } from '@/shared/utils/service-worker';
 
-const queryClient = new QueryClient();
-const stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK);
+// Optimized QueryClient with better defaults
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
+      retry: 1,
+      refetchOnWindowFocus: false,
+      suspense: true,
+    },
+    mutations: {
+      retry: 1,
+    },
+  },
+});
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-        <AuthProvider>
-          <QueryClientProvider client={queryClient}>
-                <Elements stripe={stripePromise}>                  
-                  <RouterProvider router={router} />
-                </Elements>
-          </QueryClientProvider>
-        </AuthProvider>
-  </React.StrictMode>,
-);
+// Lazy load AuthProvider to defer Firebase initialization
+const AuthProvider = React.lazy(() => import('@/app/providers/auth-provider'));
+
+// Initialize performance tools with delay to avoid blocking initial render
+// const initializePerformanceTools = () => {
+//   scheduleIdleWork(() => {
+//     initializePerformanceMonitoring();
+//     initializePreloading();
+//     initializeServiceWorker();
+//   }, { timeout: 1000 });
+// };
+
+// Initialize non-critical tools
+// if(import.meta.env.VITE_PERFORMANCE_MONITOR === 'true') {
+//   initializePerformanceTools();
+// };
+
+const App = () => {
+  return (
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<LoadingSkeleton />}>
+          <AuthProvider>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <RouterProvider router={router} />
+            </Suspense>
+          </AuthProvider>
+        </Suspense>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+};
+
+// Use requestIdleCallback for better initial paint
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => {
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  }, { timeout: 100 });
+} else {
+  // Fallback for browsers without requestIdleCallback
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+}

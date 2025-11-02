@@ -20,6 +20,7 @@ export const GoogleAuthButton = ({ label, loading, onClickFn }) => {
 };
 
 GoogleAuthButton.propTypes = {
-    handleGoogleSignIn: PropTypes.func,
-    loading: PropTypes.bool
+    label: PropTypes.string.isRequired,
+    loading: PropTypes.bool,
+    onClickFn: PropTypes.func.isRequired
 };
