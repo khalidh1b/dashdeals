@@ -1,5 +1,6 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
+import PropTypes from 'prop-types';
 
 let stripePromise = null;
 let stripeLoading = false;
@@ -23,7 +24,7 @@ const loadStripeOptimized = async () => {
   try {
     const { loadStripe } = await import('@stripe/stripe-js');
     
-    stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK, {
+    stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK, {
       betas: [],
       __stripeJsRef: null,
       stripeAccount: null,
@@ -141,3 +142,7 @@ export const preloadStripe = () => {
 };
 
 export default StripeElementsWrapper;
+
+StripeElementsWrapper.propTypes = {
+  children: PropTypes.node.isRequired
+};

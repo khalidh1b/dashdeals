@@ -19,54 +19,46 @@ export default defineConfig({
     }
   },
   build: {
-    chunkSizeWarningLimit: 500,
+    chunkSizeWarningLimit: 1000,
     target: 'esnext',
     rollupOptions: {
       output: {
 
         // Optimize chunk naming for better caching
-        chunkFileNames: (chunkInfo) => {
-          const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/').pop() : 'chunk';
-          return `assets/[name]-[hash].js`;
+        chunkFileNames: () => {
+            return `assets/[name]-[hash].js`;
         },
         manualChunks: function(id) {
           if (!id) return
           
-          // Core React libraries - keep them separate for better caching
-          if (id.includes('react') || id.includes('react-dom')) {
-            return 'react-core'
-          }
-          
-          // Router chunk
+          // Router chunk - check before general react to avoid conflicts
           if (id.includes('react-router-dom')) {
-            return 'router'
+            return 'router-vendor'
           }
           
-          // Query/state management
+          // Query/state management - check before general react to avoid conflicts
           if (id.includes('@tanstack/react-query')) {
-            return 'query'
+            return 'query-vendor'
           }
           
           // Payment - only load when needed
           if (id.includes('@stripe')) {
-            return 'stripe'
+            return 'stripe-vendor'
+          }
+          
+          // UI components library - check before general react to avoid conflicts
+          if (id.includes('@radix-ui')) {
+            return 'ui-vendor'
+          }
+          
+          // Core React libraries - keep them separate for better caching
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'react-vendor'
           }
           
           // Firebase - split into smaller chunks for better loading
           if (id.includes('firebase')) {
-            if (id.includes('auth')) return 'firebase-auth'
-            if (id.includes('app')) return 'firebase-app'
-            if (id.includes('firestore')) return 'firebase-firestore'
-            if (id.includes('storage')) return 'firebase-storage'
-            return 'firebase-other'
-          }
-          
-          // UI components library - split by functionality
-          if (id.includes('@radix-ui')) {
-            if (id.includes('dialog') || id.includes('alert-dialog')) return 'ui-dialogs'
-            if (id.includes('dropdown-menu')) return 'ui-dropdowns'
-            if (id.includes('select')) return 'ui-selects'
-            return 'ui-radix'
+            return 'firebase-vendor'
           }
           
           // Icons - separate chunk as they can be large
@@ -109,7 +101,7 @@ export default defineConfig({
             id.includes('match-sorter') ||
             id.includes('prop-types')
           ) {
-            return 'utils'
+            return 'utils-vendor'
           }
           
           // Development tools
@@ -184,4 +176,4 @@ export default defineConfig({
       'firebase/app'
     ]
   }
-})
+});

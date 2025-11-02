@@ -9,12 +9,12 @@ const useHandleCheckout = () => {
     const [productDetails, setProductDetails] = useState([]);
     const [payment_method, setPaymentMethod] = useState();
     const axiosSecure = useAxiosSecure();
-    const stripePromise = loadStripe(import.meta.env.VITE_Stripe_PK, {
+    const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK, {
         locale: 'auto'
     });
     const [orderPlacing, setOrderPlacing] = useState(false);
 
-    //console.log(import.meta.env.VITE_Stripe_PK);
+    //console.log(import.meta.env.VITE_STRIPE_PK);
     const isFirstRender = useRef(true);
     
     useEffect(() => {
@@ -27,26 +27,18 @@ const useHandleCheckout = () => {
 
     useEffect(() => {
         if (cartData && pandey) {
-        const details = Object.entries(pandey).map(([productId, subtotal]) => {
-            const product = cartData.find(p => p._id === productId);
-            return {
-                id: productId, 
-                product_title: product?.product_title || 'Unknown Product',
-                product_image: product?.product_image || '',
-                price: subtotal
-            };
-        });
-        setProductDetails(details);
+            const details = Object.entries(pandey).map(([productId, subtotal]) => {
+                const product = cartData.find(p => p._id === productId);
+                return {
+                    id: productId, 
+                    product_title: product?.product_title || 'Unknown Product',
+                    product_image: product?.product_image || '',
+                    price: subtotal
+                };
+            });
+            setProductDetails(details);
         }
     }, [cartData, pandey]);
-
-    let path = '/bankormfs';
-    if(payment_method === 'cashondelivery') {
-        path = '/cashondelivery';
-    }
-    else if(payment_method === 'bankormfs') {
-        path = '/bankormfs';
-    }
     
     const bankOrMFS = () => {
         setPaymentMethod('bankormfs');

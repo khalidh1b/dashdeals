@@ -44,7 +44,7 @@ const useHandleCreatePayment = () => {
 
             handleCreatePayment();
         }
-    }, [axiosSecure, cartSubtotal]);
+    }, [axiosSecure, cartSubtotal, cartData, user?.email]);
 };
 
 export default useHandleCreatePayment;

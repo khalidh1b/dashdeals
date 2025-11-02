@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 export const Image = ({ src, alt, className, containerClassName, desiredWidth, desiredHeight, ...props }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -38,4 +39,13 @@ export const Image = ({ src, alt, className, containerClassName, desiredWidth, d
             )}
         </div>
     );
+};
+
+Image.propTypes = {
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    containerClassName: PropTypes.string,
+    desiredWidth: PropTypes.number,
+    desiredHeight: PropTypes.number
 };

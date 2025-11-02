@@ -20,7 +20,6 @@ const TwoFactorAuth = () => {
     const [is2FAEnabled, setIs2FAEnabled] = useState(false);
     const [setupStep, setSetupStep] = useState("method");
     const [selectedMethod, setSelectedMethod] = useState("");
-    const [verificationCode, setVerificationCode] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [qrCode, setQrCode] = useState("");
     const [otp, setOtp] = useState("");
@@ -76,15 +75,13 @@ const TwoFactorAuth = () => {
         verifyTotp();
         const save2FaStats = async () => {
             const status2Fa = { status2Fa: true };
-            const save2FaStat = await axiosSecure.patch(`/auth/save2fa-status/${user?.email}`, status2Fa);
-            //console.log(save2FaStat);
+            await axiosSecure.patch(`/auth/save2fa-status/${user?.email}`, status2Fa);
         }
         save2FaStats();
     };
     
     const handleCancel = () => {
         setSetupStep("method")
-        setVerificationCode("")
     };
 
     const {data: status2Fa } = useQuery({
@@ -247,7 +244,7 @@ const AuthenticatorApp = ({
     setSetupStep, 
     handleCancel, 
     qrCode, 
-    setOtp 
+    // setOtp 
 }) => {
     return (
         <div className="space-y-4">
@@ -274,11 +271,9 @@ const AuthenticatorApp = ({
     )
 };
 
-const SmsVerification = ({ setSetupStep, handleCancel }) => {
+    const SmsVerification = ({  handleCancel }) => {
     const [phone, setPhone] = useState("");
-    const [otp, setOtp] = useState("");
-    const [confirmationResult, setConfirmationResult] = useState(null);
-    // const auth = getAuth();
+    const [, setConfirmationResult] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const sendOtp = async () => {
@@ -406,4 +401,49 @@ const Complete2FVerify = ({ selectedMethod }) => {
                 </div>
             </div>
     )
+};
+
+// PropTypes definitions
+Header.propTypes = {
+    is2FAEnabled: PropTypes.bool.isRequired,
+    handleToggle2FA: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    setupStep: PropTypes.string.isRequired
+};
+
+Select2FA.propTypes = {
+    handleSelectMethod: PropTypes.func.isRequired
+};
+
+Select2faCard.propTypes = {
+    icon: PropTypes.elementType.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
+};
+
+AuthenticatorApp.propTypes = {
+    setSetupStep: PropTypes.func.isRequired,
+    handleCancel: PropTypes.func.isRequired,
+    qrCode: PropTypes.string.isRequired,
+    setOtp: PropTypes.func
+};
+
+SmsVerification.propTypes = {
+    setSetupStep: PropTypes.func.isRequired,
+    handleCancel: PropTypes.func.isRequired
+};
+
+TwoFaVerify.propTypes = {
+    selectedMethod: PropTypes.string.isRequired,
+    handleVerifyCode: PropTypes.func.isRequired,
+    otp: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    handleCancel: PropTypes.func.isRequired,
+    setOtp: PropTypes.func.isRequired
+};
+
+Complete2FVerify.propTypes = {
+    selectedMethod: PropTypes.string.isRequired
 };

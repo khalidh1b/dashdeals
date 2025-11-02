@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 import './style.css';
 
 export const AuthFooter = ({ text, linkText, linkTo }) => {
@@ -14,4 +15,10 @@ export const AuthFooter = ({ text, linkText, linkTo }) => {
             </Link>
         </div>
     );
+};
+
+AuthFooter.propTypes = {
+    text: PropTypes.string.isRequired,
+    linkText: PropTypes.string.isRequired,
+    linkTo: PropTypes.string.isRequired
 };

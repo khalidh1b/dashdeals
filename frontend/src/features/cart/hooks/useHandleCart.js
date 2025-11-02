@@ -13,10 +13,10 @@ const useHandleCart = () => {
     const [, refetchCart] = useCart();
 
     const handleCart = async (product) => {
-        if(!user) {
+        if(!firebaseUser) {
             navigate('/login');
             return;
-        };
+        }
         
         const { product_title } = product;
         const _id = null;

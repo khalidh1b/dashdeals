@@ -15,14 +15,13 @@ const ProfileMenu = () => {
 
     const handleLogout = () => {
         logOut()
-        .then((result) => {
+        .then(() => {
             //console.log(result);
         })
-        .catch((error) => {
+        .catch(() => {
             //console.log(error);
         })
     };
-    //console.log(user);
     
     return (
         <>

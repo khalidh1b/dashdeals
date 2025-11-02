@@ -1,7 +1,6 @@
-import { createContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useAxiosPublic from '@/shared/hooks//useAxiosPublic.js';
-import { scheduleIdleWork } from '@/shared/utils/performance-monitor';
 
 export const AuthContext = createContext(null);
 
@@ -154,10 +153,10 @@ const AuthProvider = ({children}) => {
         const auth = await getFirebaseAuth();
         const { signOut } = await import('firebase/auth');
         return signOut(auth)
-        .then((result) => {
+        .then(() => {
             //console.log(result);
         })
-        .catch((error) => {
+        .catch(() => {
             //console.log(error);
         })
     }

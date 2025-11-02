@@ -1,5 +1,6 @@
 import './style.css';
 import { Image } from '@/components/common/image/image';
+import PropTypes from 'prop-types';
 
 export const AuthBanner = ({ altText }) => {
     return (
@@ -14,4 +15,8 @@ export const AuthBanner = ({ altText }) => {
             </div>
         </>
     )
+};
+
+AuthBanner.propTypes = {
+    altText: PropTypes.string.isRequired
 };

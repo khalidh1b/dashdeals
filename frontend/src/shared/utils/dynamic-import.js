@@ -4,11 +4,14 @@ import LoadingSkeleton from '@/components/common/skeletons/loading-skeleton';
 export const dynamicImport = (importFunc, fallback = <LoadingSkeleton />) => {
   const LazyComponent = React.lazy(importFunc);
   
-  return (props) => (
+  const ComponentWithDisplayName = (props) => (
     <Suspense fallback={fallback}>
       <LazyComponent {...props} />
     </Suspense>
   );
+  
+  ComponentWithDisplayName.displayName = 'DynamicImport';
+  return ComponentWithDisplayName;
 };
 
 export const createLazyComponent = (importPath, fallback) => {

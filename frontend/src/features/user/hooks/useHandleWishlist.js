@@ -14,7 +14,7 @@ const useHandleWishlist = (product) => {
         if(!user) {
             navigate('/login');
             return;
-        };
+        }
 
         const wishlisted = true;
         const productId = product._id
@@ -52,7 +52,7 @@ const useHandleWishlist = (product) => {
             //console.log(error);
             if(error.message === 'No token found') {
                 navigate('/login');
-            };
+            }
         }
     }
     return handleWishlist;

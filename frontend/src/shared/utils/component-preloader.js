@@ -86,7 +86,7 @@ export class ComponentPreloader {
       preloadedComponents: Array.from(this.preloadedComponents)
     };
   }
-};
+}
 
 export const componentPreloader = new ComponentPreloader();
 

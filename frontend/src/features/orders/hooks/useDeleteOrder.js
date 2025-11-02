@@ -32,7 +32,7 @@ const useDeleteOrder = (setLoadingProducts, refetch) => {
                     });
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 //console.log(error);
             })
             setLoadingProducts((prevState) => ({

@@ -39,7 +39,7 @@ const useSignIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-            };
+            }
         } catch (error) {
             console.error(error);
             Swal.fire({
@@ -67,7 +67,7 @@ const useSignIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-            };
+            }
         } catch (error) {
             console.error(error);
             Swal.fire({
