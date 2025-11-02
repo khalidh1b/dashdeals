@@ -10,7 +10,7 @@ const Coupon = () => {
                 type="text"
                 placeholder="Coupon Code"
             />
-            <button className="bg-[#DB4444] py-3 px-10 md:ml-3 md:mt-0 mt-3 rounded text-white" type="submit">
+            <button className="bg-red-500 hover:bg-red-600 py-3 px-10 md:ml-3 md:mt-0 mt-3 rounded text-white transition-colors" type="submit">
                 Apply Coupon
             </button>
         </div>
