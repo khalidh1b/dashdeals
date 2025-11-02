@@ -1,5 +1,5 @@
 import { getPaymentSuccessParams } from "@/lib/getPaymentSuccessParams";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CheckCircle2, ChevronLeft, ShoppingBag } from "lucide-react";
 import PropTypes from 'prop-types';
 
@@ -14,7 +14,7 @@ const PaymentSuccess = () => {
 
     const location = useLocation();
     const sessionId = new URLSearchParams(location.search).get('session_id');
-    console.log(sessionId);
+    //console.log(sessionId);
 
     return (
         <div className="min-h-screen dark:bg-[#000000] bg-gray-50 flex items-center justify-center p-4">
@@ -69,12 +69,12 @@ const PaymentSuccessFooter = () => {
   return (
     <CardFooter className="flex flex-col space-y-2">
       <Button asChild className="w-full">
-        <Link to="/orders">
+        <Link to="/myorders">
           <ShoppingBag className="mr-2 h-4 w-4" />
           View Order Details
         </Link>
       </Button>
-      <Button variant="outline" asChild className="w-full">
+      <Button asChild className="w-full">
         <Link to="/">
           <ChevronLeft className="mr-2 h-4 w-4" />
           Return to Shop
