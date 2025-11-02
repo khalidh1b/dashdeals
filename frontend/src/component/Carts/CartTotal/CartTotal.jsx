@@ -1,5 +1,5 @@
 import CartCheckoutButton from "./CartCheckoutButton";
-import CartSubtotal from "./Cartsubtotal";
+import CartSubtotal from "./CartSubtotal";
 import PropTypes from 'prop-types';
 import '@/component/Carts/style.css';
 
