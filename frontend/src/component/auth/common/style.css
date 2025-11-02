@@ -1,6 +1,6 @@
 @reference "@/index.css";
 
-@layer components {
+@layer component {
   .auth-banner-img {
     @apply bg-[#CBE4E8] md:block hidden pt-10 w-1/2;
   }

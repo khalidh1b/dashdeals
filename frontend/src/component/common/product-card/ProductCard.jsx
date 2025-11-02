@@ -4,7 +4,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { RiDeleteBinLine } from "react-icons/ri";
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 export const ProductCard = ({ 
     _id,

@@ -1,12 +1,12 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/component/ui/dropdown-menu";
 import { Settings, ShoppingBag, XCircle, Star, Moon, Sun, LogOut, LogIn } from "lucide-react";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/app/providers/auth-provider";
 import { Link } from "react-router-dom";
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import { Label } from '@/component/ui/label';
+import { Switch } from '@/component/ui/switch';
 import useToggleTheme from "@/shared/hooks/useToggleTheme";
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const ProfileMenu = () => {
     const { user, logOut } = useContext(AuthContext);

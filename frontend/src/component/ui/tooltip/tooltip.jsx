@@ -3,7 +3,7 @@ import {
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-  } from "@/components/ui/tooltip";
+  } from "@/component/ui/tooltip";
 import PropTypes from 'prop-types';
 
 export const ToolTip = ({ trigger, element }) => {

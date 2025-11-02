@@ -1,6 +1,6 @@
 @reference "@/index.css";
 
-@layer components {
+@layer component {
     .cart-table-header {
         @apply flex justify-between border md:mx-32 py-5 px-5 rounded shadow-md text-base font-normal
     }

@@ -1,5 +1,5 @@
 import './style.css';
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 import PropTypes from 'prop-types';
 
 export const AuthBanner = ({ altText }) => {

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { CheckCircle2, ChevronLeft, ShoppingBag } from "lucide-react";
 import PropTypes from 'prop-types';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/component/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/component/ui/card";
 
 const PaymentSuccess = () => {
     const { 

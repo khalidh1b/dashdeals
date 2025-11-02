@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { AlertCircle, ArrowLeft, RefreshCw, ShoppingCart } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/component/ui/alert";
+import { Button } from "@/component/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/component/ui/card";
 
 const PaymentCanceled = () => {
     return (

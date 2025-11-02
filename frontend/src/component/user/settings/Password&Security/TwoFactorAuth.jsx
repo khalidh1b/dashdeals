@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/component/ui/card";
+import { Button } from "@/component/ui/button";
+import { Switch } from "@/component/ui/switch";
+import { Label } from "@/component/ui/label";
+import { Input } from "@/component/ui/input";
 import { AlertCircleIcon, SmartphoneIcon, MailIcon, CheckIcon, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import PropTypes from 'prop-types';
@@ -12,7 +12,7 @@ import useAuth from "@/features/auth/hooks/useAuth";
 import { app} from "@/app/config/firebase/firebase.config";
 import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from "firebase/auth";
 import { useQuery } from '@tanstack/react-query';
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const auth = getAuth(app);
 

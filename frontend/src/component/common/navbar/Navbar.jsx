@@ -2,7 +2,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import ProfileMenu from "@/components/user/profile-menu/ProfileMenu";
+import ProfileMenu from "@/component/user/profile-menu/ProfileMenu";
 import useCart from '@/features/cart/hooks/useCart.js';
 import PropTypes from 'prop-types';
 

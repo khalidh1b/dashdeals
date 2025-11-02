@@ -1,9 +1,9 @@
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import Product from "./Product";
 import Countdown from 'react-countdown';
-import renderer from '@/components/home/sale-count-down/SaleCountDown';
+import renderer from '@/component/home/sale-count-down/SaleCountDown';
 import PropTypes from 'prop-types';
-import { ProductCardSkeleton } from '@/components/common/skeletons/ProductCardSkeleton.jsx';
+import { ProductCardSkeleton } from '@/component/common/skeletons/ProductCardSkeleton.jsx';
 import useFetchFlashSalesItems from "@/features/products/hooks/useFetchFlashSalesItems.js";
 
 const AllProducts = () => {

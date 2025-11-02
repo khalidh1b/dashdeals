@@ -1,6 +1,6 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const categories = [
     { name: "Womans Fashion", hasIcon: true },

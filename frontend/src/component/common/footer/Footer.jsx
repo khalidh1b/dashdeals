@@ -3,7 +3,7 @@ import { FaInstagram, FaLinkedinIn, FaRegCopyright } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
 import PropTypes from "prop-types";
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const footerSections = [
     {

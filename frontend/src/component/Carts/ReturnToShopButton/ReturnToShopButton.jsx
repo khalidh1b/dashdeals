@@ -1,4 +1,4 @@
-import '@/components/carts/style.css';
+import '@/component/carts/style.css';
 import { Link } from 'react-router-dom';
 
 const ReturnToShopButton = () => {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import PassResetForm from "@/components/auth/pass-reset-form/PassResetForm";
+import PassResetForm from "@/component/auth/pass-reset-form/PassResetForm";
 import './style.css';
 
 export const AuthForm = ({ onSubmitFn, loading, submitText, fields, isLoginForm }) => {

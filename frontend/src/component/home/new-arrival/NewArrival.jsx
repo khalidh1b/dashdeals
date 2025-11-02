@@ -1,6 +1,6 @@
 import featuredItems from './featuredItems.json';
 import PropTypes from 'prop-types';
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const NewArrival = () => {
     return (

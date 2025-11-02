@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import useHandleCart from "@/features/cart/hooks/useHandleCart.js";
 import useHandleWishlist from "@/features/user/hooks/useHandleWishlist.js";
-import { ProductCard } from "@/components/common/product-card/ProductCard.jsx";
+import { ProductCard } from "@/component/common/product-card/ProductCard.jsx";
 
 const OurProduct = ({product}) => {
     const { product_image, product_title, main_price, rating, user_rating_count, discount_price, _id} = product;

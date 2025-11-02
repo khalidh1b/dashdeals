@@ -1,7 +1,7 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import OurProduct from "@/components/products/explore-our-products/OurProduct";
-import { ProductCardSkeleton } from '@/components/common/skeletons/ProductCardSkeleton.jsx';
+import OurProduct from "@/component/products/explore-our-products/OurProduct";
+import { ProductCardSkeleton } from '@/component/common/skeletons/ProductCardSkeleton.jsx';
 import useFetchExploreOurProducts from "@/features/products/hooks/useFetchExploreOurProducts.js";
 
 const ExploreOurProducts = () => {

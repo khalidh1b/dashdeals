@@ -1,8 +1,8 @@
 import { Suspense, lazy } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LoadingSkeleton } from '@/components/common/skeletons/loading-skeleton';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/component/ui/tabs";
+import { LoadingSkeleton } from '@/component/common/skeletons/loading-skeleton';
 
-// Lazy load tab components
+// Lazy load tab component
 const ChangePassword = lazy(() => import("./ChangePassword"));
 const TwoFactorAuth = lazy(() => import("./TwoFactorAuth"));
 const LogActivity = lazy(() => import("./LogActivity"));

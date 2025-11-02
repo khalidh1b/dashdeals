@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Button } from "@/component/ui/button";
+import { Input } from "@/component/ui/input";
+import { Label } from "@/component/ui/label";
+import { Textarea } from "@/component/ui/textarea";
+import { Avatar, AvatarFallback, AvatarImage } from "@/component/ui/avatar"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/component/ui/card";
 import { User, Mail, Phone, MapPin, Loader2 } from "lucide-react";
 import useAuth from '@/features/auth/hooks/useAuth';
 import { useForm } from 'react-hook-form';

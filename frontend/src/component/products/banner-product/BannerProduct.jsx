@@ -1,6 +1,6 @@
 import Countdown from 'react-countdown';
-import renderer from '@/components/products/banner-product-countdown/BannerProductCountdown';
-import { Image } from '@/components/common/image/image'
+import renderer from '@/component/products/banner-product-countdown/BannerProductCountdown';
+import { Image } from '@/component/common/image/image'
 
 const BannerProduct = () => {
     const endTime = Date.now() + 343196000;

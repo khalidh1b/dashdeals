@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/component/ui/card";
+import { Button } from "@/component/ui/button";
+import { Input } from "@/component/ui/input";
+import { Label } from "@/component/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import usePasswordChange from "@/features/auth/hooks/usePasswordChange";
