@@ -1,6 +1,6 @@
 @reference "@/index.css";
 
-@layer components {
+@layer component {
     .checkout-container {
         @apply md:flex items-center justify-center gap-28 py-40
     }

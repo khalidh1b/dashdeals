@@ -1,11 +1,11 @@
 import { Suspense, lazy } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { LoadingSkeleton } from '@/components/common/skeletons/loading-skeleton';
+import { LoadingSkeleton } from '@/component/common/skeletons/loading-skeleton';
 
-// Lazy load layout components
-const Navbar = lazy(() => import('@/components/common/navbar/Navbar'));
-const Footer = lazy(() => import('@/components/common/footer/Footer'));
+// Lazy load layout component
+const Navbar = lazy(() => import('@/component/common/navbar/Navbar'));
+const Footer = lazy(() => import('@/component/common/footer/Footer'));
 
 const Root = () => {
     return (

@@ -1,9 +1,9 @@
-import DashDealsPros from '@/components/home/dash-deals-pros/DashDealsPros';
-import OurStoryStats from '@/components/home/our-story-stats/OurStoryStats';
+import DashDealsPros from '@/component/home/dash-deals-pros/DashDealsPros';
+import OurStoryStats from '@/component/home/our-story-stats/OurStoryStats';
 import { CiTwitter } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const About = () => {
     

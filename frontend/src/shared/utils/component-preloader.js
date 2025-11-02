@@ -1,25 +1,25 @@
 export class ComponentPreloader {
   constructor() {
-    this.preloadedComponents = new Set();
+    this.preloadedcomponent = new Set();
     this.preloadQueue = [];
   }
 
   async preloadComponent(importFunc, name) {
-    if (this.preloadedComponents.has(name)) {
+    if (this.preloadedcomponent.has(name)) {
       return;
     }
 
     try {
       await importFunc();
-      this.preloadedComponents.add(name);
+      this.preloadedcomponent.add(name);
       //console.log(`Preloaded: ${name}`);
     } catch (error) {
       console.warn(`⚠️ Failed to preload: ${name}`, error);
     }
   }
 
-  preloadComponents(components) {
-    components.forEach(({ importFunc, name }) => {
+  preloadcomponent(component) {
+    component.forEach(({ importFunc, name }) => {
       this.preloadComponent(importFunc, name);
     });
   }
@@ -82,8 +82,8 @@ export class ComponentPreloader {
 
   getStats() {
     return {
-      preloadedCount: this.preloadedComponents.size,
-      preloadedComponents: Array.from(this.preloadedComponents)
+      preloadedCount: this.preloadedcomponent.size,
+      preloadedcomponent: Array.from(this.preloadedcomponent)
     };
   }
 }
@@ -103,10 +103,10 @@ export const componentImports = {
   
   productDetails: () => import('@/pages/ProductDetailsPage/ProductDetailsPage'),
   
-  paymentSuccess: () => import('@/components/payment/payment-success/PaymentSuccess'),
-  paymentCancel: () => import('@/components/payment/payment-canceled/PaymentCanceled'),
+  paymentSuccess: () => import('@/component/payment/payment-success/PaymentSuccess'),
+  paymentCancel: () => import('@/component/payment/payment-canceled/PaymentCanceled'),
   
-  stripeElements: () => import('@/components/payment/stripe-elements-wrapper'),
+  stripeElements: () => import('@/component/payment/stripe-elements-wrapper'),
 };
 
 
@@ -125,9 +125,9 @@ export const preloadForRoute = (routePath) => {
     '/paymentcancel': [componentImports.paymentCancel],
   };
 
-  const components = routePreloads[routePath] || [];
-  componentPreloader.preloadComponents(
-    components.map((importFunc, index) => ({
+  const component = routePreloads[routePath] || [];
+  componentPreloader.preloadcomponent(
+    component.map((importFunc, index) => ({
       importFunc,
       name: `${routePath}-${index}`
     }))
@@ -136,13 +136,13 @@ export const preloadForRoute = (routePath) => {
 
 
 export const initializePreloading = () => {
-  // Preload critical components
+  // Preload critical component
   componentPreloader.preloadOnIdle(componentImports.login, 'login');
   componentPreloader.preloadOnIdle(componentImports.cart, 'cart');
   
-  // Preload auth components
+  // Preload auth component
   const preloadAuth = () => {
-    componentPreloader.preloadComponents([
+    componentPreloader.preloadcomponent([
       { importFunc: componentImports.login, name: 'login-hover' },
       { importFunc: componentImports.signup, name: 'signup-hover' }
     ]);

@@ -46,7 +46,7 @@ export default defineConfig({
             return 'stripe-vendor'
           }
           
-          // UI components library - check before general react to avoid conflicts
+          // UI component library - check before general react to avoid conflicts
           if (id.includes('@radix-ui')) {
             return 'ui-vendor'
           }

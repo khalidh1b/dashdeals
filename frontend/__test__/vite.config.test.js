@@ -130,7 +130,7 @@ describe('Vite Configuration', () => {
     });
 
     test('should return undefined for project files', () => {
-      expect(manualChunks('/src/components/Button.js')).toBeUndefined();
+      expect(manualChunks('/src/component/Button.js')).toBeUndefined();
     });
 
     test('should handle edge cases safely', () => {

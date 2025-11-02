@@ -6,7 +6,7 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { TbTruckDelivery } from "react-icons/tb";
 import { GrPowerCycle } from "react-icons/gr";
 import { useLoaderData } from "react-router-dom";
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const ProductDetailsPage = () => {
     const [ratings, setRatings] = useState(20);

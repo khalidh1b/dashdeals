@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import PropTypes from 'prop-types';
 import OrderTableSleketon from '@/pages/MyOrders/order-table-skeleton/OrderTableSkeleton';
 import { Loader2 } from "lucide-react";
-import { Image } from '@/components/common/image/image';
+import { Image } from '@/component/common/image/image';
 
 const OrderTableBody = ({ 
     orders, 
