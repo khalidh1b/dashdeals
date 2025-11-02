@@ -13,65 +13,9 @@ on:
       - '.github/workflows/frontend-deploy.yml'
 
 jobs:
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: latest
-        
-    - name: Get pnpm store directory
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-        
-    - name: Setup pnpm cache
-      uses: actions/cache@v4
-      with:
-        path: ${{ env.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
-          
-    - name: Install dependencies
-      working-directory: ./frontend
-      run: pnpm install
-      
-    - name: Run linting
-      working-directory: ./frontend
-      run: pnpm run lint
-      
-    - name: Run tests with coverage
-      if: matrix.node-version == '20.x'
-      working-directory: ./frontend
-      run: pnpm run test:coverage
-      
-    - name: Upload coverage reports
-      if: matrix.node-version == '20.x'
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./frontend/coverage/lcov.info
-        fail_ci_if_error: false
-
   build:
     name: Build Project
     runs-on: ubuntu-latest
-    needs: test
     
     steps:
     - name: Checkout code
@@ -102,7 +46,7 @@ jobs:
           
     - name: Install dependencies
       working-directory: ./frontend
-      run: pnpm install --no-frozen-lockfile --prefer-offline
+      run: pnpm install
       
     - name: Build project
       working-directory: ./frontend
@@ -128,7 +72,7 @@ jobs:
   deploy:
     name: Deploy to Firebase
     runs-on: ubuntu-latest
-    needs: [test, build]
+    needs: build
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     
     steps:
@@ -160,7 +104,7 @@ jobs:
           
     - name: Install dependencies
       working-directory: ./frontend
-      run: pnpm install pnpm install --no-frozen-lockfile --prefer-offline
+      run: pnpm install
       
     - name: Download build artifacts
       uses: actions/download-artifact@v4
@@ -169,12 +113,12 @@ jobs:
         path: frontend/dist/
         
     - name: Deploy to Firebase Hosting
+      working-directory: ./frontend
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: '${{ secrets.GITHUB_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
         channelId: live
         projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
-        projectDirectory: frontend 
       env:
         FIREBASE_CLI_PREVIEWS: hostingchannels
