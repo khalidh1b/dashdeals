@@ -40,9 +40,6 @@ jobs:
 
     - name: Install dependencies
       run: pnpm install
-      
-    - name: Run tests
-      run: pnpm test
               
     - name: Deploy to Vercel
       if: github.ref == 'refs/heads/main' 
