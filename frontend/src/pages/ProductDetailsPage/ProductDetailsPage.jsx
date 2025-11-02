@@ -13,7 +13,7 @@ const ProductDetailsPage = () => {
     const data = useLoaderData();
     const {product_image, product_title, discount_price, rating, user_rating_count} = data;
     
-    // console.log(product_image);
+    // //console.log(product_image);
     return (
         <div>
 
@@ -61,8 +61,8 @@ const ProductDetailsPage = () => {
                                 onChange={setRatings}  
                                 isRequired
                             /> 
-                            <span className="text-gray-500 font-semibold text-[18px]">({user_rating_count} Reviews) | 
-                                <span className="text-[#0F6] poppins text-[14px] font-normal">In Stock</span>
+                            <span className="text-text-secondary font-semibold text-[18px]">({user_rating_count} Reviews) | 
+                                <span className="text-success-600 poppins text-[14px] font-normal">In Stock</span>
                             </span>
                     </div>
                     <p className="text-black dark:text-white text-xl font-normal">{discount_price}</p>
@@ -76,9 +76,9 @@ const ProductDetailsPage = () => {
                         <div className="flex items-center border">
                             <AiOutlineMinus className="text-[40px] border-r-2 py-1"/>
                             <span className="px-6">2</span>
-                            <AiOutlinePlus className="text-[37px] text-white bg-[#DB4444]"/>
+                            <AiOutlinePlus className="text-[37px] text-white bg-red-600"/>
                         </div>
-                        <button className="text-white bg-[#DB4444] py-2.5 px-12 rounded">Buy Now</button>
+                        <button className="text-white bg-red-600 hover:bg-red-700 py-2.5 px-12 rounded transition-colors">Buy Now</button>
                         <IoIosHeartEmpty className="text-[45px] px-2 py-2 border rounded border-gray-400"/>
                     </div>
 
@@ -104,8 +104,8 @@ const ProductDetailsPage = () => {
 
 
             <div className="flex justify-between gap-5 mx-20 md:py-24 py-6">
-                <div className="flex text-[#DB4444] items-center gap-3 font-semibold">
-                    <div className="bg-[#DB4444] rounded py-5 px-2"></div>
+                <div className="flex text-red-700 items-center gap-3 font-semibold">
+                    <div className="bg-red-600 rounded py-5 px-2"></div>
                     Related Item
                 </div>
             </div>
@@ -119,18 +119,18 @@ const ProductDetailsPage = () => {
                             src="https://i.postimg.cc/7PsTbfws/asus-gaming-laptop.png" 
                             alt="G92 Gamepad" 
                         />
-                        <span className="bg-[#DB4444] absolute top-5 left-4 text-white py-1 px-4 rounded poppins">-45%</span>
+                        <span className="bg-red-600 absolute top-5 left-4 text-white py-1 px-4 rounded poppins font-medium">-45%</span>
                         <IoEyeOutline className="bg-[#FFFFFF] absolute top-3 left-60 text-[45px] p-2.5 rounded-full"/>
                         <p className="bg-[#000000] absolute bottom-0 w-full text-base poppins font-medium text-[#FFFFFF] py-2.5 text-center rounded-b">Add To Cart</p>
                     </div>
                     <h4 className="text-[#000000] text-xl poppins font-semibold pt-3">ASUS FHD Gaming Laptop</h4>
                     <div className="flex gap-4 py-2">
-                        <h5 className="text-[#DB4444] text-xl font-medium">$129</h5>
-                        <span className="text-gray-500 font-medium line-through text-xl">$300</span>
+                        <h5 className="text-red-700 text-xl font-medium">$129</h5>
+                        <span className="text-text-muted font-medium line-through text-xl">$300</span>
                     </div>
                     <div className="flex gap-2 items-center">
                         <Rating style={{ maxWidth: 130 }} value={ratings} onChange={setRatings}  isRequired/> 
-                        <span className="text-gray-500 font-semibold text-[18px]">(42)</span>
+                        <span className="text-text-secondary font-semibold text-[18px]">(42)</span>
                     </div>
                 </div>
             </div>
