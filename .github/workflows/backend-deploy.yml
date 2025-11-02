@@ -25,7 +25,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4  
     
-    steps:
     - name: pnpm setup
       uses: pnpm/action-setup@v4  
       with:
