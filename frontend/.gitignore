@@ -26,3 +26,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+sw.js
+scripts
+src/shared/utils/performance-monitor.js
+src/shared/utils/service-worker.js
