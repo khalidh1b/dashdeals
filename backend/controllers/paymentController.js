@@ -1,8 +1,8 @@
 const { v4: uuidv4 } = require('uuid');
 const { saveOrderAndPayment } = require('../services/orderService.js');
-const stripe = require('stripe')(process.env.Stripe_Secret_Key);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-//console.log(process.env.Stripe_Secret_Key);
+//console.log(process.env.STRIPE_SECRET_KEY);
 
 exports.createPayment = async (req, res) => {
     //console.log('Creating payment session...', req.body);
