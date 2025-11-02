@@ -1,5 +1,4 @@
 export default {
-  preset: 'jest-preset-default',
   testEnvironment: 'jsdom',
   extensionsToTreatAsEsm: ['.js', '.jsx'],
   globals: {
@@ -13,7 +12,7 @@ export default {
   transformIgnorePatterns: [
     'node_modules/(?!(.*\\.mjs$))'
   ],
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
