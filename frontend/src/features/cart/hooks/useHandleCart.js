@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "@/shared/hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useCart from "@/features/cart/hooks/useCart";
+import { useQueryClient } from "@tanstack/react-query";
 
 const useHandleCart = () => {
-    const { user } = useContext(AuthContext);
+    const { user: firebaseUser } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
     const email = user?.email;
     const navigate = useNavigate();
     const [, refetch] = useCart();
+    const queryClient = useQueryClient();
+
 
     const handleCart = async (product) => {
         if(!user) {
@@ -34,6 +37,8 @@ const useHandleCart = () => {
                     timer: 2500
                 });
                 refetch();
+                queryClient.invalidateQueries({ queryKey: ["products", firebaseUser?.email] });
+
             }
             if(!res.data.insertedId) {
                 Swal.fire({
