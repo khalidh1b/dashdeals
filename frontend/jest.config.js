@@ -1,44 +1,32 @@
 export default {
-  // Use ES modules
-  preset: null,
-  testEnvironment: 'node',
-  
-  // Transform ES modules
-  transform: {},
-  
-  // Module file extensions
-  moduleFileExtensions: ['js', 'jsx', 'json'],
-  
-  // Test file patterns
-  testMatch: [
-    '**/__tests__/**/*.js',
-    '**/__test__/**/*.js',
-    '**/?(*.)+(spec|test).js'
+  preset: 'jest-preset-default',
+  testEnvironment: 'jsdom',
+  extensionsToTreatAsEsm: ['.js', '.jsx'],
+  globals: {
+    'ts-jest': {
+      useESM: true
+    }
+  },
+  transform: {
+    '^.+\\.(js|jsx)$': 'babel-jest'
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(.*\\.mjs$))'
   ],
-  
-  // Coverage configuration
-  collectCoverage: false,
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'html'],
-  
-  // Setup files
-  setupFilesAfterEnv: [],
-  
-  // Module name mapping for path aliases
-  moduleNameMapper: {
+  moduleNameMapping: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
-  
-  // Ignore patterns
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/dist/',
-    '/build/'
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
+  testMatch: [
+    '<rootDir>/__test__/**/*.(js|jsx)',
+    '<rootDir>/src/**/__tests__/**/*.(js|jsx)',
+    '<rootDir>/src/**/*.(test|spec).(js|jsx)'
   ],
-  
-  // Clear mocks between tests
-  clearMocks: true,
-  
-  // Verbose output
-  verbose: true
+  moduleFileExtensions: ['js', 'jsx', 'json'],
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx}',
+    '!src/index.js',
+    '!src/reportWebVitals.js',
+    '!src/setupTests.js'
+  ]
 };
