@@ -1,4 +1,4 @@
-import { Skeleton } from '@/component/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import React from 'react';
 
 const WishlistSkeleton = () => {

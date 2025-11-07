@@ -91,22 +91,22 @@ export class ComponentPreloader {
 export const componentPreloader = new ComponentPreloader();
 
 export const componentImports = {
-  login: () => import('@/pages/Login/Login'),
-  signup: () => import('@/pages/Signup/Signup'),
+  login: () => import('@/pages/login/Login'),
+  signup: () => import('@/pages/signup/Signup'),
   
-  cart: () => import('@/pages/Carts/Carts'),
-  checkout: () => import('@/pages/CheckOut/Checkout'),
-  wishlist: () => import('@/pages/Wishlist/Wishlists'),
+  cart: () => import('@/pages/carts/Carts'),
+  checkout: () => import('@/pages/checkout/Checkout'),
+  wishlist: () => import('@/pages/wishlist/Wishlists'),
   
-  profile: () => import('@/pages/Settings/Settings'),
-  orders: () => import('@/pages/MyOrders/MyOrders'),
+  profile: () => import('@/pages/settings/Settings'),
+  orders: () => import('@/pages/my-orders/my-orders'),
   
-  productDetails: () => import('@/pages/ProductDetailsPage/ProductDetailsPage'),
+  productDetails: () => import('@/pages/product-details-page/ProductDetailsPage'),
   
-  paymentSuccess: () => import('@/component/payment/payment-success/PaymentSuccess'),
-  paymentCancel: () => import('@/component/payment/payment-canceled/PaymentCanceled'),
+  paymentSuccess: () => import('@/components/payment/payment-success/PaymentSuccess'),
+  paymentCancel: () => import('@/components/payment/payment-canceled/PaymentCanceled'),
   
-  stripeElements: () => import('@/component/payment/stripe-elements-wrapper'),
+  stripeElements: () => import('@/components/payment/stripe-elements-wrapper'),
 };
 
 

@@ -2,36 +2,36 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import PrivateRoute from "@/router/private-route";
 
-import Root from "@/pages/Root/Root";
-import ErrorPage from "@/pages/ErrorPage/ErrorPage";
-import { LoadingSkeleton } from "@/component/common/skeletons/loading-skeleton";
-import { SettingSkeleton } from "@/component/user/settings/setting-skeleton/setting-skeleton.jsx";
+import Root from "@/pages/root/Root";
+import ErrorPage from "@/pages/error-page/ErrorPage";
+import { LoadingSkeleton } from "@/components/common/skeletons/loading-skeleton";
+import { SettingSkeleton } from "@/components/user/settings/setting-skeleton/setting-skeleton.jsx";
 
-import StripeElementsWrapper from "@/component/payment/stripe-elements-wrapper";
+import StripeElementsWrapper from "@/components/payment/stripe-elements-wrapper";
 
-const Navbar = lazy(() => import("@/component/common/navbar/Navbar"));
-const Footer = lazy(() => import("@/component/common/footer/Footer"));
-const HomePage = lazy(() => import("@/pages/HomePage/HomePage"));
-const Signup = lazy(() => import("@/pages/Signup/Signup"));
-const Login = lazy(() => import("@/pages/Login/Login"));
-const About = lazy(() => import("@/pages/About/About"));
-const Contact = lazy(() => import("@/pages/Contact/Contact"));
-const Checkout = lazy(() => import("@/pages/CheckOut/Checkout"));
-const Carts = lazy(() => import("@/pages/Carts/Carts"));
-const ProductDetailsPage = lazy(() => import("@/pages/ProductDetailsPage/ProductDetailsPage"));
-const CashOnDelivery = lazy(() => import("@/pages/CashOnDelivery/CashOnDelivery"));
-const PaymentSuccess = lazy(() => import("@/component/payment/payment-success/PaymentSuccess"));
-const PaymentCancel = lazy(() => import("@/component/payment/payment-canceled/PaymentCanceled"));
-const MyOrders = lazy(() => import("@/pages/MyOrders/MyOrders"));
-const Wishlists = lazy(() => import("@/pages/Wishlist/Wishlists"));
-const Settings = lazy(() => import("@/pages/Settings/Settings"));
-const Profile = lazy(() => import("@/component/user/settings/Profile/Profile"));
-const PasswordSecurity = lazy(() => import("@/component/user/settings/Password&Security/Password&Security"));
-const Appearance = lazy(() => import("@/component/user/settings/Appearance/Appearance"));
-const Notifications = lazy(() => import("@/component/user/settings/Notifications/Notifications"));
-const Display = lazy(() => import("@/component/user/settings/Display/Display"));
-const MyCancellations = lazy(() => import("@/pages/MyCancellations/MyCancellations"));
-const MyReviews = lazy(() => import("@/pages/MyReviews/MyReviews"));
+const Navbar = lazy(() => import("@/components/common/navbar/Navbar"));
+const Footer = lazy(() => import("@/components/common/footer/Footer"));
+const HomePage = lazy(() => import("@/pages/home-page/HomePage"));
+const Signup = lazy(() => import("@/pages/signup/Signup"));
+const Login = lazy(() => import("@/pages/login/Login"));
+const About = lazy(() => import("@/pages/about/About"));
+const Contact = lazy(() => import("@/pages/contact/Contact"));
+const Checkout = lazy(() => import("@/pages/checkout/Checkout"));
+const Carts = lazy(() => import("@/pages/carts/Carts"));
+const ProductDetailsPage = lazy(() => import("@/pages/product-details-page/ProductDetailsPage"));
+const CashOnDelivery = lazy(() => import("@/pages/cash-on-delivery/CashOnDelivery"));
+const PaymentSuccess = lazy(() => import("@/components/payment/payment-success/PaymentSuccess"));
+const PaymentCancel = lazy(() => import("@/components/payment/payment-canceled/PaymentCanceled"));
+const MyOrders = lazy(() => import("@/pages/my-orders/my-orders"));
+const Wishlists = lazy(() => import("@/pages/wishlist/Wishlists"));
+const Settings = lazy(() => import("@/pages/settings/Settings"));
+const Profile = lazy(() => import("@/components/user/settings/Profile/Profile"));
+const PasswordSecurity = lazy(() => import("@/components/user/settings/Password&Security/Password&Security"));
+const Appearance = lazy(() => import("@/components/user/settings/Appearance/Appearance"));
+const Notifications = lazy(() => import("@/components/user/settings/Notifications/Notifications"));
+const Display = lazy(() => import("@/components/user/settings/Display/Display"));
+const MyCancellations = lazy(() => import("@/pages/my-cancellations/MyCancellations"));
+const MyReviews = lazy(() => import("@/pages/my-reviews/MyReviews"));
 
 const Loadable = (Component, Fallback = <LoadingSkeleton />) => (
   <Suspense fallback={Fallback}>

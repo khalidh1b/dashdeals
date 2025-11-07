@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { LoadingSkeleton } from '@/component/common/skeletons/loading-skeleton';
+import { LoadingSkeleton } from '@/components/common/skeletons/loading-skeleton';
 
 export const dynamicImport = (importFunc, fallback = <LoadingSkeleton />) => {
   const LazyComponent = React.lazy(importFunc);

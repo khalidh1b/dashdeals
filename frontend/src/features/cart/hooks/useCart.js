@@ -4,19 +4,25 @@ import { useQuery } from "@tanstack/react-query";
 
 const useCart = () => {
     const axiosSecure = useAxiosSecure();
-    const { user } = useAuth();
+    const { user, loading: authLoading } = useAuth();
 
     const {data: carts=[], refetch} = useQuery({
         queryKey: ['carts', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users/userProductCarts/${user?.email}`, {
+            
+            // Double-check user email exists before making the call
+            if (!user?.email) {
+                return [];
+            }
+            
+            const res = await axiosSecure.get(`/users/userProductCarts/${user.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("dashdeals-access-token")}`,
                 },
             });
             return res?.data || [];
         },
-        enabled: !!user?.email && !!localStorage.getItem("dashdeals-access-token")
+        enabled: !authLoading && !!user?.email && !!localStorage.getItem("dashdeals-access-token")
     })
     return [carts, refetch];
 };
