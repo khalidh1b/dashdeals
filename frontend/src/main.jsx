@@ -4,7 +4,7 @@ import './index.css'
 import { RouterProvider } from "react-router-dom";
 import router from '@/router/router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { LoadingSkeleton } from '@/component/common/skeletons/loading-skeleton.jsx';
+import { LoadingSkeleton } from '@/components/common/skeletons/loading-skeleton';
 
 // Initialize performance monitoring
 // import { initializePerformanceMonitoring, scheduleIdleWork } from '@/shared/utils/performance-monitor';
