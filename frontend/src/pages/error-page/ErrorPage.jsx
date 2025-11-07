@@ -1,0 +1,24 @@
+import { Link } from 'react-router-dom';
+
+const ErrorPage = () => {
+    return (
+        <div>
+            {/* Simple header placeholder */}
+            <div className="h-16 bg-white border-b"></div>
+            
+            <p className='text-gray-300 pt-10 pl-10 md:pb-0 pb-4'>Home / <span className='text-[14px] text-black poppins font-normal'>404 Error</span></p>
+            <div className="flex flex-col justify-center items-center -h-screen pb-28">
+                <h1 className="md:text-[110px] text-[50px] text-black font-medium">404 Not Found</h1>
+                <p className='pb-16'>Your visited page not found. You may go home page.</p>
+                <Link to="/">
+                    <button className="text-white text-base poppins font-normal py-3 px-10 rounded bg-red-600 hover:bg-red-700 transition-colors">Back to home page</button>
+                </Link>
+            </div>
+            
+            {/* Simple footer placeholder */}
+            <div className="h-32 bg-gray-100 border-t mt-8"></div>
+        </div>
+    );
+};
+
+export default ErrorPage;

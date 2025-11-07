@@ -1,9 +1,9 @@
 import useHandleCart from "@/features/cart/hooks/useHandleCart";
 import useHandleDeleteWishlist from "@/features/user/hooks/useHandleDeleteWishlist";
 import useFetchWishlist from "@/features/user/hooks/useFetchWishlist";
-import Wishlist from "@/pages/Wishlist/Wishlist";
-import WishlistSkeleton from '@/pages/Wishlist/wishlist-skeleton/WishlistSkeleton';
-import { ProductCard } from "@/component/common/product-card/ProductCard";
+import Wishlist from "@/pages/wishlist/Wishlist";
+import WishlistSkeleton from '@/pages/wishlist/wishlist-skeleton/WishlistSkeleton';
+import { ProductCard } from "@/components/common/product-card/ProductCard";
 
 const Wishlists = () => {
     const [products, , isLoading] = useFetchWishlist();
