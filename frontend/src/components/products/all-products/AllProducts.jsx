@@ -44,8 +44,8 @@ const CountdownSection = ({ endTime }) => {
 const ArrowButtons = () => {
     return (
         <div className="md:flex hidden gap-2">
-            <FaArrowRightLong className="bg-[#F5F5F5] dark:bg-slate-500 text-4xl p-2.5 rounded-full" />
-            <FaArrowLeftLong className="bg-[#F5F5F5] dark:bg-slate-500 text-4xl p-2.5 rounded-full" />
+            <FaArrowRightLong className="bg-muted dark:bg-gray-700 text-4xl p-2.5 rounded-full" />
+            <FaArrowLeftLong className="bg-muted dark:bg-gray-700 text-4xl p-2.5 rounded-full" />
         </div>
     )
 };

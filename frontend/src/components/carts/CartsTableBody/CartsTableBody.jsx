@@ -1,24 +1,28 @@
 import { GiCancel } from "react-icons/gi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import PropTypes from 'prop-types';
 import CartsTableBodySkeleton from '@/components/carts/cart-table-body-skeleton/CartTableBodySkeleton';
 import "@/components/Carts/style.css";
-import { Image } from '@/components/common/image/image';
+import useProceedCheckout from "@/features/cart/hooks/useProceedCheckout";
+import useHandleDeleteCart from "@/features/cart/hooks/useHandleDeleteCart";
+import ProductImage from '@/components/carts/ProductImage/ProductImage';
 
-const CartsTableBody = ({ 
-    loading, 
-    products, 
-    handleDelete, 
-    quantities, 
-    quantityPlus, 
-    quantityMinus, 
-    subtotals 
-}) => {
+const CartsTableBody = () => {
+    const handleDelete = useHandleDeleteCart();
+    const { 
+        loading, 
+        products, 
+        quantities, 
+        quantityMinus, 
+        quantityPlus, 
+        subtotals 
+    } = useProceedCheckout();
+
+
     return (
         <>
             { loading ? <CartsTableBodySkeleton/> : products.map((product) => (
                 <div
-                    key={product._id}
+                    key={product?._id}
                     className="carts-table-body poppins"
                 >
                 <ProductImage handleDelete={handleDelete} product={product}/>
@@ -29,19 +33,19 @@ const CartsTableBody = ({
                 </p>
                 <div className="w-2/12 md:pl-10">
                     <div className="cart-table-quantity">
-                        <span>{quantities[product._id]}</span>
+                        <span>{quantities[product._id || product.id]}</span>
                         <div>
                             <IoIosArrowUp
-                                onClick={() => quantityPlus(product._id, quantities[product._id], product)}
+                                onClick={() => quantityPlus(product._id || product.id, quantities[product._id || product.id], product)}
                             />
                             <IoIosArrowDown
-                                onClick={() => quantityMinus(product._id, quantities[product._id], product)}
+                                onClick={() => quantityMinus(product._id || product.id, quantities[product._id || product.id], product)}
                             />
                         </div>
                     </div>
                 </div>
                 <p className="w-3/12 flex justify-end pr-3">
-                    ${subtotals[product._id]?.toFixed(2)}
+                    ${subtotals[product._id || product.id]?.toFixed(2)}
                 </p>
                 </div>
             ))}
@@ -51,37 +55,3 @@ const CartsTableBody = ({
 
 
 export default CartsTableBody;
-
-const ProductImage = ({ handleDelete, product }) => {
-    return (
-        <div className="cart-product-image">
-            <GiCancel 
-                onClick={() =>
-                    handleDelete(product._id, product.product_title)
-                }
-                className="cart-product-delete"
-            />
-            <Image
-                className="w-12 h-10"
-                src={product.product_image}
-                alt={product.product_title}
-            />
-            <span className="md:block hidden">{product.product_title}</span>
-        </div>
-    )
-};
-
-ProductImage.propTypes = {
-    handleDelete: PropTypes.func,
-    product: PropTypes.object
-};
-
-CartsTableBody.propTypes = {
-    loading: PropTypes.bool,
-    products: PropTypes.array,
-    handleDelete: PropTypes.func,
-    quantities: PropTypes.object,
-    quantityPlus: PropTypes.func,
-    quantityMinus: PropTypes.func,
-    subtotals: PropTypes.object
-}

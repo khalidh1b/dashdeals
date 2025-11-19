@@ -1,18 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-export const Image = ({ src, alt, className, containerClassName, desiredWidth, desiredHeight, ...props }) => {
+export const Image = ({ src, alt, className, containerClassName, desiredWidth, desiredHeight, fallbackSrc, ...props }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
+    const [currentSrc, setCurrentSrc] = useState(src);
 
-    const getCloudinaryTransformedUrl = (originalSrc, width, height) => {
-        if (!originalSrc || !width || !height) return originalSrc;
-        const parts = originalSrc.split('/upload/');
-        if (parts.length !== 2) return originalSrc;
-        return `${parts[0]}/upload/w_${width},h_${height},c_fill,g_auto,f_auto/` + parts[1];
+    // Update currentSrc when src prop changes
+    useEffect(() => {
+        // console.log('Image useEffect - src:', src, 'fallbackSrc:', fallbackSrc);
+        if (src) {
+            setCurrentSrc(src);
+            setHasError(false);
+            setIsLoading(true);
+        } else if (fallbackSrc) {
+            setCurrentSrc(fallbackSrc);
+            setHasError(false);
+            setIsLoading(true);
+        }
+    }, [src, fallbackSrc]);
+
+    // For now, disable Cloudinary transformation to debug
+    const transformedSrc = currentSrc;
+
+    const handleImageError = () => {
+        // console.log('Image error - currentSrc:', currentSrc, 'fallbackSrc:', fallbackSrc);
+        if (!hasError && fallbackSrc && currentSrc !== fallbackSrc) {
+            // Try fallback image first
+            setCurrentSrc(fallbackSrc);
+        } else {
+            // If fallback also fails or no fallback provided, show error state
+            setIsLoading(false);
+            setHasError(true);
+        }
     };
 
-    const transformedSrc = getCloudinaryTransformedUrl(src, desiredWidth, desiredHeight);
+    // Don't render anything if no valid src
+    if (!currentSrc && !fallbackSrc) {
+        return (
+            <div className={`relative ${containerClassName}`}>
+                <div className={`absolute inset-0 bg-gray-300 dark:bg-gray-600 rounded flex items-center justify-center ${className}`}>
+                    <span className="text-gray-500 dark:text-gray-400 text-sm">No image</span>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={`relative ${containerClassName}`}>
@@ -30,10 +62,7 @@ export const Image = ({ src, alt, className, containerClassName, desiredWidth, d
                     className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${className}`}
                     loading="lazy"
                     onLoad={() => setIsLoading(false)}
-                    onError={() => {
-                        setIsLoading(false);
-                        setHasError(true);
-                    }}
+                    onError={handleImageError}
                     {...props}
                 />
             )}
@@ -42,7 +71,7 @@ export const Image = ({ src, alt, className, containerClassName, desiredWidth, d
 };
 
 Image.propTypes = {
-    src: PropTypes.string.isRequired,
+    src: PropTypes.string,
     alt: PropTypes.string.isRequired,
     className: PropTypes.string,
     containerClassName: PropTypes.string,

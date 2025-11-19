@@ -4,7 +4,7 @@ export const ProductCardSkeleton = () => {
     return (
         <div className="mx-auto">
             <div className="relative">
-                <Skeleton className="bg-[#F5F5F5] w-[300px] h-[300px] rounded" />
+                <Skeleton className="bg-muted dark:bg-gray-800 w-[300px] h-[300px] rounded" />
                 <Skeleton className="absolute top-5 left-4 h-6 w-16 rounded" />
                 <Skeleton className="absolute top-20 left-60 h-12 w-12 rounded-full" />
                 <Skeleton className="absolute top-3 left-60 h-12 w-12 rounded-full" />
