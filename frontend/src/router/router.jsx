@@ -23,7 +23,7 @@ const CashOnDelivery = lazy(() => import("@/pages/cash-on-delivery/CashOnDeliver
 const PaymentSuccess = lazy(() => import("@/components/payment/payment-success/PaymentSuccess"));
 const PaymentCancel = lazy(() => import("@/components/payment/payment-canceled/PaymentCanceled"));
 const MyOrders = lazy(() => import("@/pages/my-orders/my-orders"));
-const Wishlists = lazy(() => import("@/pages/wishlist/Wishlists"));
+const Wishlists = lazy(() => import("@/pages/wishlists/Wishlists"));
 const Settings = lazy(() => import("@/pages/settings/Settings"));
 const Profile = lazy(() => import("@/components/user/settings/Profile/Profile"));
 const PasswordSecurity = lazy(() => import("@/components/user/settings/Password&Security/Password&Security"));
