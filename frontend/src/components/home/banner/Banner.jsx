@@ -31,7 +31,7 @@ export default Banner;
 
 const CategoriesList = () => {
     return (
-        <ul className="grid gap-4 text-black dark:text-white text-base poppins font-normal">
+        <ul className="grid gap-4 text-foreground dark:text-white text-base poppins font-normal">
         {categories.map((category, index) => (
             <li
                 key={index}
@@ -39,7 +39,7 @@ const CategoriesList = () => {
                 >
                 <button 
                     type="button"
-                    className="text-black dark:text-white text-base poppins font-normal hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer bg-transparent border-none p-0"
+                    className="text-foreground dark:text-white text-base poppins font-normal hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer bg-transparent border-none p-0"
                     aria-label={`Browse ${category.name} category`}
                 >
                     {category.name}
@@ -54,7 +54,7 @@ const CategoriesList = () => {
 
 const BannerContent = () => {
     return (
-        <div className="md:flex items-center gap-5 rounded bg-black pl-14 py-5">
+        <div className="md:flex items-center gap-5 rounded bg-foreground dark:bg-gray-900 pl-14 py-5">
             <div className="flex-1">
                 <div className="flex items-center gap-6">
                     <Image
