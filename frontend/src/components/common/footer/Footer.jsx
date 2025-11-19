@@ -45,22 +45,22 @@ const socialIcons = [
 const Footer = () => {
     return (
         <div>
-        <div className="bg-black md:flex justify-center gap-20 pt-20 pb-16">
+        <div className="bg-muted dark:bg-gray-700 md:flex justify-center gap-20 pt-20 pb-16">
           
           <div className="pl-5 md:pl-0">
-            <h4 className="text-2xl font-semibold text-gray-900">Exclusive</h4>
-            <h5 className="text-gray-900 text-xl pt-3 font-normal poppins">Subscribe</h5>
-            <p className="text-base text-gray-900 pt-5 pb-2 font-normal poppins">
+            <h4 className="text-2xl font-semibold text-foreground dark:text-white">Exclusive</h4>
+            <h5 className="text-foreground dark:text-white text-xl pt-3 font-normal poppins">Subscribe</h5>
+            <p className="text-base text-foreground dark:text-gray-300 pt-5 pb-2 font-normal poppins">
               Get 10% off your first order
             </p>
             <div className="md:flex relative">
               <input
-                className="py-2 pl-3 bg-black dark:bg-[#27272A] border border-gray-600 rounded text-white placeholder-gray-400 focus:outline-none focus:border-red-600"
+                className="py-2 pl-3 bg-muted dark:bg-gray-800 border border-border rounded text-foreground dark:text-white placeholder-muted-foreground dark:placeholder-gray-400 focus:outline-none focus:border-primary"
                 type="text"
                 placeholder="Enter your email"
                 aria-label="Email for newsletter subscription"
               />
-              <IoMdSend className="absolute text-white text-2xl md:right-3 right-36 top-2" />
+              <IoMdSend className="absolute text-foreground dark:text-white text-2xl md:right-3 right-36 top-2" />
             </div>
           </div>
   
@@ -69,8 +69,8 @@ const Footer = () => {
           ))}
   
           <div className="md:pl-0 md:mt-0 mt-5 pl-5">
-            <h4 className="text-xl font-medium text-gray-900 pb-4">Download App</h4>
-            <p className="text-[12px] poppins font-medium text-gray-900 pb-1">
+            <h4 className="text-xl font-medium text-foreground dark:text-white pb-4">Download App</h4>
+            <p className="text-[12px] poppins font-medium text-foreground dark:text-gray-300 pb-1">
               Save $3 with App New User Only
             </p>
             <div className="flex gap-3">
@@ -99,7 +99,7 @@ const Footer = () => {
           </div>
         </div>
   
-        <p className="text-white poppins text-base font-normal flex items-center gap-1 justify-center py-6 border-t border-t-gray-500 bg-black">
+        <p className="text-foreground dark:text-white poppins text-base font-normal flex items-center gap-1 justify-center py-6 border-t border-border bg-background dark:bg-gray-900">
           <FaRegCopyright /> Copyright DashDeals 2025. All right reserved
         </p>
       </div>
@@ -109,14 +109,14 @@ const Footer = () => {
 export default Footer;
 
 const FooterLinkList = ({ title, links }) => (
-    <ul className="text-gray-900 text-base pl-5 md:pl-0 md:mt-0 mt-4 poppins font-normal">
-      <li className="text-xl font-medium text-gray-900 pb-4">{title}</li>
+    <ul className="text-foreground dark:text-gray-300 text-base pl-5 md:pl-0 md:mt-0 mt-4 poppins font-normal">
+      <li className="text-xl font-medium text-foreground dark:text-white pb-4">{title}</li>
       {links.map((link, index) => (
         <li key={index} className="pb-3">
           {link.href === "#" ? (
-            <span className="text-gray-900 opacity-75">{link.text}</span>
+            <span className="text-foreground dark:text-gray-400 opacity-75">{link.text}</span>
           ) : (
-            <a href={link.href} className="text-gray-900 hover:text-gray-300 transition-colors">
+            <a href={link.href} className="text-foreground dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">
               {link.text}
             </a>
           )}
@@ -126,13 +126,13 @@ const FooterLinkList = ({ title, links }) => (
   );
 
 const SocialIcons = ({ icons }) => (
-    <div className="text-white flex pt-5 gap-4 items-center">
+    <div className="text-foreground dark:text-gray-300 flex pt-5 gap-4 items-center">
       {icons.map((icon, index) => (
         <a 
           key={index} 
           href={icon.href}
           aria-label={icon.label}
-          className="text-white hover:text-gray-300 transition-colors"
+          className="text-foreground dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
         >
           {icon.icon}
         </a>
