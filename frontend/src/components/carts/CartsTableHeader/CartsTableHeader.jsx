@@ -1,4 +1,4 @@
-import '@/components/Carts/style.css';
+import '@/components/carts/style.css';
 
 const CartsTableHeader = () => {
     return (
