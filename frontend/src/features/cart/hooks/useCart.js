@@ -10,10 +10,9 @@ const useCart = () => {
         queryKey: ['carts', user?.email],
         queryFn: async () => {
             
-            // Double-check user email exists before making the call
             if (!user?.email) {
                 return [];
-            }
+            };
             
             const res = await axiosSecure.get(`/users/userProductCarts/${user.email}`, {
                 headers: {
@@ -22,7 +21,11 @@ const useCart = () => {
             });
             return res?.data || [];
         },
-        enabled: !authLoading && !!user?.email && !!localStorage.getItem("dashdeals-access-token")
+        enabled: !!user?.email && !!localStorage.getItem("dashdeals-access-token"),
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 10 * 60 * 1000, 
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
     })
     return [carts, refetch];
 };
