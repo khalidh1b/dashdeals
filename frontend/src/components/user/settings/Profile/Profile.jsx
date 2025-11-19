@@ -79,7 +79,6 @@ const Profile = () => {
             try {
                 const response = await axiosSecure.get(`/users/userprofile/${user?.email}`);
                 setUserProfile(response.data);
-                // //console.log(response)
             } catch (error) {
                 console.error('error while fetching user', error);
             }
@@ -90,7 +89,7 @@ const Profile = () => {
     return (
         <div className="container mx-auto">
         <Toaster/>
-        <Card className="max-w-2xl mx-auto">
+        <Card className="max-w-2xl bg-muted dark:bg-gray-700 border-gray-200 mx-auto">
             <CardHeader>
             <CardTitle>Profile Settings</CardTitle>
             <CardDescription>Manage your account details and preferences</CardDescription>
