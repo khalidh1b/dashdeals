@@ -26,44 +26,44 @@ const ChangePassword = () => {
     return (
         <>
         <Toaster/>
-        <Card>
+        <Card className="bg-muted dark:bg-gray-700 border-gray-200">
         <Header/>
-        <form onSubmit={handleSubmit}>
-        <CardContent className="space-y-4">
-          <PasswordInput
-            id="current-password"
-            label="Current Password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            showPassword={showCurrentPassword}
-            toggleShowPassword={() => setShowCurrentPassword(!showCurrentPassword)}
-          />
-          <PasswordInput
-            id="new-password"
-            label="New Password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            showPassword={showNewPassword}
-            toggleShowPassword={() => setShowNewPassword(!showNewPassword)}
-          />
-          <PasswordInput
-            id="confirm-password"
-            label="Confirm New Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            showPassword={showConfirmPassword}
-            toggleShowPassword={() => setShowConfirmPassword(!showConfirmPassword)}
-          />
-          {confirmPassword && newPassword !== confirmPassword && (
-            <p className="text-sm text-destructive mt-1">Passwords do not match</p>
-          )}
-        </CardContent>
-        <CardFooter>
-          <Button type="submit" disabled={changingPass}>
-            {changingPass ? "Updating..." : "Update Password"}
-          </Button>
-        </CardFooter>
-      </form>
+            <form onSubmit={handleSubmit}>
+            <CardContent className="space-y-4">
+              <PasswordInput
+                id="current-password"
+                label="Current Password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                showPassword={showCurrentPassword}
+                toggleShowPassword={() => setShowCurrentPassword(!showCurrentPassword)}
+              />
+              <PasswordInput
+                id="new-password"
+                label="New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                showPassword={showNewPassword}
+                toggleShowPassword={() => setShowNewPassword(!showNewPassword)}
+              />
+              <PasswordInput
+                id="confirm-password"
+                label="Confirm New Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                showPassword={showConfirmPassword}
+                toggleShowPassword={() => setShowConfirmPassword(!showConfirmPassword)}
+              />
+              {confirmPassword && newPassword !== confirmPassword && (
+                <p className="text-sm text-destructive mt-1">Passwords do not match</p>
+              )}
+            </CardContent>
+            <CardFooter>
+              <Button type="submit" disabled={changingPass}>
+                {changingPass ? "Updating..." : "Update Password"}
+              </Button>
+            </CardFooter>
+          </form>
         </Card>
         </>
     );
