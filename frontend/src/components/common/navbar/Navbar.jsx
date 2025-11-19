@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom';
 import ProfileMenu from "@/components/user/profile-menu/ProfileMenu";
 import useCart from '@/features/cart/hooks/useCart.js';
 import PropTypes from 'prop-types';
-import { useAxiosSecure } from "@/shared/hooks";
 
 const Navbar = () => {
     const [carts,  ] = useCart();
-    const axiosSecure = useAxiosSecure();
-
+    
     const navLinks = [
         { to: "/", label: "Home" },
         { to: "/contact", label: "Contact" },

@@ -4,7 +4,9 @@ import useCart from "@/features/cart/hooks/useCart";
 import { AuthContext } from "@/app/providers/auth-provider";
 import { useContext } from "react";
 import useFetchCartData from "./useFetchCartData";
-import { validateCartItemId, validateUserAuth, logValidationError } from "@/shared/utils/validationHelpers";
+import { validateuserauth as validateUserAuth } from "@/shared/utils/validation/authValidators";
+import { validatecartitemid as validateCartItemId } from "@/shared/utils/validation/idValidators";
+import { logvalidationerror as logValidationError } from "@/shared/utils/validation/validationUtils";
 
 const useHandleDeleteCart = () => {
     const axiosSecure = useAxiosSecure();
