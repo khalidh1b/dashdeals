@@ -29,7 +29,7 @@ const About = () => {
 
             <div className='flex gap-7 pt-20 justify-center'>
                 <div>
-                    <div className='pt-9 px-12 rounded bg-muted dark:bg-gray-800'>
+                    <div className='pt-9 px-12 rounded bg-[#F5F5F5]'>
                         <Image 
                             className='' 
                             width={200}
@@ -41,13 +41,13 @@ const About = () => {
                     <h2 className='text-[30px] text-black dark:text-white font-medium pt-3'>Tom Cruise</h2>
                     <p className='text-base poppins font-normal text-black dark:text-white pb-2'>Founder & Chairman</p>
                     <div className='flex gap-2'>
-                        <CiTwitter className='text-xl text-foreground dark:text-gray-300'/>
-                        <FaInstagram className='text-xl text-foreground dark:text-gray-300'/>
-                        <FaLinkedinIn className='text-xl text-foreground dark:text-gray-300'/>
+                        <CiTwitter className='text-xl'/>
+                        <FaInstagram className='text-xl'/>
+                        <FaLinkedinIn className='text-xl'/>
                     </div>
                 </div>
                 <div>
-                    <div className='pt-8 px-12 rounded bg-muted dark:bg-gray-800'>
+                    <div className='pt-8 px-12 rounded bg-[#F5F5F5]'>
                         <Image 
                             width={200}
                             height={200}
@@ -58,13 +58,13 @@ const About = () => {
                     <h2 className='text-[30px] dark:text-white text-black font-medium pt-3'>Emma Watson</h2>
                     <p className='text-base poppins font-normal dark:text-white text-black pb-2'>Managing Director</p>
                     <div className='flex gap-2'>
-                        <CiTwitter className='text-xl text-foreground dark:text-gray-300'/>
-                        <FaInstagram className='text-xl text-foreground dark:text-gray-300'/>
-                        <FaLinkedinIn className='text-xl text-foreground dark:text-gray-300'/>
+                        <CiTwitter className='text-xl'/>
+                        <FaInstagram className='text-xl'/>
+                        <FaLinkedinIn className='text-xl'/>
                     </div>
                 </div>
                 <div>
-                    <div className='pt-9 px-12 rounded bg-muted dark:bg-gray-800'>
+                    <div className='pt-9 px-12 rounded bg-[#F5F5F5]'>
                         <Image 
                             width={200}
                             height={200}
@@ -75,9 +75,9 @@ const About = () => {
                     <h2 className='text-[30px] text-black dark:text-white font-medium pt-3'>Will Smith</h2>
                     <p className='text-base poppins font-normal dark:text-white text-black pb-2'>Product Designer</p>
                     <div className='flex gap-2'>
-                        <CiTwitter className='text-xl text-foreground dark:text-gray-300'/>
-                        <FaInstagram className='text-xl text-foreground dark:text-gray-300'/>
-                        <FaLinkedinIn className='text-xl text-foreground dark:text-gray-300'/>
+                        <CiTwitter className='text-xl'/>
+                        <FaInstagram className='text-xl'/>
+                        <FaLinkedinIn className='text-xl'/>
                     </div>
                 </div>
             </div>

@@ -6,11 +6,17 @@ import router from '@/router/router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LoadingSkeleton } from '@/components/common/skeletons/loading-skeleton';
 
+// Initialize performance monitoring
+// import { initializePerformanceMonitoring, scheduleIdleWork } from '@/shared/utils/performance-monitor';
+// import { initializePreloading } from '@/shared/utils/component-preloader';
+// import { initializeServiceWorker } from '@/shared/utils/service-worker';
+
+// Optimized QueryClient with better defaults
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000,
-      cacheTime: 10 * 60 * 1000, 
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
       retry: 1,
       refetchOnWindowFocus: false,
       suspense: true,
@@ -21,27 +27,45 @@ const queryClient = new QueryClient({
   },
 });
 
-// Lazy load providers to defer initialization
+// Lazy load AuthProvider to defer Firebase initialization
 const AuthProvider = React.lazy(() => import('@/app/providers/auth-provider'));
-const ThemeProvider = React.lazy(() => import('@/app/providers/theme-provider'));
+
+// Initialize performance tools with delay to avoid blocking initial render
+// const initializePerformanceTools = () => {
+//   scheduleIdleWork(() => {
+//     initializePerformanceMonitoring();
+//     initializePreloading();
+//     initializeServiceWorker();
+//   }, { timeout: 1000 });
+// };
+
+// Initialize non-critical tools
+// if(import.meta.env.VITE_PERFORMANCE_MONITOR === 'true') {
+//   initializePerformanceTools();
+// };
+
 const App = () => {
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <Suspense fallback={<LoadingSkeleton/>}>
-          <ThemeProvider>
+          <AuthProvider>
             <Suspense fallback={<LoadingSkeleton />}>
-              <AuthProvider>
-                <Suspense fallback={<LoadingSkeleton />}>
-                  <RouterProvider router={router} />
-                </Suspense>
-              </AuthProvider>
+              <RouterProvider router={router} />
             </Suspense>
-          </ThemeProvider>
+          </AuthProvider>
         </Suspense>
       </QueryClientProvider>
     </React.StrictMode>
   );
 };
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+// Use requestIdleCallback for better initial paint
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => {
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  }, { timeout: 100 });
+} else {
+  // Fallback for browsers without requestIdleCallback
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+}

@@ -3,7 +3,6 @@ import { AuthContext } from "@/app/providers/auth-provider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from '@/shared/hooks/useAxiosSecure';
-import useAxiosPublic from '@/shared/hooks/useAxiosPublic';
 
 const useSignUp = () => {
     const { createUser, logOut, googleSignIn, profileUpdate } = useContext(AuthContext);
@@ -11,7 +10,6 @@ const useSignUp = () => {
     const [loading, setLoading] = useState(false);
     const [googleLoading, setGoogleLoading] = useState(false);
     const axiosSecure = useAxiosSecure();
-    const axiosPublic = useAxiosPublic();
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -20,22 +18,14 @@ const useSignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const data = {name, email, password};
-        console.log(data);
+        //console.log(data);
 
         try {
             setLoading(true);
             const result = await createUser(data.email, data.password)
-            console.log('signup result', result);
+            //console.log('signup result', result);
 
             if(result.user.email) {
-                // Update profile first
-                await profileUpdate(name);
-                
-                // Save user data to backend
-                const res = await axiosPublic.post('/users/saveuser', data)
-                console.log('res', res);
-                
-                // Show success message
                 Swal.fire({
                     icon: "success",
                     title: "User successfully signed up!",
@@ -43,10 +33,13 @@ const useSignUp = () => {
                     timer: 2000
                 });
                 
-                // Then logout and navigate to login
                 await logOut()
                 await navigate('/login');
             }
+            
+            await profileUpdate(name);
+
+            await axiosSecure.post('/users/saveuser', data)
             
         } catch (error) {
             console.error('error in signup',error)
@@ -73,13 +66,7 @@ const useSignUp = () => {
                 profilePic: result.user?.photoURL
             };
 
-            console.log(result, result?.user)
             if(result.user) {
-                // First save the user data to backend
-                const res1 = await axiosPublic.post('/users/saveuser', data)
-                console.log(res1);
-                
-                // Then navigate and show success message
                 await navigate('/');
                 Swal.fire({
                     icon: "success",
@@ -88,9 +75,11 @@ const useSignUp = () => {
                     timer: 1500
                 });
             }
-
+            
+            await axiosSecure.post('/users/saveuser', data)
+                
             } catch (error) {
-                console.error('error in google auth', error);
+                console.error('error in google auth');
                 Swal.fire({
                     icon: "error",
                     title: `${error.message}`,

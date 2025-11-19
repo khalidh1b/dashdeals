@@ -42,8 +42,8 @@ const SectionHeader = () => {
             <h2 className="text-[32px] font-semibold">Browse By Categories</h2>
         </div>
         <div className="flex gap-2">
-            <FaArrowRightLong className="bg-muted dark:bg-gray-700 text-4xl p-2.5 rounded-full" />
-            <FaArrowLeftLong className="bg-muted dark:bg-gray-700 text-4xl p-2.5 rounded-full" />
+            <FaArrowRightLong className="bg-[#F5F5F5] dark:bg-slate-400 text-4xl p-2.5 rounded-full" />
+            <FaArrowLeftLong className="bg-[#F5F5F5] dark:bg-slate-400 text-4xl p-2.5 rounded-full" />
         </div>
     </div>
 };

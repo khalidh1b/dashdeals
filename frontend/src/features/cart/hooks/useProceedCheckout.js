@@ -9,8 +9,10 @@ const useProceedCheckout = () => {
     const [quantities, setQuantities] = useState({});
     const [subtotals, setSubtotals] = useState({});
     const [cartSubtotal, setCartSubtotal] = useState(0);
-    const [fetchedProducts, initialQuantities, initialSubtotals, refetchCartData, isLoading] = useFetchCartData();
+    const [loading, setLoading] = useState(false);
+    const [fetchedProducts, initialQuantities, initialSubtotals, refetchCartData] = useFetchCartData(setLoading);
     const navigate = useNavigate();
+    const handleDelete = useHandleDeleteCart(refetchCartData);
 
     useEffect(() => {
         if (Object.keys(initialQuantities).length > 0) {
@@ -38,8 +40,9 @@ const useProceedCheckout = () => {
     };
 
     return { 
-        loading: isLoading,
+        loading,
         products: fetchedProducts,
+        handleDelete,
         quantities,
         quantityPlus,
         quantityMinus,

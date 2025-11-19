@@ -5,21 +5,21 @@ import { AuthContext } from "@/app/providers/auth-provider";
 import { Link } from "react-router-dom";
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { useTheme } from "@/app/providers/theme-provider";
+import useToggleTheme from "@/shared/hooks/useToggleTheme";
 import { Image } from '@/components/common/image/image';
 
 const ProfileMenu = () => {
     const { user, logOut } = useContext(AuthContext);
-    const { theme, toggleTheme } = useTheme();
+    const { handleThemeChange, theme } = useToggleTheme();
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = () => {
         logOut()
         .then(() => {
-            console.log(result);
+            //console.log(result);
         })
         .catch(() => {
-            console.log(error);
+            //console.log(error);
         })
     };
     
@@ -29,7 +29,7 @@ const ProfileMenu = () => {
             <DropdownMenuTrigger asChild>
                 <button
                     type="button"
-                    className="relative flex h-10 w-10 items-center justify-center rounded-full outline-none focus:outline-none"
+                    className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-border bg-card transition-all hover:border-primary hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     aria-label={`${user?.displayName || "User"} menu - Click to open profile options`}
                 >
                 <Image
@@ -37,14 +37,16 @@ const ProfileMenu = () => {
                     className="rounded-full"
                     width={40}
                     height={40}
-                    src={user?.photoURL}
-                    fallbackSrc="https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif"
-                    containerClassName="h-10 w-10"
+                    src={
+                    user?.photoURL ||
+                    "https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif" ||
+                    "/placeholder.svg"
+                    }
                 />
                 </button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-64 rounded-xl border border-border bg-popover p-0 shadow-lg">
+            <DropdownMenuContent className="w-64 rounded-xl border border-border bg-gray-300 p-0 shadow-lg">
 
                 <div className="border-b border-border px-4 py-4">
                 <div className="flex items-center gap-3">
@@ -54,9 +56,11 @@ const ProfileMenu = () => {
                         className="rounded-full"
                         width={48}
                         height={48}
-                        src={user?.photoURL}
-                        fallbackSrc="https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif"
-                        containerClassName="h-12 w-12"
+                        src={
+                        user?.photoURL ||
+                        "https://res.cloudinary.com/dksiicemx/image/upload/v1729426352/default-profile_iwgfsb.avif" ||
+                        "/placeholder.svg"
+                        }
                     />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -73,7 +77,7 @@ const ProfileMenu = () => {
                         className="flex cursor-pointer items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted focus:bg-muted"
                     >
                     <Settings className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-foreground dark:text-white">Settings</span>
+                    <span className="text-white">Settings</span>
                     </Link>
                 </DropdownMenuItem>
 
@@ -83,7 +87,7 @@ const ProfileMenu = () => {
                     className="flex cursor-pointer items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted focus:bg-muted"
                     >
                     <ShoppingBag className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-foreground dark:text-white">My Orders</span>
+                    <span className="text-white">My Orders</span>
                     </Link>
                 </DropdownMenuItem>
 
@@ -93,7 +97,7 @@ const ProfileMenu = () => {
                     className="flex cursor-pointer items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted focus:bg-muted"
                     >
                     <XCircle className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-foreground dark:text-white">Cancellations</span>
+                    <span className="text-white">Cancellations</span>
                     </Link>
                 </DropdownMenuItem>
 
@@ -103,7 +107,7 @@ const ProfileMenu = () => {
                     className="flex cursor-pointer items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted focus:bg-muted"
                     >
                     <Star className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-foreground dark:text-white">My Reviews</span>
+                    <span className="text-white">My Reviews</span>
                     </Link>
                 </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -111,10 +115,10 @@ const ProfileMenu = () => {
                 <DropdownMenuSeparator className="my-2 bg-border" />
 
                 <DropdownMenuItem
-                onClick={toggleTheme}
+                onClick={handleThemeChange}
                 className="flex cursor-pointer items-center justify-between px-4 py-2.5 transition-colors hover:bg-muted focus:bg-muted"
                 >
-                <div className="flex text-foreground dark:text-white items-center gap-3">
+                <div className="flex text-white items-center gap-3">
                     {theme ? (
                     <Moon className="h-4 w-4 text-muted-foreground" />
                     ) : (

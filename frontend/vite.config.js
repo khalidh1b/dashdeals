@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -30,17 +31,12 @@ export default defineConfig({
         manualChunks: function(id) {
           if (!id) return
           
-          // Skip React-related modules to let Vite handle them automatically
-          if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
-            return undefined
-          }
-          
-          // Router chunk
+          // Router chunk - check before general react to avoid conflicts
           if (id.includes('react-router-dom')) {
             return 'router-vendor'
           }
           
-          // Query/state management
+          // Query/state management - check before general react to avoid conflicts
           if (id.includes('@tanstack/react-query')) {
             return 'query-vendor'
           }
@@ -50,9 +46,14 @@ export default defineConfig({
             return 'stripe-vendor'
           }
           
-          // UI component library
+          // UI component library - check before general react to avoid conflicts
           if (id.includes('@radix-ui')) {
             return 'ui-vendor'
+          }
+          
+          // Core React libraries - keep them separate for better caching
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'react-vendor'
           }
           
           // Firebase - split into smaller chunks for better loading
@@ -126,7 +127,7 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
+        pure_funcs: ['//console.log', 'console.info', 'console.debug', 'console.warn'],
         passes: 3,
         unsafe: true,
         unsafe_comps: true,
@@ -154,16 +155,19 @@ export default defineConfig({
         comments: false,
       }
     },
+    // Enable CSS code splitting
     cssCodeSplit: true,
-    assetsInlineLimit: 4096,
-    sourcemap: false, 
+    // Optimize assets
+    assetsInlineLimit: 4096, // Inline small assets
+    // Enable source maps for production debugging (optional)
+    sourcemap: false, // Set to true if needed for debugging
   },
+  // Optimize dependencies during development
   optimizeDeps: {
     include: [
       'react',
       'react-dom',
-      'react-router-dom',
-      'scheduler'
+      'react-router-dom'
     ],
     exclude: [
       '@stripe/stripe-js',

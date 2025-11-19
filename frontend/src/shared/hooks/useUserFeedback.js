@@ -12,11 +12,11 @@ const useUserFeedback = () => {
         const phone = form.phone.value;
         const message = form.message.value;
         const data = {name, email, phone, message};
-        console.log('clicking', data);
+        //console.log('clicking', data);
 
         axiosSecure.post('/userFeedback', data)
         .then((res) => {
-            console.log(res);
+            //console.log(res);
             if(res.data.insertedId) {
                 form.reset();
                 Swal.fire({
@@ -34,7 +34,7 @@ const useUserFeedback = () => {
                 showConfirmButton: false,
                 timer: 2500
             });
-            console.log(error);
+            //console.log(error);
         })
     };
 

@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 
 const useToggleTheme = () => {
     const [theme, setTheme] = useState(() => {
-        const savedTheme = localStorage.getItem("dashdeals-theme");
-        return savedTheme === "dark" || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        return localStorage.getItem("dashdeals-theme") === "dark";
     });
 
     const handleThemeChange = () => {
-        const newTheme = !theme;
-        setTheme(newTheme);
-        localStorage.setItem("dashdeals-theme", newTheme ? "dark" : "light");
+        setTheme(!theme);
+        localStorage.setItem("dashdeals-theme", !theme ? "dark" : "light");
     };
     
     useEffect(() => {

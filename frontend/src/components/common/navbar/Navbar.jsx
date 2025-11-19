@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 import ProfileMenu from "@/components/user/profile-menu/ProfileMenu";
 import useCart from '@/features/cart/hooks/useCart.js';
 import PropTypes from 'prop-types';
-import { useAxiosSecure } from "@/shared/hooks";
 
 const Navbar = () => {
     const [carts,  ] = useCart();
-    const axiosSecure = useAxiosSecure();
 
     const navLinks = [
         { to: "/", label: "Home" },
@@ -19,24 +17,24 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="flex items-center md:justify-around bg-muted dark:bg-gray-black justify-between md:mx-0 mx-2 pt-5 pb-5">
-            <Link to="/">
-                <h1 className="text-foreground dark:text-white text-2xl font-semibold">DashDeals</h1>
+        <nav className="flex items-center md:justify-around justify-between md:mx-0 mx-2 pt-5 border-b pb-5">
+        <Link to="/">
+            <h1 className="text-black dark:text-white text-2xl font-semibold">DashDeals</h1>
+        </Link>
+        <ul className="md:flex gap-12 items-center hidden">
+            {navLinks.map((link, index) => (
+            <NavLink key={index} to={link.to} label={link.label} />
+            ))}
+        </ul>
+        <div className="flex items-center gap-6">
+            <SearchInput />
+            <Link to="/wishlist" aria-label="Wishlist">
+                <FaRegHeart className="text-2xl" />
             </Link>
-            <ul className="md:flex gap-12 items-center hidden">
-                {navLinks.map((link, index) => (
-                <NavLink key={index} to={link.to} label={link.label} />
-                ))}
-            </ul>
-            <div className="flex items-center gap-6">
-                <SearchInput />
-                <Link to="/wishlist" aria-label="Wishlist">
-                    <FaRegHeart className="text-2xl" />
-                </Link>
-                <CartIcon cartCount={carts.length} />
-                <ProfileMenu />
-            </div>
-        </nav>
+            <CartIcon cartCount={carts.length} />
+            <ProfileMenu />
+        </div>
+    </nav>
     );
 };
 
@@ -44,7 +42,7 @@ export default Navbar;
 
 const NavLink = ({ to, label }) => {
     return (
-        <Link to={to} className="text-foreground dark:text-white text-base font-medium">
+        <Link to={to} className="text-black dark:text-white text-base font-medium">
             <li>{label}</li>
         </Link>
     )
@@ -54,7 +52,7 @@ const SearchInput = () => {
     return (
         <div className="md:flex hidden relative">
             <input
-                className="py-2.5 pl-4 pr-10 rounded focus:outline-none text-foreground dark:text-white placeholder-muted-foreground dark:placeholder-gray-400"
+                className="bg-[#F5F5F5] dark:bg-[#27272A80] py-2.5 pl-4 pr-10 rounded focus:outline-none"
                 type="text"
                 placeholder="What are you looking for?"
             />

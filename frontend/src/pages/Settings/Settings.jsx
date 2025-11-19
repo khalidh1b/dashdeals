@@ -14,7 +14,7 @@ const Settings = () => {
 
     return (
         <>        
-        <div className='bg-muted dark:bg-gray-700 rounded-md md:px-9 px-3 py-10'>
+        <div className='border-2 rounded-md md:px-9 px-3 py-10'>
             <h2 className='text-[#FAFAFA] text-2xl work-sans font-semibold'>Settings</h2>
             <p className='text-[#A1A1AA] text-base pb-5 font-normal'>Manage your account settings and set e-mail preferences.</p>
             <hr className='border-t mb-4 border-[#27272A]'/>

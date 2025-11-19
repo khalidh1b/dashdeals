@@ -62,44 +62,44 @@ const ProductImage = ({
 }) => {
     return (
         <div className="relative">
-            <Link to={`/productdetailspage/${_id}`}>
-                <Image
-                    className="bg-muted dark:bg-gray-800 px-16 pt-16 pb-20 w-[300px] h-[300px] rounded"
-                    width={300}
-                    height={300}
-                    src={product_image}
-                    alt={product_title}
-                />
-                <span className="bg-red-600 absolute top-5 left-4 text-white py-1 px-4 rounded poppins font-medium">
-                    {discount_percent || '0%'}
-                </span>
-            </Link>
-            
-            <IoEyeOutline className="bg-background dark:bg-gray-700 absolute top-20 left-60 text-[45px] p-2.5 rounded-full" />
-            
-            {
-                isWishlist 
-                ? <RiDeleteBinLine 
-                    onClick={() => handleDelete(_id, product_title)} 
-                    className="bg-red-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"
-                /> 
-                : <FaRegHeart
-                    onClick={() => handleWishlist(product_title)}
-                    className="bg-background dark:bg-gray-700 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"
-                />
-            }
-            
-            <p onClick={() => handleCart(product)} className="bg-foreground dark:bg-gray-900 max-w-[300px] absolute bottom-0 w-full text-base poppins select-none font-medium text-background dark:text-white py-2.5 text-center rounded-b cursor-pointer hover:bg-primary dark:hover:bg-primary transition-colors"
-            >
-                Add To Cart
-            </p>
-        </div>
+        <Link to={`/productdetailspage/${_id}`}>
+            <Image
+                className="bg-[#F5F5F5] px-16 pt-16 pb-20 w-[300px] h-[300px] rounded"
+                width={300}
+                height={300}
+                src={product_image}
+                alt={product_title}
+            />
+            <span className="bg-red-600 absolute top-5 left-4 text-white py-1 px-4 rounded poppins font-medium">
+                {discount_percent || '0%'}
+            </span>
+        </Link>
+        
+        <IoEyeOutline className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-20 left-60 text-[45px] p-2.5 rounded-full" />
+        
+        {
+            isWishlist 
+            ? <RiDeleteBinLine 
+                onClick={() => handleDelete(_id, product_title)} 
+                className="bg-red-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"
+            /> 
+            : <FaRegHeart
+                onClick={() => handleWishlist(product_title)}
+                className="bg-[#FFFFFF] dark:bg-slate-400 absolute top-3 left-60 text-[45px] p-2.5 rounded-full cursor-pointer"
+            />
+        }
+        
+        <p onClick={() => handleCart(product)} className="bg-[#000000] max-w-[300px] absolute bottom-0 w-full text-base poppins select-none font-medium text-[#FFFFFF] py-2.5 text-center rounded-b"
+        >
+            Add To Cart
+        </p>
+    </div>
     )
 };
 
 const ProductTitle = ({ title }) => {
     return (
-        <h4 className="text-foreground dark:text-white text-xl select-none poppins font-semibold pt-3">
+        <h4 className="text-[#000000] dark:text-white text-xl select-none poppins font-semibold pt-3">
             {title}
         </h4>
     )
@@ -109,7 +109,7 @@ const ProductPrice = ({ discount_price, main_price }) => {
     return (
         <div className="flex gap-4 py-2">
             <h5 className="text-red-700 text-xl font-medium">{discount_price}</h5>
-            <span className="text-muted-foreground font-medium line-through text-xl">
+            <span className="text-text-muted font-medium line-through text-xl">
                 {main_price}
             </span>
         </div>
@@ -120,7 +120,7 @@ const ProductRating = ({ ratings, user_rating_count, setRatings }) => {
     return (
         <div className="flex gap-2 items-center">
             <Rating style={{ maxWidth: 130 }} value={ratings} onChange={setRatings} isRequired />
-            <span className="text-muted-foreground font-semibold text-[18px]">
+            <span className="text-text-secondary font-semibold text-[18px]">
                 ({user_rating_count})
             </span>
         </div>

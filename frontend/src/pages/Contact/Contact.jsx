@@ -15,7 +15,7 @@ const Contact = () => {
         <p className='text-gray-300 pt-10 pl-20'>Home / <span className='text-[14px] text-black dark:text-white poppins font-normal'>Contact</span></p>
         <div className="flex justify-center gap-8 pt-28 pb-36">
             
-            <div className=" px-10 py-14 rounded shadow-md">
+            <div className="border dark:border-white px-10 py-14 rounded shadow-md">
                 <div className={sectionTitleClass}>
                     <IoCallOutline className={iconWrapperClass} />
                     <span className={titleTextClass}>Call To Us</span>
@@ -36,35 +36,40 @@ const Contact = () => {
                 <p className={`${paragraphClass} pb-4`}>Emails: customer@exclusive.com</p>
             </div>
 
-            <div className="px-7 py-9">
-                <form onSubmit={handleUserFeedback} className="relative">
+            <div className="border dark:border-white px-7 py-9">
+                <form onSubmit={handleUserFeedback}>
                     
-                    <input
-                        className="py-2 pl-3 rounded mr-4 focus:outline-none bg-muted dark:bg-gray-800 text-foreground dark:text-white placeholder-muted-foreground dark:placeholder-gray-400"
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
+                    <input 
+                        className="py-2 pl-3 rounded mr-4 focus:outline-none bg-[#F5F5F5]" 
+                        type="text" 
+                        name="name" 
+                        placeholder="Your Name" 
                         required
                     />
-                    <input
-                        className="py-2 pl-3 rounded mr-4 focus:outline-none bg-muted dark:bg-gray-800 text-foreground dark:text-white placeholder-muted-foreground dark:placeholder-gray-400"
-                        type="email"
-                        placeholder="Your Email"
+                    <input 
+                        className="py-2 pl-3 rounded mr-4 focus:outline-none bg-[#F5F5F5]" 
+                        type="email" 
+                        name="email" 
+                        placeholder="Your Email" 
+                        required
                     />
-                    <input
-                        className="py-2 pl-3 rounded focus:outline-none bg-muted dark:bg-gray-800 text-foreground dark:text-white placeholder-muted-foreground dark:placeholder-gray-400"
-                        type="number"
-                        placeholder="Your Phone"
-                    />
-                    <textarea
-                        className="bg-muted dark:bg-gray-800 pl-5 pt-5 mt-8 w-full h-[230px] focus:outline-none rounded text-foreground dark:text-white placeholder-muted-foreground dark:placeholder-gray-400"
-                        name="message"
+                    <input 
+                        className="py-2 pl-3 rounded focus:outline-none bg-[#F5F5F5]"
+                        type="number" 
+                        id="phone" 
+                        placeholder="Your Phone" 
+                        required
+                    /> <br />
+
+                    <textarea 
+                        className="bg-[#F5F5F5] pl-5 pt-5 mt-8 w-full h-[230px] focus:outline-none rounded" 
+                        name="message" 
                         placeholder="Your Message"
-                    />
-                    <input
-                        className="py-3 px-10 bg-red-600 hover:bg-red-700 mt-5 text-white rounded absolute -bottom-16 right-0 transition-colors"
-                        type="submit"
-                        value="Send Message"
+                    ></textarea> <br />
+                    <input 
+                        className="py-3 px-10 bg-red-600 hover:bg-red-700 mt-5 text-white rounded absolute right-40 transition-colors" 
+                        type="submit" 
+                        value="Send Message" 
                     />
                 </form>
             </div>
