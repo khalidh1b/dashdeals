@@ -13,7 +13,7 @@ const NewArrival = lazy(() => import("@/components/home/new-arrival/NewArrival")
 
 const HomePage = () => {
     return (
-        <div>
+        <div className='bg-muted dark-bg-gray-700'>
             <Suspense fallback={<LoadingSkeleton />}>
                 <Banner/>
             </Suspense>
