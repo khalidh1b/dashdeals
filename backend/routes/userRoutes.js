@@ -22,7 +22,7 @@ const {
 } = require('../middlewares/validationMiddleware');
 
 // User Profile Routes
-router.post('/saveuser', verifyToken, validateUserData, userProfileController.saveUser);
+router.post('/saveuser', validateUserData, userProfileController.saveUser);
 router.get('/userprofile/:email', verifyToken, validateEmail, userProfileController.getUserProfile);
 router.patch('/update-user-profile/:email', verifyToken, validateEmail, userProfileController.updateUserProfile);
 router.patch('/updatepass/:email', verifyToken, validateEmail, validatePasswordUpdate, userProfileController.updatePassword);
