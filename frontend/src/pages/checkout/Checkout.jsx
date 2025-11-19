@@ -1,8 +1,8 @@
 import useHandleCheckout from "@/features/cart/hooks/useHandleCheckout";
 import PropTypes from 'prop-types';
 import { Loader2 } from "lucide-react";
-import '@/pages/CheckOut/style.css';
 import { Image } from '@/components/common/image/image';
+import './style.css';
 
 const Checkout = () => {
     const { 

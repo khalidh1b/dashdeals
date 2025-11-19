@@ -1,5 +1,7 @@
 import Swal from "sweetalert2";
-import { validateProductObject, validateCartItemId, logValidationError } from "@/shared/utils/validationHelpers";
+import { logvalidationerror as logValidationError } from "@/shared/utils/validation/validationUtils";
+import { validatecartitemid as validateCartItemId } from "@/shared/utils/validation/idValidators";
+import { validateproductobject as validateProductObject } from "@/shared/utils/validation/objectValidators";
 
 export const useProductImageLogic = (handleDelete, product) => {
     const handleDeleteClick = () => {

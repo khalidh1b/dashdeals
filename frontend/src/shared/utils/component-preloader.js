@@ -96,7 +96,7 @@ export const componentImports = {
   
   cart: () => import('@/pages/carts/Carts'),
   checkout: () => import('@/pages/checkout/Checkout'),
-  wishlist: () => import('@/pages/wishlist/Wishlists'),
+  wishlist: () => import('@/pages/wishlists/Wishlists'),
   
   profile: () => import('@/pages/settings/Settings'),
   orders: () => import('@/pages/my-orders/my-orders'),

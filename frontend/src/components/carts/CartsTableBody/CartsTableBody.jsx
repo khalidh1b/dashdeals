@@ -1,7 +1,6 @@
-import { GiCancel } from "react-icons/gi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import CartsTableBodySkeleton from '@/components/carts/cart-table-body-skeleton/CartTableBodySkeleton';
-import "@/components/Carts/style.css";
+import "@/components/carts/style.css";
 import useProceedCheckout from "@/features/cart/hooks/useProceedCheckout";
 import useHandleDeleteCart from "@/features/cart/hooks/useHandleDeleteCart";
 import ProductImage from '@/components/carts/ProductImage/ProductImage';
